@@ -1,0 +1,35 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;    
+    border-top: 1px solid rgba(128, 128, 128, 0.308);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.308);
+    padding: 5px 0px 5px 0px;
+}
+.active {
+    color: red;
+}
+.nav_link {    
+    position: relative;
+    margin-left: 20px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: black;
+    &:after {
+        content:'';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        left: 0;
+        top: 26px;
+        background-color: red;
+        transition: width 0.3s ease-out;   
+    }
+    &:hover {
+        color: red;        
+    } 
+    &:hover:after {
+        width: 100%;
+    }   
+
+}

@@ -1,9 +1,17 @@
 import React, { FC } from 'react';
+import NavCategories from '../../NavCategories/NavCategories';
 
 const HomePage:FC = () => {
-    return ( <>
-    <div>Home page</div>
-    </> );
+   
+    return ( 
+        <>
+        {
+         <NavCategories />
+        }
+        
+        </>  
+       
+     );
 }
  
 export default HomePage;
