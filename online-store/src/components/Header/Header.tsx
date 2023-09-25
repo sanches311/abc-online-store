@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { NavLink } from "react-router-dom";
 import classes from './Header.module.scss';
+import NavCategories from '../NavCategories/NavCategories';
 
 const Header: React.FC = () => {
     return ( <>   
@@ -27,7 +28,8 @@ const Header: React.FC = () => {
 </svg>
 
         </div>
-    </div>   
+    </div>
+    <NavCategories />   
     </> );
 }
  

@@ -1,13 +1,12 @@
 import React, { FC } from 'react';
-import NavCategories from '../../NavCategories/NavCategories';
+import CardList from '../../CardList/CardList';
 
 const HomePage:FC = () => {
+
    
     return ( 
         <>
-        {
-         <NavCategories />
-        }
+       <CardList />
         
         </>  
        
