@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": ";AAIE,AAAA,MAAM,CAAC;EAEL,OAAO,EAAE,YAAY;EACrB,SAAS,EAPC,IAAI;EAQd,WAAW,EAAE,KAAK;EAClB,WAAW,EAAE,CAAC;CASf;;AAdD,AAOE,MAPI,AAOH,QAAQ,CAAC;EACR,OAAO,EAAE,YAAY;EACrB,cAAc,EAAE,GAAG;EACnB,UAAU,EAAE,gGAAuE;EACnF,uBAAuB,EAAE,IAAI;EAC7B,uBAAuB,EAAE,WAAW;CACrC",
+    "sources": [
+        "RatingProduct.module.scss"
+    ],
+    "names": [],
+    "file": "RatingProduct.module.css"
+}

@@ -1,0 +1,22 @@
+$color-gray-transp:  rgba(128, 128, 128, 0.9);
+$color-brand: #4676D7;
+
+.wrapper_size span {    
+    box-sizing: border-box;                  
+    background-color: rgba(128, 128, 128, 0.1);
+    border: 3px solid transparent;   
+    color: $color-gray-transp;    
+    margin-right: 10px;
+    font-size: 1.1rem;    
+    padding: 5px;
+    &:hover {
+        cursor: pointer;        
+        border: 3px solid $color-brand;
+        color: black;
+        transition: 0.5s ease-in-out;        
+    }
+}
+.active {
+    border-color: $color-brand !important;
+    transition: 0.5s ease-in-out;
+}

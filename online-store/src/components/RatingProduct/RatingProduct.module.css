@@ -1,0 +1,17 @@
+@charset "UTF-8";
+.stars {
+  display: inline-block;
+  font-size: 20px;
+  font-family: Times;
+  line-height: 1;
+}
+
+.stars::before {
+  content: '★★★★★';
+  letter-spacing: 3px;
+  background: -webkit-gradient(linear, left top, right top, from(#fc0), to(#fff));
+  background: linear-gradient(90deg, #fc0 calc(var(--rating) / 5 * 100%), #fff calc(var(--rating) / 5 * 100%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/*# sourceMappingURL=RatingProduct.module.css.map */

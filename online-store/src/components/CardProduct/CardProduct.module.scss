@@ -10,8 +10,7 @@
     &:hover {
         cursor: pointer; 
         scale: 1.01; 
-        transition: 1s;      
-       
+        transition: 1s;       
     }
 
 }
@@ -34,7 +33,7 @@
     font-weight: bold;
 }
 .tocart_btn {
-    background-color:  #4676D7;
+    background-color: #4676D7;
     border: none;
     height: 30px;
     color: white;
@@ -47,4 +46,8 @@
 .small_text {
     color: rgba(128, 128, 128, 0.5);
     font-size: 1rem;
+}
+a {
+    text-decoration: none;
+    color: black;
 }
