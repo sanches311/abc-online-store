@@ -6,6 +6,7 @@ import RatingProduct from '../../RatingProduct/RatingProduct';
 import TableSize from '../../TableSizes/TableSize';
 import { useAppDispatch } from '../../../hooks/redux';
 import { addProductToCart } from '../../../store/userSlice';
+import CounterProduct from '../../CounterProduct/CounterProduct';
 
 const SingleProductPage: React.FC = () => {
   const { id } = useParams<string>();
@@ -60,6 +61,7 @@ const SingleProductPage: React.FC = () => {
             ) : (
               ''
             )}
+            <CounterProduct updateQuantity = {updateQuantity} />
             <div className={classes.price}>{product?.price}$</div>
             <div className={classes.wrapper_buy_btn}>
               <button className={classes.buy_btn} onClick={addToCart}>
