@@ -5,7 +5,7 @@ import type { RootState } from '../store/index';
 interface ICart {
   id: number;
   title: string;
-  size?: number | null;
+  size?: string | null;
   quantity: number;
 }
 

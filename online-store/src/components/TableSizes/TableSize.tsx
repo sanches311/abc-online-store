@@ -7,7 +7,7 @@ type Props = {
 };
 
 const TableSize: React.FC<Props> = ({ updateSize }) => {
-  const [size, setSize] = useState<null | string>(null);
+  const [size, setSize] = useState<null | string>();
   const hundlerOnClickSize = (e: React.MouseEvent<HTMLSpanElement>) => {
     setSize(e.currentTarget.textContent);
     updateSize(e.currentTarget.textContent);
