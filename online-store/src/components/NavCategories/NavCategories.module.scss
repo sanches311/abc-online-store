@@ -6,9 +6,7 @@
     border-bottom: 1px solid rgba(128, 128, 128, 0.308);
     padding: 5px 0px 5px 0px;
 }
-.active {
-    color: red;
-}
+
 .nav_link {    
     position: relative;
     margin-left: 20px;
@@ -30,6 +28,10 @@
     } 
     &:hover:after {
         width: 100%;
-    }   
+    } 
+
+}
+.active {
+    color: red;
 
 }

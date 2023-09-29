@@ -61,7 +61,7 @@ const SingleProductPage: React.FC = () => {
             ) : (
               ''
             )}
-            <CounterProduct updateQuantity = {updateQuantity} />
+            <CounterProduct updateQuantity={updateQuantity} />
             <div className={classes.price}>{product?.price}$</div>
             <div className={classes.wrapper_buy_btn}>
               <button className={classes.buy_btn} onClick={addToCart}>

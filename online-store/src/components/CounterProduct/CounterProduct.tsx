@@ -18,7 +18,10 @@ const CounterProduct: React.FC<Props> = ({ updateQuantity }) => {
   return (
     <div className={classes.wrapper}>
       <button onClick={decrease}>-</button>
-      <input value={count}></input>
+      <input
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCount(Number(e.target.value))}
+        value={String(count)}
+      ></input>
       <button onClick={increase}>+</button>
     </div>
   );

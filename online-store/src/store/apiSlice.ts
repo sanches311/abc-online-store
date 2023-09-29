@@ -14,7 +14,14 @@ export const storeApi = createApi({
     getSingleProduct: builder.query<IProduct, string>({
       query: (id) => `products/${id}`,
     }),
+    getProductsCategory: builder.query<IProduct[], string>({
+      query: (category) => `products/category/${category}`,
+    }),
   }),
 });
-export const { useGetAllCategoriesQuery, useGetSingleProductQuery, useGetAllProductsQuery } =
-  storeApi;
+export const {
+  useGetAllCategoriesQuery,
+  useGetSingleProductQuery,
+  useGetAllProductsQuery,
+  useGetProductsCategoryQuery,
+} = storeApi;
