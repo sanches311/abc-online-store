@@ -23,7 +23,6 @@ const SingleProductPage: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const addToCart = () => {
-    console.log(size);
     if (product) {
       dispatch(
         addProductToCart({
@@ -31,6 +30,7 @@ const SingleProductPage: React.FC = () => {
           title: product.title,
           size: size,
           quantity: quantity,
+          price: product.price,
         })
       );
     }

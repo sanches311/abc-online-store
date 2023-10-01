@@ -3,6 +3,8 @@ import classes from './CardProduct.module.scss';
 import { IProduct } from '../../interfaces/products';
 import RatingProduct from '../RatingProduct/RatingProduct';
 import { NavLink } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/redux';
+import { addProductToCart } from '../../store/userSlice';
 
 type Props = {
   product: IProduct;
@@ -10,19 +12,40 @@ type Props = {
 };
 
 const CardProduct: React.FC<Props> = ({ product }: Props) => {
+  const dispatch = useAppDispatch();
+  const addToCart = () => {
+    if (product) {
+      dispatch(
+        addProductToCart({
+          id: product.id,
+          title: product.title,
+          quantity: 1,
+          price: product.price,
+        })
+      );
+    }
+  };
   return (
     <NavLink to={`products/${product.id}`}>
-      <div className={classes.wrapper_card}>
-        <div className={classes.wrapper_img}>
+      <div className={classes.card}>
+        <li className={classes.wrapper_img}>
           <img src={product.image} alt="image" />
-        </div>
-        <div className={classes.wrapper_rating}>
+        </li>
+        <li className={classes.wrapper_rating}>
           <RatingProduct rate={product.rating.rate}></RatingProduct>
           <div className={classes.small_text}>coments: {product.rating.count}</div>
-        </div>
-        <div className={classes.title}>{product.title}</div>
-        <div className={classes.price}>{product.price}$</div>
-        <button className={classes.tocart_btn}>To cart</button>
+        </li>
+        <li className={classes.title}>{product.title}</li>
+        <li className={classes.price}>{product.price}$</li>
+        <button
+          className={classes.tocart_btn}
+          onClick={(e) => {
+            addToCart();
+            e.preventDefault();
+          }}
+        >
+          To cart
+        </button>
       </div>
     </NavLink>
   );

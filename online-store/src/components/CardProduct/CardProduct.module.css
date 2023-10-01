@@ -1,30 +1,29 @@
-.wrapper_card {
+a .card {
+  height: 100%;
+}
+
+.card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  width: 200px;
-  height: 390px;
-  margin: 10px 10px 10px 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  max-width: 210px;
+  padding: 10px;
 }
 
-.wrapper_card:hover {
+.card:hover {
   cursor: pointer;
-  scale: 1.01;
-  -webkit-transition: 1s;
-  transition: 1s;
+  -webkit-box-shadow: 0px 0px 5px 0px gray;
+          box-shadow: 0px 0px 5px 0px gray;
 }
 
 .wrapper_img {
-  width: 200px;
+  width: 180px;
   height: 260px;
 }
 
@@ -48,6 +47,12 @@
           justify-content: space-between;
 }
 
+.title {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
 .price {
   font-size: 1.2rem;
   font-weight: bold;
@@ -59,9 +64,10 @@
   height: 30px;
   color: white;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-.tocart_btn:hover {
+.tocart_btn:active {
   cursor: pointer;
   opacity: 0.5;
 }

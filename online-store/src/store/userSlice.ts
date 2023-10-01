@@ -7,6 +7,7 @@ interface ICart {
   title: string;
   size?: string | null;
   quantity: number;
+  price: number;
 }
 
 interface IUserCart {
