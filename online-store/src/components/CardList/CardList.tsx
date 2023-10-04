@@ -4,6 +4,7 @@ import CardProduct from '../CardProduct/CardProduct';
 import { IProduct } from '../../interfaces/products';
 import ControlPanel from '../ControlPanel/ControlPanel';
 import { useSearchParams } from 'react-router-dom';
+import { sortBy } from '../../utils/utils';
 
 interface Props {
   products: IProduct[] | undefined;
@@ -20,11 +21,9 @@ const CardList: React.FC<Props> = ({ products, isLoading }) => {
         {isLoading
           ? 'Loading ...'
           : products
-          ? sort === 'popular'
-            ? [...products]
-                .sort((a, b) => (a.rating.rate > b.rating.rate ? 1 : -1))
-                .map((data: IProduct) => <CardProduct product={data} key={data.id} />)
-            : products.map((data: IProduct) => <CardProduct product={data} key={data.id} />)
+          ? sortBy([...products], sort).map((data: IProduct) => (
+              <CardProduct product={data} key={data.id} />
+            ))
           : ''}
       </div>
     </div>

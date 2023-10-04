@@ -34,6 +34,8 @@ const ControlPanel: React.FC = () => {
           <option value="asc">default</option>
           <option value="desc">decrease</option>
           <option value="popular">popular</option>
+          <option value="price:desc">expensive</option>
+          <option value="price:asc">cheap</option>
         </select>
       </div>
       <div>
