@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import classes from './CardList.module.scss';
-import { useGetAllProductsQuery } from '../../store/apiSlice';
 import CardProduct from '../CardProduct/CardProduct';
 import { IProduct } from '../../interfaces/products';
+import ControlPanel from '../ControlPanel/ControlPanel';
+import { useSearchParams } from 'react-router-dom';
 
 interface Props {
   products: IProduct[] | undefined;
@@ -10,13 +11,22 @@ interface Props {
 }
 
 const CardList: React.FC<Props> = ({ products, isLoading }) => {
+  const [serchParams] = useSearchParams();
+  const sort = serchParams.get('sort');
   return (
     <div className={classes.wrapper}>
-      {isLoading
-        ? 'Loading ...'
-        : products
-        ? products.map((product: IProduct) => <CardProduct product={product} key={product.id} />)
-        : ''}
+      <ControlPanel />
+      <div className={classes.wrapper_product}>
+        {isLoading
+          ? 'Loading ...'
+          : products
+          ? sort === 'popular'
+            ? [...products]
+                .sort((a, b) => (a.rating.rate > b.rating.rate ? 1 : -1))
+                .map((data: IProduct) => <CardProduct product={data} key={data.id} />)
+            : products.map((data: IProduct) => <CardProduct product={data} key={data.id} />)
+          : ''}
+      </div>
     </div>
   );
 };

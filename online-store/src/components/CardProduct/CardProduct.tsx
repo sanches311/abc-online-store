@@ -5,7 +5,6 @@ import RatingProduct from '../RatingProduct/RatingProduct';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/redux';
 import { addProductToCart } from '../../store/userSlice';
-import heart from '../../assets/icons/heart.svg';
 
 type Props = {
   product: IProduct;

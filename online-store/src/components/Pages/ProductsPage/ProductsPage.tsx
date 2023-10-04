@@ -1,11 +1,24 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { useGetProductsCategoryQuery } from '../../../store/apiSlice';
 import CardList from '../../CardList/CardList';
 
 const ProductsPage: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const limit = searchParams.has('limit') ? searchParams.get('limit') ?? '' : '';
+  const sort = searchParams.has('sort') ? searchParams.get('sort') ?? '' : '';
+  const query = searchParams.has('query') ? searchParams.get('query') ?? '' : '';
+  const params = {
+    limit,
+    sort,
+    query,
+  };
   const { category } = useParams();
-  const { data: products, isLoading } = useGetProductsCategoryQuery(category!);
+  const { data: products, isLoading } = useGetProductsCategoryQuery({
+    category: category!,
+    searchParams: params,
+  });
+
   return <CardList products={products} isLoading={isLoading} />;
 };
 

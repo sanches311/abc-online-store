@@ -45,8 +45,11 @@ a .card {
 }
 
 .heartIcon:hover {
-  fill: #4676D7;
   color: #4676D7;
+}
+
+.heartIcon:active {
+  fill: #4676D7;
 }
 
 .wrapper_rating {

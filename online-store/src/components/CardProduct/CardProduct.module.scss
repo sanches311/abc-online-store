@@ -1,7 +1,3 @@
-a {
-      
-}
-
 a .card {
     height: 100%;  
 }
@@ -36,9 +32,11 @@ a .card {
     height: 25px;
     fill: white;
     color: gray;
-    &:hover {
-        fill:  #4676D7;
+    &:hover {       
         color:  #4676D7;
+    }
+    &:active {
+      fill:  #4676D7;  
     }
 }
 .wrapper_rating {

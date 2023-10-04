@@ -12,7 +12,7 @@ const SingleProductPage: React.FC = () => {
   const { id } = useParams<string>();
   const navigate = useNavigate();
   const { data: product, isLoading, isSuccess } = useGetSingleProductQuery(id!);
-  const [size, setSize] = useState<string | null>(1);
+  const [size, setSize] = useState<string | null>('1');
   const [quantity, setQuantity] = useState<number>(1);
   const updateSize = (size: string | null) => {
     setSize(size);
