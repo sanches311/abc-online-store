@@ -5,6 +5,7 @@ import { IProduct } from '../../interfaces/products';
 import ControlPanel from '../ControlPanel/ControlPanel';
 import { useSearchParams } from 'react-router-dom';
 import { sortBy } from '../../utils/utils';
+import { searchItem } from '../../utils/utils';
 
 interface Props {
   products: IProduct[] | undefined;
@@ -13,18 +14,29 @@ interface Props {
 
 const CardList: React.FC<Props> = ({ products, isLoading }) => {
   const [serchParams] = useSearchParams();
-  const sort = serchParams.get('sort');
+  const sort = serchParams.get('sort') ?? '';
+  const query = serchParams.get('query') ?? '';
+  let data: IProduct[] | null;
+
   return (
     <div className={classes.wrapper}>
       <ControlPanel />
       <div className={classes.wrapper_product}>
-        {isLoading
-          ? 'Loading ...'
-          : products
-          ? sortBy([...products], sort).map((data: IProduct) => (
-              <CardProduct product={data} key={data.id} />
-            ))
-          : ''}
+        {isLoading ? (
+          'Loading ...'
+        ) : products ? (
+          (data = searchItem(sortBy([...products], sort), query)) ? (
+            data.length != 0 ? (
+              data.map((product: IProduct) => <CardProduct product={product} key={product.id} />)
+            ) : (
+              <h2>Not found products</h2>
+            )
+          ) : (
+            ''
+          )
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );

@@ -55,8 +55,8 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
         <button
           className={classes.tocart_btn}
           onClick={(e) => {
-            addToCart();
             e.preventDefault();
+            addToCart();
           }}
         >
           To cart
