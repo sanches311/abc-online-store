@@ -1,30 +1,19 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
 import classes from './Header.module.scss';
 import NavCategories from '../NavCategories/NavCategories';
 import InputSearchProduct from '../InputSearchProduct/InputSearchProduct';
+import NavPages from '../NavPages/NavPages';
+import Logo from '../Logo/Logo';
 
 const Header: React.FC = () => {
   return (
     <>
       <div className={classes.container}>
-        <NavLink to="/">
-          <h1 className={classes.logo}>Online-Store</h1>
-        </NavLink>
+        <Logo />
         <div className={classes.search}>
           <InputSearchProduct />{' '}
         </div>
-        <nav>
-          <NavLink to="/delivery" className={({ isActive }) => (isActive ? classes.active : '')}>
-            Delivery
-          </NavLink>
-          <NavLink to="/payment" className={({ isActive }) => (isActive ? classes.active : '')}>
-            Payment
-          </NavLink>
-          <NavLink to="/company" className={({ isActive }) => (isActive ? classes.active : '')}>
-            Company
-          </NavLink>
-        </nav>
+        <NavPages />
         <div className={classes.header_login}>
           <button className={classes.header_login_btn}>Log in</button>
           <button className={classes.header_sign_btn}>Sign up</button>
