@@ -1,12 +1,12 @@
 
-.container {
+header {
     box-sizing: border-box;
     display: flex;
     justify-content:space-between;
     align-items: center;
     padding-left: 50px;
     padding-right: 50px;    
-    padding: 5px 20px 5px 20px;     
+    padding: 10px 20px 10px 20px;     
  }
  .acnive {
     color:red;
@@ -28,12 +28,22 @@
     cursor: pointer;    
 
  }
- .cart svg  {
+ .top_profil {
    display: flex;
-   justify-content: center;
-   align-items: center;
-   &:hover {
-      fill: black;
-      cursor: pointer;
-   }
+   flex-direction: row;
+   gap:10px;
  }
+
+ .heartIcon {      
+   width: 25px;
+   height: 25px;
+   fill: white;
+   color: gray;
+   cursor: pointer;
+   &:hover {       
+       color:  #4676D7;
+   }
+   &:active {
+     fill:  #4676D7;  
+   }
+}

@@ -4,6 +4,7 @@ import Layout from './components/Layout/Layout';
 import HomePage from './components/Pages/HomePage/HomePage';
 import SingleProductPage from './components/Pages/SingleProductPage/SingleProductPage';
 import ProductsPage from './components/Pages/ProductsPage/ProductsPage';
+import CartPage from './components/Pages/CartPage/CartPage';
 
 const App: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const App: React.FC = () => {
           <Route path="products/:id" element={<SingleProductPage />} />
           <Route path="products/category/:category/products/:id" element={<SingleProductPage />} />
           <Route path="products/category/:category" element={<ProductsPage />} />
+          <Route path="cart" element={<CartPage />} />
         </Route>
       </Routes>
     </>
