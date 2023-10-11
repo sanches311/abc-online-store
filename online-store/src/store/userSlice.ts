@@ -12,11 +12,13 @@ interface ICart {
 interface IUserCart {
   currentUser: string[];
   cart: ICart[];
+  favorites: ICart[];
 }
 
 const initialState: IUserCart = {
   currentUser: [],
   cart: [],
+  favorites: [],
 };
 
 const userSlice = createSlice({
@@ -26,8 +28,11 @@ const userSlice = createSlice({
     addProductToCart: (state, action: PayloadAction<ICart>) => {
       state.cart.push(action.payload);
     },
+    addProductToFavorites: (state, action: PayloadAction<ICart>) => {
+      state.favorites.push(action.payload);
+    },
   },
 });
 
-export const { addProductToCart } = userSlice.actions;
+export const { addProductToCart, addProductToFavorites } = userSlice.actions;
 export default userSlice.reducer;

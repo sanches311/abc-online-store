@@ -31,19 +31,6 @@ header {
  .top_profil {
    display: flex;
    flex-direction: row;
-   gap:10px;
+   gap:13px;
  }
 
- .heartIcon {      
-   width: 25px;
-   height: 25px;
-   fill: white;
-   color: gray;
-   cursor: pointer;
-   &:hover {       
-       color:  #4676D7;
-   }
-   &:active {
-     fill:  #4676D7;  
-   }
-}

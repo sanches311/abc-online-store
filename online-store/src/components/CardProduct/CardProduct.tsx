@@ -4,7 +4,7 @@ import { IProduct } from '../../interfaces/products';
 import RatingProduct from '../RatingProduct/RatingProduct';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/redux';
-import { addProductToCart } from '../../store/userSlice';
+import { addProductToCart, addProductToFavorites } from '../../store/userSlice';
 
 type Props = {
   product: IProduct;
@@ -25,6 +25,18 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
       );
     }
   };
+  const addToFavorites = () => {
+    if (product) {
+      dispatch(
+        addProductToFavorites({
+          id: product.id,
+          title: product.title,
+          quantity: 1,
+          price: product.price,
+        })
+      );
+    }
+  };
   return (
     <NavLink to={`products/${product.id}`}>
       <div className={classes.card}>
@@ -36,7 +48,10 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
             strokeWidth={1.5}
             stroke="currentColor"
             className={classes.heartIcon}
-            onClick={(e) => e.preventDefault()}
+            onClick={(e) => {
+              e.preventDefault();
+              addToFavorites();
+            }}
           >
             <path
               strokeLinecap="round"
