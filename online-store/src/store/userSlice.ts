@@ -35,7 +35,8 @@ const userSlice = createSlice({
       } else state.cart.push(action.payload);
     },
     addProductToFavorites: (state, action: PayloadAction<ICart>) => {
-      state.favorites.push(action.payload);
+      const indexSameProduct = state.favorites.findIndex((item) => item.id === action.payload.id);
+      if (indexSameProduct === -1) state.favorites.push(action.payload);
     },
   },
 });
