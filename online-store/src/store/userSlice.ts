@@ -26,7 +26,13 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addProductToCart: (state, action: PayloadAction<ICart>) => {
-      state.cart.push(action.payload);
+      const indexSameProduct = state.cart.findIndex(
+        (item) => item.id === action.payload.id && item.size === action.payload.size
+      );
+      if (indexSameProduct != -1) {
+        state.cart[indexSameProduct].quantity =
+          state.cart[indexSameProduct].quantity + action.payload.quantity;
+      } else state.cart.push(action.payload);
     },
     addProductToFavorites: (state, action: PayloadAction<ICart>) => {
       state.favorites.push(action.payload);
