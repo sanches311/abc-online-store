@@ -4,7 +4,7 @@ import { useAppSelector } from '../../hooks/redux';
 import { NavLink } from 'react-router-dom';
 
 const Cart: React.FC = () => {
-  const cart = useAppSelector((state) => state.userCart.cart.length);
+  const cart = useAppSelector((state) => state.user.cart.length);
   return (
     <NavLink to="cart">
       <div className={classes.cart}>

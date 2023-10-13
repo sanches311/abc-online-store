@@ -4,7 +4,7 @@ import { useAppSelector } from '../../hooks/redux';
 import { NavLink } from 'react-router-dom';
 
 const Fovorites: React.FC = () => {
-  const favorites = useAppSelector((state) => state.userCart.favorites.length);
+  const favorites = useAppSelector((state) => state.user.favorites.length);
   return (
     <div className={classes.favorites}>
       <NavLink to="favorites">

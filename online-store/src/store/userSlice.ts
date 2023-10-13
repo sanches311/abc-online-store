@@ -13,12 +13,14 @@ interface IUserCart {
   currentUser: string[];
   cart: ICart[];
   favorites: ICart[];
+  loginForm: boolean;
 }
 
 const initialState: IUserCart = {
   currentUser: [],
   cart: [],
   favorites: [],
+  loginForm: false,
 };
 
 const userSlice = createSlice({
@@ -38,8 +40,11 @@ const userSlice = createSlice({
       const indexSameProduct = state.favorites.findIndex((item) => item.id === action.payload.id);
       if (indexSameProduct === -1) state.favorites.push(action.payload);
     },
+    togleUserLoginForm: (state, action: PayloadAction<boolean>) => {
+      state.loginForm = action.payload;
+    },
   },
 });
 
-export const { addProductToCart, addProductToFavorites } = userSlice.actions;
+export const { addProductToCart, addProductToFavorites, togleUserLoginForm } = userSlice.actions;
 export default userSlice.reducer;

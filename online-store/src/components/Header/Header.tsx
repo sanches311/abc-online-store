@@ -6,18 +6,26 @@ import NavPages from '../NavPages/NavPages';
 import Logo from '../Logo/Logo';
 import Cart from '../Cart/Cart';
 import Favorites from '../Favorites/Favorites';
+import { useAppDispatch } from '../../hooks/redux';
+import { togleUserLoginForm } from '../../store/userSlice';
 
 const Header: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const handleOnClickLogIn = () => {
+    dispatch(togleUserLoginForm(true));
+  };
   return (
     <>
       <header>
         <Logo />
         <div className={classes.search}>
-          <InputSearchProduct />{' '}
+          <InputSearchProduct />
         </div>
         <NavPages />
         <div className={classes.header_login}>
-          <button className={classes.header_login_btn}>Log in</button>
+          <button className={classes.header_login_btn} onClick={handleOnClickLogIn}>
+            Log in
+          </button>
           <button className={classes.header_sign_btn}>Sign up</button>
         </div>
         <div id="user_bar" className={classes.top_profil}>

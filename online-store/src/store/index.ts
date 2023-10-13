@@ -5,7 +5,7 @@ import userSliceReducer from './userSlice';
 const store = configureStore({
   reducer: {
     [storeApi.reducerPath]: storeApi.reducer,
-    userCart: userSliceReducer,
+    user: userSliceReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(storeApi.middleware),
 });
