@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 interface ICart {
   id: number;
@@ -10,7 +11,7 @@ interface ICart {
 }
 
 interface IUserCart {
-  currentUser: string[];
+  currentUser: IUser[];
   cart: ICart[];
   favorites: ICart[];
   loginForm: boolean;
@@ -22,6 +23,9 @@ const initialState: IUserCart = {
   favorites: [],
   loginForm: false,
 };
+interface IUser {
+  username: string;
+}
 
 const userSlice = createSlice({
   name: 'user',
@@ -43,8 +47,45 @@ const userSlice = createSlice({
     togleUserLoginForm: (state, action: PayloadAction<boolean>) => {
       state.loginForm = action.payload;
     },
+    setCurrentUser: (state, action: PayloadAction<IUser>) => {
+      state.currentUser.push(action.payload);
+    },
+    delCurrentUser: (state) => {
+      state.currentUser.pop();
+    },
   },
 });
 
-export const { addProductToCart, addProductToFavorites, togleUserLoginForm } = userSlice.actions;
+export const {
+  addProductToCart,
+  addProductToFavorites,
+  togleUserLoginForm,
+  setCurrentUser,
+  delCurrentUser,
+} = userSlice.actions;
 export default userSlice.reducer;
+
+interface IParams {
+  username: string;
+  password: string;
+}
+interface IResponse {
+  token: string;
+}
+
+export const userLogin = createApi({
+  reducerPath: 'userLogin',
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://fakestoreapi.com/' }),
+  tagTypes: ['Post'],
+  endpoints: (builder) => ({
+    userLogin: builder.mutation<IResponse, IParams>({
+      query: (params) => ({
+        url: 'auth/login',
+        method: 'POST',
+        body: params,
+      }),
+    }),
+  }),
+});
+
+export const { useUserLoginMutation } = userLogin;

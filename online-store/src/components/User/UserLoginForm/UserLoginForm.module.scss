@@ -1,26 +1,38 @@
 .active {
-display:  flex;
+display: flex;
+.content {
+    transform: none;           
+    }
 }
 .inactive {
-    display: none;
-}
+    visibility: hidden;
+    animation: show 0.5s;    
+.content {
+    transform: translateX(100%);           
+    }
+    }
+
 .overlay {    
-    position: fixed;
-    left:0;
+    position: fixed;    
+    left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);    
-    justify-content: center;
     align-items: center;    
 }
-.wrapper {
-    position: relative;   
-    min-width: 300px;
+
+.content {
+    position: absolute;
+    right: 0;       
+    top: 0;
+    width: 300px;
+    max-width: 100%;
+    height: 100%;
     padding: 30px 30px 30px 30px;
-    background-color: white;
-    border-radius: 5px;
-}
+    background-color: white;    
+    transition: transform 0.5s;            
+    }
 input {
     box-sizing: content-box;
     height: 25px;
@@ -38,14 +50,13 @@ form {
     gap: 15px;
     background-color: white;   
 }
-button {
+input[type="submit"] {
     background: #4676D7;
     height: 25px;
     border-radius: 5px;
     color: white;
     border: none;
-    cursor: pointer;
-    
+    cursor: pointer;    
 }
 .forgot {
     display: flex;
@@ -62,23 +73,40 @@ button {
 .x {   
     position: absolute;
     top:20px;
-    left:315px;
+    left:320px;
     width: 24px;
     height: 24px;
-    cursor: pointer;
+    cursor: pointer; 
         
 }
 .x::after, 
 .x::before{
     content: "";
     position: absolute;
+    top:12px;
+    left:0px;
     width: 20px;
     height: 1px;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.5);
     }
 .x::before{
     transform: rotate(45deg);
 }
 .x::after{
     transform: rotate(-45deg);
+}
+.error {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    background-color: #b81c23;
+    color: white;
+}
+.message {
+    position: relative;
+}
+
+@keyframes show {
+    0% {visibility: visible; opacity: 0.5;}
+    100% {visibility: hidden; opacity: 0;}
 }
