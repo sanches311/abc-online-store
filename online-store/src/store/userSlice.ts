@@ -44,7 +44,7 @@ const userSlice = createSlice({
       const indexSameProduct = state.favorites.findIndex((item) => item.id === action.payload.id);
       if (indexSameProduct === -1) state.favorites.push(action.payload);
     },
-    togleUserLoginForm: (state, action: PayloadAction<boolean>) => {
+    toggleUserLoginForm: (state, action: PayloadAction<boolean>) => {
       state.loginForm = action.payload;
     },
     setCurrentUser: (state, action: PayloadAction<IUser>) => {
@@ -59,7 +59,7 @@ const userSlice = createSlice({
 export const {
   addProductToCart,
   addProductToFavorites,
-  togleUserLoginForm,
+  toggleUserLoginForm,
   setCurrentUser,
   delCurrentUser,
 } = userSlice.actions;

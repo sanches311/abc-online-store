@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import {
   delCurrentUser,
   setCurrentUser,
-  togleUserLoginForm,
+  toggleUserLoginForm,
   useUserLoginMutation,
 } from '../../../store/userSlice';
 
@@ -25,7 +25,7 @@ const UserLoginForm: React.FC = () => {
   const dispatch = useAppDispatch();
   const [loginUser] = useUserLoginMutation();
   const closeUserLoginForm = () => {
-    dispatch(togleUserLoginForm(false));
+    dispatch(toggleUserLoginForm(false));
     setAuth(false);
     setUsername('');
     setPassword('');

@@ -1,11 +1,16 @@
 .favorites {
     position: relative;
 }
+.favorites svg  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .heartIcon {      
     width: 25px;
     height: 25px;
     fill: white;
-    color: gray;
+    color: black;
     cursor: pointer;
     &:hover {       
         color:  #4676D7;
