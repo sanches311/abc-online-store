@@ -5,14 +5,3 @@
     align-items: center;
     gap:13px;
 }
-.user {
-    cursor: pointer;
-    svg {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        &:hover {
-            fill: black;
-        }
-    }
-}
