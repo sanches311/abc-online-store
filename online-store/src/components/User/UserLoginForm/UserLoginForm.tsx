@@ -5,6 +5,7 @@ import {
   delCurrentUser,
   setCurrentUser,
   toggleUserLoginForm,
+  toggleUserSignInForm,
   useUserLoginMutation,
 } from '../../../store/userSlice';
 
@@ -22,6 +23,7 @@ const UserLoginForm: React.FC = () => {
   const [auth, setAuth] = useState<boolean>(false);
 
   const active = useAppSelector((state) => state.user.loginForm);
+
   const dispatch = useAppDispatch();
   const [loginUser] = useUserLoginMutation();
   const closeUserLoginForm = () => {
@@ -29,6 +31,10 @@ const UserLoginForm: React.FC = () => {
     setAuth(false);
     setUsername('');
     setPassword('');
+  };
+  const showUserSignInForm = () => {
+    closeUserLoginForm();
+    dispatch(toggleUserSignInForm(true));
   };
   const authUser: React.FormEventHandler<HTMLFormElement> = (e: React.FormEvent<IParams>) => {
     e.preventDefault();
@@ -86,11 +92,17 @@ const UserLoginForm: React.FC = () => {
             }}
             required
           />
-          <div className={classes.forgot}>
+          <div className={classes.layout_2_column}>
             <label>
               <input type="checkbox" /> Remember me
             </label>
             <span>Forgot your password ?</span>
+          </div>
+          <div className={classes.layout_2_column}>
+            <span>Are you not registered?</span>{' '}
+            <span className={classes.sign_in} onClick={showUserSignInForm}>
+              Sign in
+            </span>
           </div>
           <input type="submit" value="Log in" />
         </form>

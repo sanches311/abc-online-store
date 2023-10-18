@@ -1,17 +1,16 @@
 .active {
-display: flex;
-.content {
-    transform: none;           
+    display: flex;
+    .content {
+        transform: none;           
+        }
     }
-}
-.inactive {
-    visibility: hidden;
-    animation: show 0.5s;    
-.content {
-    transform: translateX(100%);           
-    }
-    }
-
+    .inactive {
+        visibility: hidden;
+        animation: show 0.5s;    
+    .content {
+        transform: translateX(100%);           
+        }
+        }
 .overlay {    
     position: fixed;    
     left: 0;
@@ -59,26 +58,6 @@ input[type="submit"]{
     box-sizing: border-box;
     cursor: pointer;    
 }
-
-.layout_2_column {
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    font-size: 0.9rem;
-    color: gray;
-    label {
-        display: flex;
-        align-items: center;
-    }
-}
-.sign_in {
-    &:hover {
-        text-decoration: underline;
-        color: black;
-        cursor: pointer;
-    }
-}
-
 .x {   
     position: absolute;
     top:20px;
@@ -104,6 +83,10 @@ input[type="submit"]{
 .x::after{
     transform: rotate(-45deg);
 }
+@keyframes show {
+    0% {visibility: visible; opacity: 0.5;}
+    100% {visibility: hidden; opacity: 0;}
+}
 .error {
     padding-top: 15px;
     padding-bottom: 15px;
@@ -113,9 +96,4 @@ input[type="submit"]{
 }
 .message {
     position: relative;
-}
-
-@keyframes show {
-    0% {visibility: visible; opacity: 0.5;}
-    100% {visibility: hidden; opacity: 0;}
 }

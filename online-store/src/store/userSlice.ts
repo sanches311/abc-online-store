@@ -15,6 +15,7 @@ interface IUserCart {
   cart: ICart[];
   favorites: ICart[];
   loginForm: boolean;
+  SignInForm: boolean;
 }
 
 const initialState: IUserCart = {
@@ -22,9 +23,51 @@ const initialState: IUserCart = {
   cart: [],
   favorites: [],
   loginForm: false,
+  SignInForm: false,
 };
 interface IUser {
   username: string;
+}
+interface INewUserReq {
+  email: string;
+  username: string;
+  password: string;
+  name: {
+    firstname: string;
+    lastname: string;
+  };
+  address: {
+    city: string;
+    street: string;
+    number: number | null;
+    zipcode: string;
+    geolocation: {
+      lat: string;
+      long: string;
+    };
+  };
+  phone: string;
+}
+interface INewUserResp {
+  id: number;
+  email: string;
+  username: string;
+  password: string;
+  name: {
+    firstname: string;
+    lastname: string;
+  };
+  address: {
+    city: string;
+    street: string;
+    number: number;
+    zipcode: string;
+    geolocation: {
+      lat: string;
+      long: string;
+    };
+  };
+  phone: string;
 }
 
 const userSlice = createSlice({
@@ -47,6 +90,9 @@ const userSlice = createSlice({
     toggleUserLoginForm: (state, action: PayloadAction<boolean>) => {
       state.loginForm = action.payload;
     },
+    toggleUserSignInForm: (state, action: PayloadAction<boolean>) => {
+      state.SignInForm = action.payload;
+    },
     setCurrentUser: (state, action: PayloadAction<IUser>) => {
       state.currentUser.push(action.payload);
     },
@@ -60,6 +106,7 @@ export const {
   addProductToCart,
   addProductToFavorites,
   toggleUserLoginForm,
+  toggleUserSignInForm,
   setCurrentUser,
   delCurrentUser,
 } = userSlice.actions;
@@ -73,10 +120,10 @@ interface IResponse {
   token: string;
 }
 
-export const userLogin = createApi({
+export const user = createApi({
   reducerPath: 'userLogin',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://fakestoreapi.com/' }),
-  tagTypes: ['Post'],
+  tagTypes: ['User'],
   endpoints: (builder) => ({
     userLogin: builder.mutation<IResponse, IParams>({
       query: (params) => ({
@@ -84,8 +131,16 @@ export const userLogin = createApi({
         method: 'POST',
         body: params,
       }),
+      invalidatesTags: ['User'],
+    }),
+    userSignIn: builder.mutation<INewUserResp, INewUserReq>({
+      query: (params) => ({
+        url: 'users',
+        method: 'POST',
+        body: params,
+      }),
     }),
   }),
 });
 
-export const { useUserLoginMutation } = userLogin;
+export const { useUserLoginMutation, useUserSignInMutation } = user;
