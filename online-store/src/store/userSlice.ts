@@ -4,6 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 interface ICart {
   id: number;
+  img: string;
   title: string;
   size?: string | null;
   quantity: number;

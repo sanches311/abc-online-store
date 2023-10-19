@@ -18,6 +18,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
       dispatch(
         addProductToCart({
           id: product.id,
+          img: product.image,
           title: product.title,
           quantity: 1,
           price: product.price,
@@ -30,6 +31,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
       dispatch(
         addProductToFavorites({
           id: product.id,
+          img: product.image,
           title: product.title,
           quantity: 1,
           price: product.price,
@@ -63,7 +65,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
         </li>
         <li className={classes.wrapper_rating}>
           <RatingProduct rate={product.rating.rate}></RatingProduct>
-          <div className={classes.small_text}>coments: {product.rating.count}</div>
+          <div className={classes.small_text}>comments: {product.rating.count}</div>
         </li>
         <li className={classes.title}>{product.title}</li>
         <li className={classes.price}>{product.price}$</li>
