@@ -1,17 +1,19 @@
-import React, { FC } from "react";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-import { Outlet } from "react-router-dom";
-import classes from './Layout.module.scss'
+import React from 'react';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import { Outlet } from 'react-router-dom';
+import classes from './Layout.module.scss';
 
-const Layout: FC = () => {
-    return ( <>
-    <Header />
-    <div className={classes.container}>
-      <Outlet />
-      </div>
-    <Footer />
-    </> );
-}
- 
+const Layout: React.FC = () => {
+  return (
+    <>
+      <Header />
+      <main className={classes.container}>
+        <Outlet />
+      </main>
+      <Footer />
+    </>
+  );
+};
+
 export default Layout;

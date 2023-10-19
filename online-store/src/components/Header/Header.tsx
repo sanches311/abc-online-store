@@ -5,6 +5,7 @@ import InputSearchProduct from '../InputSearchProduct/InputSearchProduct';
 import NavPages from '../NavPages/NavPages';
 import Logo from '../Logo/Logo';
 import UserBar from '../User/UserBar/UserBar';
+import UserAvatar from '../User/UserAvatar/UserAvatar';
 
 const Header: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const Header: React.FC = () => {
           <InputSearchProduct />
         </div>
         <NavPages />
+        <UserAvatar />
         <UserBar />
       </header>
       <NavCategories />

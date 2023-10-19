@@ -1,10 +1,16 @@
+.wrapper {
+  display: flex; 
+  align-items: center;
+  justify-content:space-between;
+  min-width: 90px;
+}
 .cart {
     position: relative;
 }
 .cart svg  {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     &:hover {
        fill: black;
        cursor: pointer;
@@ -25,9 +31,7 @@
     color: white;
   }
   .price {
-    position: absolute;
-    top: 23px;
-    left: -8px;
     color: gray;
-    font-size: 0.8rem;    
+    font-size: 1rem; 
+    margin-left: 10px;   
 }

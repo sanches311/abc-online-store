@@ -7,7 +7,7 @@ const Cart: React.FC = () => {
   const cart = useAppSelector((state) => state.user.cart);
   const totalPrice = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
   return (
-    <NavLink to="cart">
+    <NavLink to="cart" className={classes.wrapper}>
       <div className={classes.cart}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -25,8 +25,8 @@ const Cart: React.FC = () => {
           />
         </svg>
         <span className={classes.counter}>{cart.length}</span>
-        <span className={classes.price}>{totalPrice.toFixed(2)}$</span>
       </div>
+      <span className={classes.price}>{totalPrice.toFixed(2)}$</span>
     </NavLink>
   );
 };
