@@ -2,13 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-interface ICart {
+export interface ICart {
   id: number;
   img: string;
   title: string;
   size?: string | null;
   quantity: number;
   price: number;
+  description: string;
 }
 
 interface IUserCart {
@@ -70,7 +71,10 @@ interface INewUserResp {
   };
   phone: string;
 }
-
+export interface IQuantity {
+  id: number;
+  quantity: number;
+}
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -83,6 +87,23 @@ const userSlice = createSlice({
         state.cart[indexSameProduct].quantity =
           state.cart[indexSameProduct].quantity + action.payload.quantity;
       } else state.cart.push(action.payload);
+    },
+    delProductCart: (state, action: PayloadAction<number>) => {
+      const newCart = state.cart.filter((product) => product.id != action.payload);
+      state.cart = newCart;
+    },
+    incProductQuantity: (state, action: PayloadAction<number>) => {
+      const index = state.cart.findIndex((product) => product.id === action.payload);
+      state.cart[index].quantity = state.cart[index].quantity + 1;
+    },
+    descProductQuantity: (state, action: PayloadAction<number>) => {
+      const index = state.cart.findIndex((product) => product.id === action.payload);
+      if (state.cart[index].quantity > 1)
+        state.cart[index].quantity = state.cart[index].quantity - 1;
+    },
+    setProductQuantity: (state, action: PayloadAction<IQuantity>) => {
+      const index = state.cart.findIndex((product) => product.id === action.payload.id);
+      state.cart[index].quantity = action.payload.quantity;
     },
     addProductToFavorites: (state, action: PayloadAction<ICart>) => {
       const indexSameProduct = state.favorites.findIndex((item) => item.id === action.payload.id);
@@ -105,6 +126,10 @@ const userSlice = createSlice({
 
 export const {
   addProductToCart,
+  delProductCart,
+  incProductQuantity,
+  descProductQuantity,
+  setProductQuantity,
   addProductToFavorites,
   toggleUserLoginForm,
   toggleUserSignInForm,

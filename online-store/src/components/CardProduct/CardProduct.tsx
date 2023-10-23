@@ -22,6 +22,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
           title: product.title,
           quantity: 1,
           price: product.price,
+          description: product.description,
         })
       );
     }
@@ -32,6 +33,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
         addProductToFavorites({
           id: product.id,
           img: product.image,
+          description: product.description,
           title: product.title,
           quantity: 1,
           price: product.price,
