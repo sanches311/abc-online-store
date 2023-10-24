@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 const Cart: React.FC = () => {
   const cart = useAppSelector((state) => state.user.cart);
+  const countProducts = cart.reduce((sum, product)=> sum + product.quantity, 0);
   const totalPrice = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
   return (
     <NavLink to="cart" className={classes.wrapper}>
@@ -24,7 +25,7 @@ const Cart: React.FC = () => {
             d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
           />
         </svg>
-        <span className={classes.counter}>{cart.length}</span>
+        <span className={classes.counter}>{countProducts}</span>
       </div>
       <span className={classes.price}>{totalPrice.toFixed(2)}$</span>
     </NavLink>
