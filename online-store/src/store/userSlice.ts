@@ -85,12 +85,21 @@ const userSlice = createSlice({
         (item) => item.id === action.payload.id && item.size === action.payload.size
       );
       if (indexSameProduct != -1) {
-        state.cart[indexSameProduct].quantity =
-          state.cart[indexSameProduct].quantity + action.payload.quantity;
+        if (
+          state.cart[indexSameProduct].size === action.payload.size &&
+          state.cart[indexSameProduct].color === action.payload.color
+        )
+          state.cart[indexSameProduct].quantity =
+            state.cart[indexSameProduct].quantity + action.payload.quantity;
       } else state.cart.push(action.payload);
     },
-    delProductCart: (state, action: PayloadAction<number>) => {
-      const newCart = state.cart.filter((product) => product.id != action.payload);
+    delProductCart: (state, action: PayloadAction<ICart>) => {
+      const newCart = state.cart.filter((product) => {
+        if (product.id != action.payload.id) return true;
+        else if (product.size != action.payload.size) return true;
+        else if (product.color != action.payload.color) return true;
+        else return false;
+      });
       state.cart = newCart;
     },
     incProductQuantity: (state, action: PayloadAction<number>) => {

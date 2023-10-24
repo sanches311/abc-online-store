@@ -24,8 +24,8 @@ const CartProduct: React.FC<Props> = (props) => {
   const weekday = shippingDay.toLocaleString('default', { weekday: 'long' });
   const day = shippingDay.getDay();
   const dispatch = useAppDispatch();
-  const delProduct = (id: number) => {
-    dispatch(delProductCart(id));
+  const delProduct = (product: ICart) => {
+    dispatch(delProductCart(product));
   };
   const incQuantity = (id: number) => {
     dispatch(incProductQuantity(id));
@@ -36,7 +36,7 @@ const CartProduct: React.FC<Props> = (props) => {
   const setQuantity = (params: IQuantity) => {
     const id = params.id;
     const quantity = params.quantity;
-    dispatch(setProductQuantity({ id, quantity }));
+    if (quantity > 0) dispatch(setProductQuantity({ id, quantity }));
   };
   return (
     <li key={id} className={classes.wrapper_product}>
@@ -115,7 +115,7 @@ const CartProduct: React.FC<Props> = (props) => {
           color="gray"
           className={classes.trash_img}
           onClick={() => {
-            delProduct(id);
+            delProduct(props.product);
           }}
         >
           <path

@@ -31,7 +31,7 @@ const SingleProductPage: React.FC = () => {
     if (product) {
       dispatch(
         addProductToCart({
-          id: Date.now(),
+          id: product.id,
           title: product.title,
           img: product.image,
           description: product.description,
