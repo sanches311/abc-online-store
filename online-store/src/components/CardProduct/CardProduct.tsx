@@ -17,7 +17,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
     if (product) {
       dispatch(
         addProductToCart({
-          id: product.id,
+          id: Date.now(),
           img: product.image,
           title: product.title,
           quantity: 1,
@@ -31,7 +31,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
     if (product) {
       dispatch(
         addProductToFavorites({
-          id: product.id,
+          id: Date.now(),
           img: product.image,
           description: product.description,
           title: product.title,

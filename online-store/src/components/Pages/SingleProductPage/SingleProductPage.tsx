@@ -7,15 +7,20 @@ import TableSize from '../../TableSizes/TableSize';
 import { useAppDispatch } from '../../../hooks/redux';
 import { addProductToCart } from '../../../store/userSlice';
 import CounterProduct from '../../CounterProduct/CounterProduct';
+import TableColor from '../../TableColor/TableColor';
 
 const SingleProductPage: React.FC = () => {
   const { id } = useParams<string>();
   const navigate = useNavigate();
   const { data: product, isLoading, isSuccess } = useGetSingleProductQuery(id!);
-  const [size, setSize] = useState<string | null>('1');
+  const [size, setSize] = useState<string | null>();
+  const [color, setColor] = useState<string>();
   const [quantity, setQuantity] = useState<number>(1);
   const updateSize = (size: string | null) => {
     setSize(size);
+  };
+  const updateColor = (color: string) => {
+    setColor(color);
   };
   const updateQuantity = (quantity: number) => {
     setQuantity(quantity);
@@ -26,9 +31,12 @@ const SingleProductPage: React.FC = () => {
     if (product) {
       dispatch(
         addProductToCart({
-          id: product.id,
+          id: Date.now(),
           title: product.title,
+          img: product.image,
+          description: product.description,
           size: size,
+          color: color,
           quantity: quantity,
           price: product.price,
         })
@@ -58,7 +66,10 @@ const SingleProductPage: React.FC = () => {
               <div className={classes.comments}>comments: {product?.rating.count}</div>
             </div>
             {product?.category === "women's clothing" || product?.category === "men's clothing" ? (
-              <TableSize updateSize={updateSize} />
+              <>
+                <TableSize updateSize={updateSize} />
+                <TableColor updateColor={updateColor} />
+              </>
             ) : (
               ''
             )}

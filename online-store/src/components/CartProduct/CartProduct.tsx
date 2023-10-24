@@ -17,7 +17,7 @@ interface Props {
 }
 
 const CartProduct: React.FC<Props> = (props) => {
-  const { id, title, img, quantity, size, price } = props.product;
+  const { id, title, img, quantity, size, price, color } = props.product;
   const currentDate = new Date();
   const shippingDay = new Date(+currentDate + 24 * 3 * 3600 * 1000);
   const month = shippingDay.toLocaleString('default', { month: 'long' });
@@ -46,7 +46,8 @@ const CartProduct: React.FC<Props> = (props) => {
         </div>
         <div className={classes.description}>
           <div className={classes.title}>{title}</div>
-          {size && <div className={classes.size}>Size:{size}</div>}
+          {size && <div className={classes.size}>Size: {size}</div>}
+          {color && <div className={classes.size}>Color: {color}</div>}
           <div className={classes.shipping_info}>
             <svg
               fill="#000000"
