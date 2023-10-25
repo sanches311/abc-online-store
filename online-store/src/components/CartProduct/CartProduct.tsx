@@ -27,16 +27,14 @@ const CartProduct: React.FC<Props> = (props) => {
   const delProduct = (product: ICart) => {
     dispatch(delProductCart(product));
   };
-  const incQuantity = (id: number) => {
-    dispatch(incProductQuantity(id));
+  const incQuantity = (product: ICart) => {
+    dispatch(incProductQuantity(product));
   };
-  const descQuantity = (id: number) => {
-    dispatch(descProductQuantity(id));
+  const descQuantity = (product: ICart) => {
+    dispatch(descProductQuantity(product));
   };
-  const setQuantity = (params: IQuantity) => {
-    const id = params.id;
-    const quantity = params.quantity;
-    if (quantity > 0) dispatch(setProductQuantity({ id, quantity }));
+  const setQuantity = (product: ICart) => {
+    if (quantity > 0) dispatch(setProductQuantity(product));
   };
   return (
     <li key={id} className={classes.wrapper_product}>
@@ -126,7 +124,10 @@ const CartProduct: React.FC<Props> = (props) => {
         </svg>
         <div>
           <div className={classes.edit_quantity}>
-            <button className={classes.edit_quantity_btn} onClick={() => descQuantity(id)}>
+            <button
+              className={classes.edit_quantity_btn}
+              onClick={() => descQuantity(props.product)}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -142,9 +143,12 @@ const CartProduct: React.FC<Props> = (props) => {
               type="text"
               className={classes.quantity}
               value={quantity}
-              onChange={(e) => setQuantity({ id, quantity: Number(e.target.value) })}
+              onChange={(e) => setQuantity(props.product)}
             />
-            <button className={classes.edit_quantity_btn} onClick={() => incQuantity(id)}>
+            <button
+              className={classes.edit_quantity_btn}
+              onClick={() => incQuantity(props.product)}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
