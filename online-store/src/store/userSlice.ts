@@ -83,7 +83,10 @@ const userSlice = createSlice({
   reducers: {
     addProductToCart: (state, action: PayloadAction<ICart>) => {
       const indexSameProduct = state.cart.findIndex(
-        (item) => item.id === action.payload.id && item.size === action.payload.size
+        (item) =>
+          item.id === action.payload.id &&
+          item.size === action.payload.size &&
+          item.color === action.payload.color
       );
       if (indexSameProduct != -1) {
         if (
