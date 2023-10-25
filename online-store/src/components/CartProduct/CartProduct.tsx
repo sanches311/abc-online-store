@@ -31,9 +31,12 @@ const CartProduct: React.FC<Props> = (props) => {
     dispatch(delProductCart(product));
   };
   const incQuantity = (product: ICart) => {
+    if (quantity < 99) setCount(quantity - 1);
+    setCount(quantity + 1);
     dispatch(incProductQuantity(product));
   };
   const descQuantity = (product: ICart) => {
+    if (quantity > 1) setCount(quantity - 1);
     dispatch(descProductQuantity(product));
   };
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,8 +44,7 @@ const CartProduct: React.FC<Props> = (props) => {
     else setCount(+e.target.value);
   };
   useEffect(() => {
-    if (count === 0) setCount(1);
-    setQuantity(count);
+     setQuantity(count);
   }, [debouncedValue]);
   const setQuantity = (quantity: number) => {
     const product = props.product;

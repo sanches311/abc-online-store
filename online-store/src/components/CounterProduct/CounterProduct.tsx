@@ -8,7 +8,7 @@ interface Props {
 
 const CounterProduct: React.FC<Props> = ({ updateQuantity }) => {
   const [count, setCount] = useState<number>(1);
-  const debouncedValue = useDebounce<number>(count, 500);
+  const debouncedValue = useDebounce<number>(count, 1000);
   const increase = () => {
     if (count < 99) setCount(count + 1);
     updateQuantity(count + 1);
@@ -22,7 +22,6 @@ const CounterProduct: React.FC<Props> = ({ updateQuantity }) => {
     if (+e.target.value > 99) setCount(99);
   };
   useEffect(() => {
-    if (count === 0) setCount(1);
     updateQuantity(count);
   }, [debouncedValue]);
 
