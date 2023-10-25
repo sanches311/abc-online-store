@@ -39,7 +39,7 @@ const CartProduct: React.FC<Props> = (props) => {
     if (quantity > 0) dispatch(setProductQuantity({ id, quantity }));
   };
   return (
-    <li key={id} className={classes.wrapper_product}>
+    <li className={classes.wrapper_product}>
       <NavLink to={`/products/${id}`} className={classes.first_cell}>
         <div className={classes.wrapper_product_img}>
           <img src={img} alt="image product" />
