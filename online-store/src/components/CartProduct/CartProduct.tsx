@@ -44,7 +44,7 @@ const CartProduct: React.FC<Props> = (props) => {
     else setCount(+e.target.value);
   };
   useEffect(() => {
-     setQuantity(count);
+    setQuantity(count);
   }, [debouncedValue]);
   const setQuantity = (quantity: number) => {
     const product = props.product;
