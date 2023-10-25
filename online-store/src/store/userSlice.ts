@@ -73,6 +73,10 @@ interface INewUserResp {
   };
   phone: string;
 }
+interface IQuantity {
+  product: ICart;
+  quantity: number;
+}
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -103,8 +107,10 @@ const userSlice = createSlice({
       if (state.cart[index].quantity > 1)
         state.cart[index].quantity = state.cart[index].quantity - 1;
     },
-    setProductQuantity: (state, action: PayloadAction<ICart>) => {
-      const index = state.cart.findIndex((product) => !compareProduct(product, action.payload));
+    setProductQuantity: (state, action: PayloadAction<IQuantity>) => {
+      const index = state.cart.findIndex(
+        (product) => !compareProduct(product, action.payload.product)
+      );
       state.cart[index].quantity = action.payload.quantity;
     },
     addProductToFavorites: (state, action: PayloadAction<ICart>) => {
