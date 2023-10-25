@@ -8,7 +8,7 @@ type Props = {
 
 const TableSize: React.FC<Props> = ({ updateSize }) => {
   const [size, setSize] = useState<null | string>();
-  const hundlerOnClickSize = (e: React.MouseEvent<HTMLSpanElement>) => {
+  const handleOnClickSize = (e: React.MouseEvent<HTMLSpanElement>) => {
     setSize(e.currentTarget.textContent);
     updateSize(e.currentTarget.textContent);
   };
@@ -16,25 +16,25 @@ const TableSize: React.FC<Props> = ({ updateSize }) => {
     <>
       <div style={{ fontSize: '1.1rem' } as React.CSSProperties}>Size: {size}</div>
       <div className={classes.wrapper_size}>
-        <span onClick={hundlerOnClickSize} className={size === '2XS' ? classes.active : ''}>
+        <span onClick={handleOnClickSize} className={size === '2XS' ? classes.active : ''}>
           2XS
         </span>
-        <span onClick={hundlerOnClickSize} className={size === 'XS' ? classes.active : ''}>
+        <span onClick={handleOnClickSize} className={size === 'XS' ? classes.active : ''}>
           XS
         </span>
-        <span onClick={hundlerOnClickSize} className={size === 'S' ? classes.active : ''}>
+        <span onClick={handleOnClickSize} className={size === 'S' ? classes.active : ''}>
           S
         </span>
-        <span onClick={hundlerOnClickSize} className={size === 'L' ? classes.active : ''}>
+        <span onClick={handleOnClickSize} className={size === 'L' ? classes.active : ''}>
           L
         </span>
-        <span onClick={hundlerOnClickSize} className={size === 'XL' ? classes.active : ''}>
+        <span onClick={handleOnClickSize} className={size === 'XL' ? classes.active : ''}>
           XL
         </span>
-        <span onClick={hundlerOnClickSize} className={size === '2XL' ? classes.active : ''}>
+        <span onClick={handleOnClickSize} className={size === '2XL' ? classes.active : ''}>
           2XL
         </span>
-        <span onClick={hundlerOnClickSize} className={size === '3XL' ? classes.active : ''}>
+        <span onClick={handleOnClickSize} className={size === '3XL' ? classes.active : ''}>
           3XL
         </span>
       </div>

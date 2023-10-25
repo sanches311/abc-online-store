@@ -72,7 +72,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
         <li className={classes.title}>{product.title}</li>
         <li className={classes.price}>{product.price}$</li>
         <button
-          className={classes.tocart_btn}
+          className={classes.cart_btn}
           onClick={(e) => {
             e.preventDefault();
             addToCart();

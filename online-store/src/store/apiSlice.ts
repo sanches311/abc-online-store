@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { IProduct } from '../interfaces/products';
 import { ISearchParams } from '../interfaces/searchParams';
 
-interface IparamsCategory {
+interface IParamsCategory {
   category: string;
   searchParams: ISearchParams;
 }
@@ -23,7 +23,7 @@ export const storeApi = createApi({
     getSingleProduct: builder.query<IProduct, string>({
       query: (id) => `products/${id}`,
     }),
-    getProductsCategory: builder.query<IProduct[], IparamsCategory>({
+    getProductsCategory: builder.query<IProduct[], IParamsCategory>({
       query: ({ category, searchParams }) =>
         `products/category/${category}?${searchParams.sort ? `sort=${searchParams.sort}` : ''}${
           searchParams.limit ? `&limit=${searchParams.limit}` : ''
