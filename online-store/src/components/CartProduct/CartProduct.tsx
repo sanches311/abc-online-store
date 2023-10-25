@@ -8,8 +8,9 @@ import {
   incProductQuantity,
   setProductQuantity,
 } from '../../store/userSlice';
-import { IQuantity } from '../../store/userSlice';
 import { ICart } from '../../store/userSlice';
+import { useEffect, useState } from 'react';
+import { useDebounce } from '../../hooks/debounce';
 
 interface Props {
   key: number;
@@ -18,6 +19,8 @@ interface Props {
 
 const CartProduct: React.FC<Props> = (props) => {
   const { id, title, img, quantity, size, price, color } = props.product;
+  const [count, setCount] = useState<number>(quantity);
+  const debouncedValue = useDebounce(count, 500);
   const currentDate = new Date();
   const shippingDay = new Date(+currentDate + 24 * 3 * 3600 * 1000);
   const month = shippingDay.toLocaleString('default', { month: 'long' });
@@ -27,16 +30,23 @@ const CartProduct: React.FC<Props> = (props) => {
   const delProduct = (product: ICart) => {
     dispatch(delProductCart(product));
   };
-  const incQuantity = (id: number) => {
-    dispatch(incProductQuantity(id));
+  const incQuantity = (product: ICart) => {
+    dispatch(incProductQuantity(product));
   };
-  const descQuantity = (id: number) => {
-    dispatch(descProductQuantity(id));
+  const descQuantity = (product: ICart) => {
+    dispatch(descProductQuantity(product));
   };
-  const setQuantity = (params: IQuantity) => {
-    const id = params.id;
-    const quantity = params.quantity;
-    if (quantity > 0) dispatch(setProductQuantity({ id, quantity }));
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (+e.target.value > 99) setCount(99);
+    else setCount(+e.target.value);
+  };
+  useEffect(() => {
+    if (count === 0) setCount(1);
+    setQuantity(count);
+  }, [debouncedValue]);
+  const setQuantity = (quantity: number) => {
+    const product = props.product;
+    dispatch(setProductQuantity({ product, quantity }));
   };
   return (
     <li className={classes.wrapper_product}>
@@ -126,7 +136,10 @@ const CartProduct: React.FC<Props> = (props) => {
         </svg>
         <div>
           <div className={classes.edit_quantity}>
-            <button className={classes.edit_quantity_btn} onClick={() => descQuantity(id)}>
+            <button
+              className={classes.edit_quantity_btn}
+              onClick={() => descQuantity(props.product)}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -141,10 +154,16 @@ const CartProduct: React.FC<Props> = (props) => {
             <input
               type="text"
               className={classes.quantity}
-              value={quantity}
-              onChange={(e) => setQuantity({ id, quantity: Number(e.target.value) })}
+              value={String(count)}
+              onChange={(e) => handleOnChange(e)}
+              onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+                (e.target.value = e.target.value.replace(/\D/g, ''))
+              }
             />
-            <button className={classes.edit_quantity_btn} onClick={() => incQuantity(id)}>
+            <button
+              className={classes.edit_quantity_btn}
+              onClick={() => incQuantity(props.product)}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

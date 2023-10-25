@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { compareProduct } from '../utils/utils';
 
 export interface ICart {
   id: number;
@@ -72,8 +73,8 @@ interface INewUserResp {
   };
   phone: string;
 }
-export interface IQuantity {
-  id: number;
+interface IQuantity {
+  product: ICart;
   quantity: number;
 }
 const userSlice = createSlice({
@@ -94,25 +95,22 @@ const userSlice = createSlice({
       } else state.cart.push(action.payload);
     },
     delProductCart: (state, action: PayloadAction<ICart>) => {
-      const newCart = state.cart.filter((product) => {
-        if (product.id != action.payload.id) return true;
-        else if (product.size != action.payload.size) return true;
-        else if (product.color != action.payload.color) return true;
-        else return false;
-      });
+      const newCart = state.cart.filter((product) => compareProduct(product, action.payload));
       state.cart = newCart;
     },
-    incProductQuantity: (state, action: PayloadAction<number>) => {
-      const index = state.cart.findIndex((product) => product.id === action.payload);
+    incProductQuantity: (state, action: PayloadAction<ICart>) => {
+      const index = state.cart.findIndex((product) => !compareProduct(product, action.payload));
       state.cart[index].quantity = state.cart[index].quantity + 1;
     },
-    descProductQuantity: (state, action: PayloadAction<number>) => {
-      const index = state.cart.findIndex((product) => product.id === action.payload);
+    descProductQuantity: (state, action: PayloadAction<ICart>) => {
+      const index = state.cart.findIndex((product) => !compareProduct(product, action.payload));
       if (state.cart[index].quantity > 1)
         state.cart[index].quantity = state.cart[index].quantity - 1;
     },
     setProductQuantity: (state, action: PayloadAction<IQuantity>) => {
-      const index = state.cart.findIndex((product) => product.id === action.payload.id);
+      const index = state.cart.findIndex(
+        (product) => !compareProduct(product, action.payload.product)
+      );
       state.cart[index].quantity = action.payload.quantity;
     },
     addProductToFavorites: (state, action: PayloadAction<ICart>) => {

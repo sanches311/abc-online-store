@@ -1,4 +1,5 @@
 import { IProduct } from '../interfaces/products';
+import { ICart } from '../store/userSlice';
 
 export const sortBy = (list: IProduct[], param: string | null): IProduct[] => {
   if (!param) return list;
@@ -23,4 +24,11 @@ export const sortBy = (list: IProduct[], param: string | null): IProduct[] => {
 export const searchItem = (list: IProduct[], query: string): IProduct[] | null => {
   if (!query) return list;
   return list.filter((item) => item.title.toLocaleLowerCase().includes(query.toLocaleLowerCase()));
+};
+
+export const compareProduct = (obj1: ICart, obj2: ICart) => {
+  if (obj1.id != obj2.id) return true;
+  else if (obj1.size != obj2.size) return true;
+  else if (obj1.color != obj2.color) return true;
+  else return false;
 };
