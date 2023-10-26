@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,oBAAoB,CAAC;EACjB,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,UAAU;EAC3B,OAAO,EAAE,QAAQ;CACpB",
+    "sources": [
+        "Breadcrumbs.module.scss"
+    ],
+    "names": [],
+    "file": "Breadcrumbs.module.css"
+}

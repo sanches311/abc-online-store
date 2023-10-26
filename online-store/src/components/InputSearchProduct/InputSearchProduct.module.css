@@ -1,0 +1,12 @@
+.search {
+  border: none;
+  border-bottom: 1px solid gray;
+  outline: none;
+  font-size: 1.1rem;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.search:focus {
+  border-color: red;
+}
+/*# sourceMappingURL=InputSearchProduct.module.css.map */

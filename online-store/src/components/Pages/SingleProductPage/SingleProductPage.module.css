@@ -89,4 +89,50 @@
   transition: 0.5s ease-in-out;
   opacity: 0.5;
 }
+
+.wrapper_color {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 10px;
+  margin-top: 0px;
+}
+
+.wrapper_color li {
+  border-radius: 50%;
+}
+
+.color_edit {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.gray {
+  background-color: gray;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.brown {
+  background-color: brown;
+}
+
+.black {
+  background-color: black;
+}
+
+.active_color {
+  border: 1px solid black;
+}
 /*# sourceMappingURL=SingleProductPage.module.css.map */

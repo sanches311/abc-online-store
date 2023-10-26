@@ -42,7 +42,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
     }
   };
   return (
-    <NavLink to={`products/${product.id}`}>
+    <NavLink to={`/products/${product.id}`}>
       <div className={classes.card}>
         <li className={classes.wrapper_img}>
           <svg

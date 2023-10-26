@@ -1,0 +1,38 @@
+.wrapper {
+  border-top: 1px solid rgba(128, 128, 128, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  min-width: 100px;
+}
+
+.wrapper_checkout_btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.checkout_btn {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 32px;
+  background-color: #198cff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 15px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=CartForm.module.css.map */

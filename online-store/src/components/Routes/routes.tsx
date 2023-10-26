@@ -9,6 +9,7 @@ export const routes = [
   {
     path: '/',
     element: <Layout />,
+    breadcrumb: null,
     children: [
       {
         index: true,
@@ -16,14 +17,18 @@ export const routes = [
         breadcrumb: 'Home',
       },
       {
-        path: 'products/:id',
-        element: <SingleProductPage />,
-        breadcrumb: 'Products',
+        path: 'products',
+        breadcrumb: null,
       },
       {
-        path: 'products/category/:category',
+        path: 'products/:id',
+        element: <SingleProductPage />,
+        breadcrumb: 'ProductBreadcrumb',
+      },
+      {
+        path: '/products/category/:category',
         element: <ProductsPage />,
-        breadcrumbs: 'Category',
+        breadcrumbs: 'CategoryBreadcrumb',
       },
       {
         path: 'cart',

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,QAAQ,CAAC;EACL,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,GAAG;EACnB,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EACnB,GAAG,EAAC,IAAI;CACX",
+    "sources": [
+        "UserBar.module.scss"
+    ],
+    "names": [],
+    "file": "UserBar.module.css"
+}

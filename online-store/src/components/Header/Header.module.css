@@ -1,4 +1,4 @@
-.container {
+header {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   display: -webkit-box;
@@ -7,17 +7,21 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-left: 50px;
   padding-right: 50px;
-  padding: 5px 20px 5px 20px;
+  padding: 15px 20px 15px 20px;
 }
 
-.acnive {
+.active {
   color: red;
 }
 
 nav a {
   margin-left: 10px;
+  font-size: 1.1rem;
 }
 
 .header_login_btn, .header_sign_btn {
@@ -25,9 +29,11 @@ nav a {
   margin-left: 5px;
   margin-right: 5px;
   background: #4676D7;
+  color: white;
   border: 0;
   font-size: 0.8rem;
   padding: 5px 0px 5px 0px;
+  border-radius: 5px;
   cursor: pointer;
 }
 /*# sourceMappingURL=Header.module.css.map */
