@@ -4,6 +4,7 @@ import SingleProductPage from '../Pages/SingleProductPage/SingleProductPage';
 import CartPage from '../Pages/CartPage/CartPage';
 import FavoritesPage from '../Pages/FavoritesPage/FavoritesPage';
 import ProductsPage from '../Pages/ProductsPage/ProductsPage';
+import Home from '../../assets/home.svg';
 
 export const routes = [
   {
@@ -14,7 +15,7 @@ export const routes = [
       {
         index: true,
         element: <HomePage />,
-        breadcrumb: 'Home',
+        breadcrumb: { Home },
       },
       {
         path: 'products',
