@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classes from './SingleProductPage.module.scss';
-import { useGetSingleProductQuery } from '../../../store/apiSlice';
+import { setProductApp, useGetSingleProductQuery } from '../../../store/apiSlice';
 import { useNavigate, useParams } from 'react-router-dom';
 import RatingProduct from '../../RatingProduct/RatingProduct';
 import TableSize from '../../TableSizes/TableSize';
@@ -16,6 +16,10 @@ const SingleProductPage: React.FC = () => {
   const [size, setSize] = useState<string | null>();
   const [color, setColor] = useState<string>();
   const [quantity, setQuantity] = useState<number>(1);
+  useEffect(() => {
+    if (product) dispatch(setProductApp([product]));
+  });
+
   const updateSize = (size: string | null) => {
     setSize(size);
   };

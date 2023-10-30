@@ -3,7 +3,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { useGetProductsCategoryQuery } from '../../../store/apiSlice';
 import CardList from '../../CardList/CardList';
 
-const ProductsPage: React.FC = () => {
+const ProductsPageByCategory: React.FC = () => {
   const [searchParams] = useSearchParams();
   const limit = searchParams.has('limit') ? searchParams.get('limit') ?? '' : '';
   const sort = searchParams.has('sort') ? searchParams.get('sort') ?? '' : '';
@@ -22,4 +22,4 @@ const ProductsPage: React.FC = () => {
   return <CardList products={products} isLoading={isLoading} />;
 };
 
-export default ProductsPage;
+export default ProductsPageByCategory;

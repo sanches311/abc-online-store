@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { storeApi } from './apiSlice';
+import appSliceReducer, { storeApi } from './apiSlice';
 import userSliceReducer, { user } from './userSlice';
 
 const store = configureStore({
@@ -7,6 +7,7 @@ const store = configureStore({
     [storeApi.reducerPath]: storeApi.reducer,
     [user.reducerPath]: user.reducer,
     user: userSliceReducer,
+    app: appSliceReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(storeApi.middleware).concat(user.middleware),

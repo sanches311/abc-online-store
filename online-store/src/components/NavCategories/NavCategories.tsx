@@ -12,9 +12,9 @@ const NavCategories = () => {
         className={({ isActive }) =>
           isActive ? `${classes.nav_link} ${classes.active}` : classes.nav_link
         }
-        to="/"
+        to="/products"
       >
-        Home
+        All
       </NavLink>
       {isLoading
         ? 'Loading...'
@@ -25,7 +25,7 @@ const NavCategories = () => {
                 isActive ? `${classes.nav_link} ${classes.active}` : classes.nav_link
               }
               key={index}
-              to={`products/category/${category}`}
+              to={`${category}`}
             >
               {category}
             </NavLink>

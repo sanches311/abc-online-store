@@ -1,11 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { IProduct } from '../interfaces/products';
 import { ISearchParams } from '../interfaces/searchParams';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface IParamsCategory {
   category: string;
   searchParams: ISearchParams;
 }
+interface IApp {
+  currentProduct: IProduct[];
+}
+const initialState: IApp = {
+  currentProduct: [],
+};
 
 export const storeApi = createApi({
   reducerPath: 'storeApi',
@@ -37,3 +44,16 @@ export const {
   useGetAllProductsQuery,
   useGetProductsCategoryQuery,
 } = storeApi;
+
+export const appSlice = createSlice({
+  name: 'app',
+  initialState,
+  reducers: {
+    setProductApp: (state, action: PayloadAction<IProduct[]>) => {
+      state.currentProduct = action.payload;
+    },
+  },
+});
+
+export const { setProductApp } = appSlice.actions;
+export default appSlice.reducer;

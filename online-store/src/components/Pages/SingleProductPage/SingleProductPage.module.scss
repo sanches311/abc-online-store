@@ -1,6 +1,8 @@
 $color-gray-transp:  rgba(128, 128, 128, 0.9);
 $color-brand: #4676D7;
-
+.wrapper_page {
+    padding: 10px 20px;
+}
 .Layout_2_column {
     display: flex;
     flex-direction: row;    
