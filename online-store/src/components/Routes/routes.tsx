@@ -6,7 +6,6 @@ import FavoritesPage from '../Pages/FavoritesPage/FavoritesPage';
 import DynamicProductBreadcrumb from '../Breadcrumbs/DynamicProductBreadcrumb';
 import ProductsPageByCategory from '../Pages/ProductsPageByCategory/ProductsPageByCategory';
 import ProductsAllPage from '../Pages/ProductsAll/ProductsAllPage';
-
 export const routes = [
   {
     path: '/',
@@ -20,7 +19,6 @@ export const routes = [
       {
         path: ':category',
         element: <ProductsPageByCategory />,
-        //breadcrumb: 'CategoryBreadcrumb',
       },
       {
         path: '/products',
@@ -36,12 +34,10 @@ export const routes = [
       {
         path: '/cart',
         element: <CartPage />,
-        breadcrumbs: 'Cart',
       },
       {
         path: '/favorites',
         element: <FavoritesPage />,
-        breadcrumbs: 'Favorites',
       },
     ],
   },
