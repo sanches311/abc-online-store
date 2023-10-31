@@ -32,3 +32,4 @@ export const compareProduct = (obj1: ICart, obj2: ICart) => {
   else if (obj1.color != obj2.color) return true;
   else return false;
 };
+export const upperFirstLetter = (str: string) => str[0].toUpperCase() + str.slice(1);

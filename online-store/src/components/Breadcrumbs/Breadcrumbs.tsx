@@ -3,6 +3,7 @@ import useBreadcrumbs from 'use-react-router-breadcrumbs';
 import { routes } from '../Routes/routes';
 import classes from './Breadcrumbs.module.scss';
 import { useAppSelector } from '../../hooks/redux';
+import { upperFirstLetter } from '../../utils/utils';
 
 const Breadcrumbs = () => {
   const breadcrumbs = useBreadcrumbs(routes);
@@ -15,7 +16,7 @@ const Breadcrumbs = () => {
         <span key={match.pathname}>
           {category && match.pattern.path == '/products/:id' ? (
             <span>
-              <NavLink to={category}>{category[0].toUpperCase() + category.slice(1)}</NavLink>
+              <NavLink to={category}>{upperFirstLetter(category)}</NavLink>
               <span className={classes.divider}> / </span>
             </span>
           ) : (
