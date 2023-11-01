@@ -5,6 +5,9 @@ export interface IProduct {
   category: string;
   description: string;
   image: string;
+  size?: string | null;
+  color?: string;
+  quantity?: number;
   rating: {
     rate: number;
     count: number;

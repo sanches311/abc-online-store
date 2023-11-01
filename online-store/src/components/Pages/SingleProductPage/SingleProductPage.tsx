@@ -5,20 +5,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import RatingProduct from '../../RatingProduct/RatingProduct';
 import TableSize from '../../TableSizes/TableSize';
 import { useAppDispatch } from '../../../hooks/redux';
-import { addProductToCart } from '../../../store/userSlice';
 import CounterProduct from '../../CounterProduct/CounterProduct';
 import TableColor from '../../TableColor/TableColor';
+import ToBagBtn from '../../buttons/ToBagBtn';
 
 const SingleProductPage: React.FC = () => {
   const { id } = useParams<string>();
   const navigate = useNavigate();
   const { data: product, isLoading, isSuccess } = useGetSingleProductQuery(id!);
-  const [size, setSize] = useState<string | null>();
-  const [color, setColor] = useState<string>();
+  const [size, setSize] = useState<string | null>(null);
+  const [color, setColor] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
-  useEffect(() => {
-    if (product) dispatch(setProductApp([product]));
-  });
 
   const updateSize = (size: string | null) => {
     setSize(size);
@@ -31,25 +28,9 @@ const SingleProductPage: React.FC = () => {
   };
 
   const dispatch = useAppDispatch();
-  const addToCart = () => {
-    if (product) {
-      dispatch(
-        addProductToCart({
-          id: product.id,
-          title: product.title,
-          img: product.image,
-          description: product.description,
-          size: size,
-          color: color,
-          quantity: quantity,
-          price: product.price,
-        })
-      );
-    }
-  };
-
   useEffect(() => {
     if (isSuccess && !product) navigate('/');
+    if (product) dispatch(setProductApp([product]));
   });
 
   return (
@@ -79,10 +60,8 @@ const SingleProductPage: React.FC = () => {
             )}
             <CounterProduct updateQuantity={updateQuantity} />
             <div className={classes.price}>{product?.price}$</div>
-            <div className={classes.wrapper_buy_btn}>
-              <button className={classes.buy_btn} onClick={addToCart}>
-                To cart
-              </button>
+            <div className={classes.wrapper_btn}>
+              <ToBagBtn product={product} />
               <button className={classes.buy_btn}>Buy now</button>
             </div>
           </div>

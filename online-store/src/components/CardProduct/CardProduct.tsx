@@ -21,7 +21,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
       dispatch(
         addProductToFavorites({
           id: Date.now(),
-          img: product.image,
+          image: product.image,
           description: product.description,
           title: product.title,
           quantity: 1,

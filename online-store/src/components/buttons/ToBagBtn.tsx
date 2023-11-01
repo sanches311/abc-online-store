@@ -7,7 +7,7 @@ import ShoppingBagSvg from '../../assets/icons/shopping-bag.svg';
 import { IProduct } from '../../interfaces/products';
 
 interface Props {
-  product: IProduct;
+  product: IProduct | undefined;
 }
 
 const ToBagBtn: React.FC<Props> = ({ product }) => {
@@ -17,37 +17,39 @@ const ToBagBtn: React.FC<Props> = ({ product }) => {
   const dispatch = useAppDispatch();
   const addToCart = () => {
     if (product) {
+      const { id, image, title, price, description, size, color, quantity } = product;
       dispatch(
         addProductToCart({
-          id: product.id,
-          img: product.image,
-          title: product.title,
-          quantity: 1,
-          price: product.price,
-          description: product.description,
+          id,
+          image,
+          title,
+          size: size ? size : '',
+          color: color ? color : '',
+          quantity: quantity ? quantity : 1,
+          price,
+          description,
         })
       );
     }
   };
+  const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    addToCart();
+    setTextBtn('it`s in the bag');
+    setDisabledBtn(true);
+    setTimeout(() => {
+      setTextBtn('add to bag');
+      setDisabledBtn(false);
+    }, 2000);
+  };
   return (
-    <button
-      className={classes.bag_btn}
-      disabled={disabledBtn}
-      onClick={(e) => {
-        e.preventDefault();
-        addToCart();
-        setTextBtn('it`s in the bag');
-        setDisabledBtn(true);
-        setTimeout(() => {
-          setTextBtn('add to bag');
-          setDisabledBtn(false);
-        }, 2000);
-      }}
-    >
+    <button className={classes.bag_btn} disabled={disabledBtn} onClick={(e) => handleOnClick(e)}>
       <span>
-        <ShoppingBagSvg className={classes.shopping_bag_btn} />
+        <ShoppingBagSvg className={classes.shopping_bag_img_btn} />
       </span>
-      {textBtn}
+      <div className={classes.wrapper_text}>
+        <span>{textBtn}</span>
+      </div>
     </button>
   );
 };

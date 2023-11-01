@@ -5,7 +5,7 @@ import { compareProduct } from '../utils/utils';
 
 export interface ICart {
   id: number;
-  img: string;
+  image: string;
   title: string;
   size?: string | null;
   color?: string;
