@@ -4,7 +4,7 @@ import { routes } from '../Routes/routes';
 import classes from './Breadcrumbs.module.scss';
 import { useAppSelector } from '../../hooks/redux';
 import { upperFirstLetter } from '../../utils/utils';
-import HomeSvg from '../../assets/home.svg';
+import HomeSvg from '../../assets/icons/home.svg';
 
 const Breadcrumbs = () => {
   const breadcrumbs = useBreadcrumbs(routes);

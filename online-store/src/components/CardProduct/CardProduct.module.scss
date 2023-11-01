@@ -46,25 +46,16 @@ a .card {
 }
 .title { 
     flex:1;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 .price {
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 1.2rem;
     font-weight: bold;
     text-align: center;
 }
-.cart_btn {
-    background-color: #4676D7;
-    border: none;
-    height: 30px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    &:active{
-        cursor: pointer;        
-        opacity: 0.5;
-    }
-}
 .small_text {
+    font-family: 'Roboto Condensed', sans-serif;
     color: rgba(128, 128, 128, 0.5);
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
