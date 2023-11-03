@@ -5,10 +5,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import RatingProduct from '../../RatingProduct/RatingProduct';
 import TableSize from '../../TableSizes/TableSize';
 import { useAppDispatch } from '../../../hooks/redux';
-import CounterProduct from '../../CounterProduct/CounterProduct';
 import TableColor from '../../TableColor/TableColor';
 import ToBagBtn from '../../buttons/ToBagBtn';
 import { addProductToCart } from '../../../store/userSlice';
+import EditCount from '../../EditCount/EditCount';
+import { useDebounce } from '../../../hooks/debounce';
 
 const SingleProductPage: React.FC = () => {
   const { id } = useParams<string>();
@@ -17,6 +18,23 @@ const SingleProductPage: React.FC = () => {
   const [size, setSize] = useState<string | null>(null);
   const [color, setColor] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
+  const debouncedValue = useDebounce(quantity, 500);
+
+  const incQuantity = () => {
+    if (quantity < 99) setQuantity(quantity + 1);
+    updateQuantity(quantity + 1);
+  };
+  const descQuantity = () => {
+    if (quantity > 1) setQuantity(quantity - 1);
+    updateQuantity(quantity - 1);
+  };
+  const handleOnChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuantity(+e.target.value);
+    if (+e.target.value > 99) setQuantity(99);
+  };
+  useEffect(() => {
+    setQuantity(quantity);
+  }, [debouncedValue]);
 
   const updateSize = (size: string | null) => {
     setSize(size);
@@ -77,7 +95,12 @@ const SingleProductPage: React.FC = () => {
             ) : (
               ''
             )}
-            <CounterProduct updateQuantity={updateQuantity} />
+            <EditCount
+              incQuantity={incQuantity}
+              descQuantity={descQuantity}
+              handleOnChangeQuantity={handleOnChangeQuantity}
+              count={quantity}
+            />
             <div className={classes.price}>{product?.price}$</div>
             <div className={classes.wrapper_btn}>
               <div className={classes.wrapper_to_bag_btn}>

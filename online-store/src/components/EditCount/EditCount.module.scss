@@ -1,0 +1,37 @@
+.edit_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;    
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 3px;        
+    &:hover {
+        border:1px solid gray;
+        transition: 0.5s;
+    }
+}
+.quantity_input {
+    font-family: 'Roboto Condensed', sans-serif;
+    width: 25px;
+    height: 25px;
+    border: none;
+    text-align: center;
+    &:focus {
+        outline: none;
+    }
+}
+.edit_quantity_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border: none;
+    border-radius: 3px;           
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(128, 128, 128, 0.5);
+        transition: 0.5s;
+    }
+}

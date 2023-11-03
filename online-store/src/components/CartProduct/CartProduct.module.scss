@@ -64,6 +64,9 @@
             cursor: pointer;
             margin-right: 20px;
             visibility: hidden;
+            width: 20px;
+            height: 20px;
+            color: gray;
         }
         .product_edit {
             display: flex;
@@ -73,6 +76,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 2px;
+            box-sizing: border-box;
             border: 1px solid rgba(128, 128, 128, 0.5);
             border-radius: 3px;        
             &:hover {
@@ -91,13 +96,15 @@
             }
         }
         .edit_quantity_btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 25px;
             height: 25px;
             background-color: transparent;
             border: none;
-            border-radius: 3px;
-            text-align: center;
-            padding: 3px;
+            border-radius: 3px;                       
+            padding: 3px 3px;           
             &:hover {
                 cursor: pointer;
                 background-color: rgba(128, 128, 128, 0.5);
