@@ -23,10 +23,12 @@ $color-brand: #4676D7;
     margin-bottom: 15px;
 }
 .price {
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 1.5rem;
     font-weight: bold;
 }
 .desc {
+    font-family: 'Roboto Condensed', sans-serif;
     text-align: justify;
     font-size: 1.1rem;    
 }
@@ -99,6 +101,15 @@ $color-brand: #4676D7;
     border: 1px solid black;
 }
 .wrapper_btn {
+       
+}
+.wrapper_to_bag_btn {
+    box-sizing: border-box;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    width: 200px;
+ 
+}
+.wrapper_by_now_btn {
+    width: 100%;  
 }

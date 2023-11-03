@@ -5,7 +5,7 @@ import RatingProduct from '../RatingProduct/RatingProduct';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/redux';
 import HeartSvg from '../../assets/icons/heart.svg';
-import { addProductToFavorites } from '../../store/userSlice';
+import { addProductToCart, addProductToFavorites } from '../../store/userSlice';
 import ToBagBtn from '../buttons/ToBagBtn';
 
 type Props = {
@@ -15,6 +15,24 @@ type Props = {
 
 const CardProduct: React.FC<Props> = ({ product }: Props) => {
   const dispatch = useAppDispatch();
+
+  const addProduct = () => {
+    if (product) {
+      const { id, image, title, price, description } = product;
+      dispatch(
+        addProductToCart({
+          id,
+          image,
+          title,
+          size: null,
+          color: null,
+          quantity: 1,
+          price,
+          description,
+        })
+      );
+    }
+  };
 
   const addToFavorites = () => {
     if (product) {
@@ -32,7 +50,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
   };
   return (
     <NavLink to={`/products/${product.id}`}>
-      <div className={classes.card}>
+      <ul className={classes.card}>
         <li className={classes.wrapper_img}>
           <HeartSvg
             className={classes.heartIcon}
@@ -49,8 +67,8 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
         </li>
         <li className={classes.title}>{product.title}</li>
         <li className={classes.price}>{product.price}$</li>
-        <ToBagBtn product={product} />
-      </div>
+        <ToBagBtn addProduct={addProduct} />
+      </ul>
     </NavLink>
   );
 };

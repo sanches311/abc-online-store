@@ -8,6 +8,7 @@ import { useAppDispatch } from '../../../hooks/redux';
 import CounterProduct from '../../CounterProduct/CounterProduct';
 import TableColor from '../../TableColor/TableColor';
 import ToBagBtn from '../../buttons/ToBagBtn';
+import { addProductToCart } from '../../../store/userSlice';
 
 const SingleProductPage: React.FC = () => {
   const { id } = useParams<string>();
@@ -28,6 +29,24 @@ const SingleProductPage: React.FC = () => {
   };
 
   const dispatch = useAppDispatch();
+
+  const addProduct = () => {
+    if (product) {
+      const { id, image, title, price, description } = product;
+      dispatch(
+        addProductToCart({
+          id,
+          image,
+          title,
+          size: size,
+          color: color,
+          quantity: quantity,
+          price,
+          description,
+        })
+      );
+    }
+  };
   useEffect(() => {
     if (isSuccess && !product) navigate('/');
     if (product) dispatch(setProductApp([product]));
@@ -61,8 +80,9 @@ const SingleProductPage: React.FC = () => {
             <CounterProduct updateQuantity={updateQuantity} />
             <div className={classes.price}>{product?.price}$</div>
             <div className={classes.wrapper_btn}>
-              <ToBagBtn product={product} />
-              <button className={classes.buy_btn}>Buy now</button>
+              <div className={classes.wrapper_to_bag_btn}>
+                <ToBagBtn addProduct={addProduct} />
+              </div>
             </div>
           </div>
         </div>

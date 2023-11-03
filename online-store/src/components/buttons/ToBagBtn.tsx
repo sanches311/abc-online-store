@@ -1,49 +1,28 @@
 import * as React from 'react';
 import classes from './buttons.module.scss';
 import { useState } from 'react';
-import { useAppDispatch } from '../../hooks/redux';
-import { addProductToCart } from '../../store/userSlice';
 import ShoppingBagSvg from '../../assets/icons/shopping-bag.svg';
-import { IProduct } from '../../interfaces/products';
 
 interface Props {
-  product: IProduct | undefined;
+  addProduct: () => void;
 }
 
-const ToBagBtn: React.FC<Props> = ({ product }) => {
+const ToBagBtn: React.FC<Props> = ({ addProduct }) => {
   const [textBtn, setTextBtn] = useState<string>('add to bag');
-  const [disabledBtn, setDisabledBtn] = useState<boolean>(false);
+  const [disabled, setDisabled] = useState<boolean>(false);
 
-  const dispatch = useAppDispatch();
-  const addToCart = () => {
-    if (product) {
-      const { id, image, title, price, description, size, color, quantity } = product;
-      dispatch(
-        addProductToCart({
-          id,
-          image,
-          title,
-          size: size ? size : '',
-          color: color ? color : '',
-          quantity: quantity ? quantity : 1,
-          price,
-          description,
-        })
-      );
-    }
-  };
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    addToCart();
+    addProduct();
     setTextBtn('it`s in the bag');
-    setDisabledBtn(true);
+    setDisabled(true);
     setTimeout(() => {
       setTextBtn('add to bag');
-      setDisabledBtn(false);
+      setDisabled(false);
     }, 2000);
   };
   return (
-    <button className={classes.bag_btn} disabled={disabledBtn} onClick={(e) => handleOnClick(e)}>
+    <button className={classes.bag_btn} disabled={disabled} onClick={(e) => handleOnClick(e)}>
       <span>
         <ShoppingBagSvg className={classes.shopping_bag_img_btn} />
       </span>

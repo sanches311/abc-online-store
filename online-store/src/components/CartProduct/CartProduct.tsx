@@ -18,7 +18,7 @@ interface Props {
 }
 
 const CartProduct: React.FC<Props> = (props) => {
-  const { id, title, img, quantity, size, price, color } = props.product;
+  const { id, title, image, quantity, size, price, color } = props.product;
   const [count, setCount] = useState<number>(quantity);
   const debouncedValue = useDebounce(count, 500);
   const currentDate = new Date();
@@ -54,7 +54,7 @@ const CartProduct: React.FC<Props> = (props) => {
     <li className={classes.wrapper_product}>
       <NavLink to={`/products/${id}`} className={classes.first_cell}>
         <div className={classes.wrapper_product_img}>
-          <img src={img} alt="image product" />
+          <img src={image} alt="image product" />
         </div>
         <div className={classes.description}>
           <div className={classes.title}>{title}</div>

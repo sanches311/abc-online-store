@@ -8,7 +8,7 @@ export interface ICart {
   image: string;
   title: string;
   size?: string | null;
-  color?: string;
+  color?: string | null;
   quantity: number;
   price: number;
   description: string;

@@ -4,7 +4,7 @@ import { useGetProductsCategoryQuery } from '../../../store/apiSlice';
 import { NavLink } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
-  const [index, setIndex] = useState<number>(1);
+  const [index] = useState<number>(1);
 
   const { data: mensClothes } = useGetProductsCategoryQuery({
     category: "men's clothing",
