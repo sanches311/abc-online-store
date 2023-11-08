@@ -16,7 +16,7 @@ import TrashSvg from '../../assets/icons/trash.svg';
 import EditCount from '../EditCount/EditCount';
 
 interface Props {
-  key: number;
+  key: string;
   product: ICart;
 }
 

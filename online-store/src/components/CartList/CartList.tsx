@@ -11,8 +11,13 @@ const CartList: React.FC<Props> = ({ children }) => {
   const cart = useAppSelector((state) => state.user.cart);
   return (
     <ul className={classes.wrapper_cart_products}>
-      {cart.map((product, index) => (
-        <CartProduct key={index} product={product} />
+      {cart.map((product) => (
+        <CartProduct
+          key={`(${product.id}${product.size ? product.size : ''}${
+            product.color ? product.color : ''
+          }`}
+          product={product}
+        />
       ))}
       {children}
     </ul>
