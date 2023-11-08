@@ -2,9 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useGetAllCategoriesQuery } from '../../store/apiSlice';
 import classes from './NavCategories.module.scss';
-import { upperFirstLetter } from '../../utils/utils';
 
-const NavCategories = () => {
+const NavCategories: React.FC = () => {
   const { data: categories, isLoading } = useGetAllCategoriesQuery();
 
   return (
@@ -28,7 +27,7 @@ const NavCategories = () => {
               key={index}
               to={`${category}`}
             >
-              {upperFirstLetter(category)}
+              {category}
             </NavLink>
           ))
         : ''}
