@@ -49,6 +49,7 @@ const CartProduct: React.FC<Props> = ({ product }) => {
   };
   useEffect(() => {
     setQuantity(count);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedValue]);
 
   const setQuantity = (quantity: number) => {
