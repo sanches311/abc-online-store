@@ -13,9 +13,9 @@ interface Props {
 }
 
 const CardList: React.FC<Props> = ({ products, isLoading }) => {
-  const [serchParams] = useSearchParams();
-  const sort = serchParams.get('sort') ?? '';
-  const query = serchParams.get('query') ?? '';
+  const [searchParams] = useSearchParams();
+  const sort = searchParams.get('sort') ?? '';
+  const query = searchParams.get('query') ?? '';
   let data: IProduct[] | null;
 
   return (

@@ -1,14 +1,17 @@
 import * as React from 'react';
 import classes from './CartForm.module.scss';
 import CartList from '../CartList/CartList';
-import { useAppSelector } from '../../hooks/redux';
+import { ICart } from '../../store/userSlice';
 
-const CartForm: React.FC = () => {
-  const cart = useAppSelector((state) => state.user.cart);
-  const totalPrice = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
+interface Props {
+  totalPrice: number;
+  cart: ICart[];
+}
+
+const CartForm: React.FC<Props> = ({ totalPrice, cart }) => {
   return (
     <>
-      <CartList>
+      <CartList cart={cart}>
         <div className={classes.wrapper}>
           <span className={classes.price}>Total price:</span>
           <div>

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { compareProduct } from '../utils/utils';
+import { ICartLoginUser } from '../interfaces/cart';
 
 export interface ICart {
   id: number;
@@ -177,7 +178,10 @@ export const user = createApi({
         body: params,
       }),
     }),
+    userCart: builder.query<ICartLoginUser[], string>({
+      query: (id) => `carts/user/${id}`,
+    }),
   }),
 });
 
-export const { useUserLoginMutation, useUserSignInMutation } = user;
+export const { useUserLoginMutation, useUserSignInMutation, useUserCartQuery } = user;

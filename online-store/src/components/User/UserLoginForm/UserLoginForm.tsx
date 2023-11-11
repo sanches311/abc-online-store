@@ -8,6 +8,7 @@ import {
   toggleUserSignInForm,
   useUserLoginMutation,
 } from '../../../store/userSlice';
+import { parseJwt } from '../../../utils/utils';
 
 interface ILoginForm extends HTMLFormControlsCollection {
   password: HTMLInputElement;
@@ -25,7 +26,7 @@ const UserLoginForm: React.FC = () => {
   const active = useAppSelector((state) => state.user.loginForm);
 
   const dispatch = useAppDispatch();
-  const [loginUser] = useUserLoginMutation();
+  const [loginUser, isLoading, error, isError] = useUserLoginMutation();
   const closeUserLoginForm = () => {
     dispatch(toggleUserLoginForm(false));
     setAuth(false);
@@ -43,12 +44,15 @@ const UserLoginForm: React.FC = () => {
     const password = form.elements.password.value;
     loginUser({ username, password })
       .unwrap()
-      .then(() => {
+      .then((token) => {
         dispatch(delCurrentUser());
         dispatch(setCurrentUser({ username }));
         closeUserLoginForm();
+        console.log(parseJwt(token.token));
       })
-      .catch(() => setAuth(true));
+      .catch((err) => {
+        setAuth(true);
+      });
   };
 
   return (
@@ -62,7 +66,7 @@ const UserLoginForm: React.FC = () => {
         <h2>Log in</h2>
         {auth ? (
           <div className={classes.message}>
-            <div className={classes.error}>The username or password you entered is incorrect</div>
+            <div className={classes.error}>{error}</div>
           </div>
         ) : (
           ''
@@ -104,6 +108,7 @@ const UserLoginForm: React.FC = () => {
               Sign in
             </span>
           </div>
+          <>{isLoading ? <div></div> : <div>Loading...</div>}</>
           <input type="submit" value="Log in" />
         </form>
       </div>

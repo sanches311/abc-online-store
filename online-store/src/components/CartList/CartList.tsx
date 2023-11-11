@@ -1,14 +1,14 @@
 import * as React from 'react';
 import classes from './CartList.module.scss';
-import { useAppSelector } from '../../hooks/redux';
 import CartProduct from '../CartProduct/CartProduct';
+import { ICart } from '../../store/userSlice';
 
 interface Props {
   children: React.ReactNode;
+  cart: ICart[];
 }
 
-const CartList: React.FC<Props> = ({ children }) => {
-  const cart = useAppSelector((state) => state.user.cart);
+const CartList: React.FC<Props> = ({ children, cart }) => {
   return (
     <ul className={classes.wrapper_cart_products}>
       {cart.map((product) => (

@@ -21,7 +21,7 @@ const CartPage: React.FC = () => {
       {cart.length === 0 ? (
         <div>Cart is empty</div>
       ) : currentUser.length === 0 ? (
-        <CartForm />
+        <CartForm totalPrice={totalPrice} cart={cart} />
       ) : (
         <div>Auth user. Request to server</div>
       )}
