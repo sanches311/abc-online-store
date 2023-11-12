@@ -3,5 +3,41 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap:13px;
+    gap:15px;
 }
+.wrapper_item_user_bar {
+  display: flex; 
+  align-items: center;
+  justify-content:space-between; 
+  cursor: pointer;   
+}
+.shopping_bag, .wishlist {
+  position: relative;
+}
+.item_user_bar_svg{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  width: 25px;
+  height: 25px;
+}
+    .circle {
+      position: absolute;
+      left:15px;
+      top: -6px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.8rem;
+      color: white;
+    }
+    .price {
+      color: gray;
+      font-size: 1rem;          
+  }
+
+

@@ -34,11 +34,11 @@ export const routes = [
       },
 
       {
-        path: '/cart',
+        path: '/bag',
         element: <CartPage />,
       },
       {
-        path: '/favorites',
+        path: '/wishlist',
         element: <FavoritesPage />,
       },
     ],

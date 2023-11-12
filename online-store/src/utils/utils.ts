@@ -47,3 +47,11 @@ export const parseJwt = (token: string) => {
   );
   return JSON.parse(jsonPayload);
 };
+
+export const changesDisplayPrice = (value: number) => {
+  const str = value.toString();
+  const length = str.length;
+  if (length >= 4 && length < 5) return `>${str[0]}k`;
+  if (length >= 5) return `>${str.slice(0, 1)}k`;
+  return str;
+};
