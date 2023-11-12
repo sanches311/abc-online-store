@@ -1,12 +1,12 @@
 import Layout from '../Layout/Layout';
 import HomePage from '../Pages/HomePage/HomePage';
 import SingleProductPage from '../Pages/SingleProductPage/SingleProductPage';
-import CartPage from '../Pages/CartPage/CartPage';
 import FavoritesPage from '../Pages/FavoritesPage/FavoritesPage';
 import DynamicProductBreadcrumb from '../Breadcrumbs/DynamicProductBreadcrumb';
 import ProductsPageByCategory from '../Pages/ProductsPageByCategory/ProductsPageByCategory';
 import ProductsAllPage from '../Pages/ProductsAll/ProductsAllPage';
 import DynamicCategoryBreadcrumb from '../Breadcrumbs/DynamicCategoryBreadcrumb';
+import BagShoppingPage from '../Pages/BagShoppingPage/BagShoppingPage';
 export const routes = [
   {
     path: '/',
@@ -35,7 +35,7 @@ export const routes = [
 
       {
         path: '/bag',
-        element: <CartPage />,
+        element: <BagShoppingPage />,
       },
       {
         path: '/wishlist',

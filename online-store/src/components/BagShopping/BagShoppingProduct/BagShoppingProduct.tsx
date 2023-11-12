@@ -1,26 +1,26 @@
 import * as React from 'react';
-import classes from './CartProduct.module.scss';
+import classes from './BagShoppingProduct.module.scss';
 import { NavLink } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch } from '../../../hooks/redux';
 import {
   delProductCart,
   descProductQuantity,
   incProductQuantity,
   setProductQuantity,
-} from '../../store/userSlice';
-import { ICart } from '../../store/userSlice';
+} from '../../../store/userSlice';
+import { ICart } from '../../../store/userSlice';
 import { useEffect, useState } from 'react';
-import { useDebounce } from '../../hooks/debounce';
-import ShippingSvg from '../../assets/icons/shipping.svg';
-import TrashSvg from '../../assets/icons/trash.svg';
-import EditCount from '../EditCount/EditCount';
+import { useDebounce } from '../../../hooks/debounce';
+import ShippingSvg from '../../../assets/icons/shipping.svg';
+import TrashSvg from '../../../assets/icons/trash.svg';
+import EditCount from '../../EditCount/EditCount';
 
 interface Props {
   key: string;
   product: ICart;
 }
 
-const CartProduct: React.FC<Props> = ({ product }) => {
+const BagShoppingProduct: React.FC<Props> = ({ product }) => {
   const { id, title, image, quantity, size, price, color } = product;
   const [count, setCount] = useState<number>(quantity);
   const debouncedValue = useDebounce(count, 500);
@@ -90,4 +90,4 @@ const CartProduct: React.FC<Props> = ({ product }) => {
   );
 };
 
-export default CartProduct;
+export default BagShoppingProduct;

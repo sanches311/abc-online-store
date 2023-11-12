@@ -1,18 +1,18 @@
 import * as React from 'react';
-import classes from './CartList.module.scss';
-import CartProduct from '../CartProduct/CartProduct';
-import { ICart } from '../../store/userSlice';
+import classes from './BagShoppingList.module.scss';
+import { ICart } from '../../../store/userSlice';
+import BagShoppingProduct from '../BagShoppingProduct/BagShoppingProduct';
 
 interface Props {
   children: React.ReactNode;
   cart: ICart[];
 }
 
-const CartList: React.FC<Props> = ({ children, cart }) => {
+const BagShoppingList: React.FC<Props> = ({ children, cart }) => {
   return (
     <ul className={classes.wrapper_cart_products}>
       {cart.map((product) => (
-        <CartProduct
+        <BagShoppingProduct
           key={`(${product.id}${product.size ? product.size : ''}${
             product.color ? product.color : ''
           }`}
@@ -24,4 +24,4 @@ const CartList: React.FC<Props> = ({ children, cart }) => {
   );
 };
 
-export default CartList;
+export default BagShoppingList;

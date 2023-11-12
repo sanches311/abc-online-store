@@ -1,0 +1,47 @@
+.wrapper {
+    padding: 10px 20px 10px 20px;
+}
+.wrapper_head_cart {
+    display: flex;
+    justify-content: space-between;
+    padding-block: 5px;
+    input {
+        height: 30px;        
+        border: 1px solid rgba(128, 128, 128, 0.5);
+        border-radius: 5px; 
+        outline: none; 
+        text-indent: 10px;      
+    }
+}
+.small_text {
+    font-size: 0.9rem;
+    color: gray
+}
+
+.wrapper_bottom {
+    border-top: 1px solid rgba(128, 128, 128, 0.5) ;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    margin-bottom: 15px;
+}
+.price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    min-width: 100px;    
+}
+.wrapper_checkout_btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+    button {
+        text-transform: uppercase;
+    }    
+ }
+
+ .wrapper_item_pay {
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+ }
