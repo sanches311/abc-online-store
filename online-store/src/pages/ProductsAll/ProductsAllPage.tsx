@@ -1,6 +1,6 @@
 import React from 'react';
-import CardList from '../../CardList/CardList';
-import { useGetAllProductsQuery } from '../../../store/apiSlice';
+import CardList from '../../components/CardList/CardList';
+import { useGetAllProductsQuery } from '../../store/apiSlice';
 import { useSearchParams } from 'react-router-dom';
 
 const ProductsAllPage: React.FC = () => {
@@ -13,8 +13,10 @@ const ProductsAllPage: React.FC = () => {
     sort,
     query,
   };
-  const { data: products, isLoading } = useGetAllProductsQuery(params);
+  const { data: products, isLoading, isSuccess, isError } = useGetAllProductsQuery(params);
 
-  return <CardList products={products} isLoading={isLoading} />;
+  return (
+    <CardList products={products} isLoading={isLoading} isSuccess={isSuccess} isError={isError} />
+  );
 };
 export default ProductsAllPage;

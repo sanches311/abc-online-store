@@ -10,9 +10,11 @@ import { searchItem } from '../../utils/utils';
 interface Props {
   products: IProduct[] | undefined;
   isLoading: boolean;
+  isSuccess: boolean;
+  isError: boolean;
 }
 
-const CardList: React.FC<Props> = ({ products, isLoading }) => {
+const CardList: React.FC<Props> = ({ products, isLoading, isSuccess, isError }) => {
   const [searchParams] = useSearchParams();
   const sort = searchParams.get('sort') ?? '';
   const query = searchParams.get('query') ?? '';
@@ -24,6 +26,8 @@ const CardList: React.FC<Props> = ({ products, isLoading }) => {
       <div className={classes.wrapper_product}>
         {isLoading ? (
           'Loading ...'
+        ) : isSuccess && isError ? (
+          <div>Error server</div>
         ) : products ? (
           (data = searchItem(sortBy([...products], sort), query)) ? (
             data.length != 0 ? (

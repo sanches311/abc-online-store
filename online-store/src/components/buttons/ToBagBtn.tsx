@@ -22,7 +22,11 @@ const ToBagBtn: React.FC<Props> = ({ addProduct }) => {
     }, 2000);
   };
   return (
-    <button className={classes.btn} disabled={disabled} onClick={(e) => handleOnClick(e)}>
+    <button
+      className={`${classes.btn} ${classes.bag_btn}`}
+      disabled={disabled}
+      onClick={(e) => handleOnClick(e)}
+    >
       <span>
         <ShoppingBagSvg className={classes.shopping_bag_img_btn} />
       </span>

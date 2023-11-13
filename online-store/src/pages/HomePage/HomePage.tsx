@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classes from './HomePage.module.scss';
-import { useGetProductsCategoryQuery } from '../../../store/apiSlice';
+import { useGetProductsCategoryQuery } from '../../store/apiSlice';
 import { NavLink } from 'react-router-dom';
 
 const HomePage: React.FC = () => {

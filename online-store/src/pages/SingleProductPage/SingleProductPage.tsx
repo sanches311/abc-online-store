@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import classes from './SingleProductPage.module.scss';
-import { setProductApp, useGetSingleProductQuery } from '../../../store/apiSlice';
+import { setProductApp, useGetSingleProductQuery } from '../../store/apiSlice';
 import { useNavigate, useParams } from 'react-router-dom';
-import RatingProduct from '../../RatingProduct/RatingProduct';
-import TableSize from '../../TableSizes/TableSize';
-import { useAppDispatch } from '../../../hooks/redux';
-import TableColor from '../../TableColor/TableColor';
-import ToBagBtn from '../../buttons/ToBagBtn';
-import { addProductToCart } from '../../../store/userSlice';
-import EditCount from '../../EditCount/EditCount';
-import { useDebounce } from '../../../hooks/debounce';
+import RatingProduct from '../../components/RatingProduct/RatingProduct';
+import TableSize from '../../components/TableSizes/TableSize';
+import { useAppDispatch } from '../../hooks/redux';
+import TableColor from '../../components/TableColor/TableColor';
+import ToBagBtn from '../../components/buttons/ToBagBtn';
+import { addProductToCart } from '../../store/userSlice';
+import EditCount from '../../components/EditCount/EditCount';
+import { useDebounce } from '../../hooks/debounce';
 
 const SingleProductPage: React.FC = () => {
   const { id } = useParams<string>();

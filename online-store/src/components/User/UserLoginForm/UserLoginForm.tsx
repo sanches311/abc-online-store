@@ -26,7 +26,7 @@ const UserLoginForm: React.FC = () => {
   const active = useAppSelector((state) => state.user.loginForm);
 
   const dispatch = useAppDispatch();
-  const [loginUser, isLoading, error, isError] = useUserLoginMutation();
+  const [loginUser, isLoading] = useUserLoginMutation();
   const closeUserLoginForm = () => {
     dispatch(toggleUserLoginForm(false));
     setAuth(false);
@@ -50,7 +50,7 @@ const UserLoginForm: React.FC = () => {
         closeUserLoginForm();
         console.log(parseJwt(token.token));
       })
-      .catch((err) => {
+      .catch(() => {
         setAuth(true);
       });
   };
@@ -66,7 +66,7 @@ const UserLoginForm: React.FC = () => {
         <h2>Log in</h2>
         {auth ? (
           <div className={classes.message}>
-            <div className={classes.error}>{error}</div>
+            <div className={classes.error}>{}</div>
           </div>
         ) : (
           ''

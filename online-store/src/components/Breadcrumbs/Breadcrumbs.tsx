@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import useBreadcrumbs from 'use-react-router-breadcrumbs';
-import { routes } from '../Routes/routes';
+import { routes } from '../../routes/routes';
 import classes from './Breadcrumbs.module.scss';
 import { useAppSelector } from '../../hooks/redux';
 import { upperFirstLetter } from '../../utils/utils';
