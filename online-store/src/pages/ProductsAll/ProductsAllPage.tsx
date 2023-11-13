@@ -13,10 +13,16 @@ const ProductsAllPage: React.FC = () => {
     sort,
     query,
   };
-  const { data: products, isLoading, isSuccess, isError } = useGetAllProductsQuery(params);
+  const { data: products, isLoading, isSuccess, isError, error } = useGetAllProductsQuery(params);
 
   return (
-    <CardList products={products} isLoading={isLoading} isSuccess={isSuccess} isError={isError} />
+    <CardList
+      products={products}
+      isLoading={isLoading}
+      isSuccess={isSuccess}
+      isError={isError}
+      error={error}
+    />
   );
 };
 export default ProductsAllPage;
