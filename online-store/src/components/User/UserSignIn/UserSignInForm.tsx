@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classes from './UserSignInForm.module.scss';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { toggleUserSignInForm, useUserSignInMutation } from '../../../store/userSlice';
+import { toggleVisibleUserSignInForm, useUserSignInMutation } from '../../../store/userSlice';
 
 interface IUserSignInForm extends HTMLFormControlsCollection {
   email: HTMLInputElement;
@@ -70,7 +70,7 @@ const UserSignInForm: React.FC = () => {
       });
   };
   const closeUserSignInForm = () => {
-    dispatch(toggleUserSignInForm(false));
+    dispatch(toggleVisibleUserSignInForm(false));
     setEmail('');
     setUsername('');
     setPassword('');

@@ -8,7 +8,7 @@ const UserAvatar: React.FC = () => {
   return (
     <div className={classes.wrapper}>
       <UserCircleSvg className={classes.avatar_ico} />
-      <span>{currentUser.length > 0 ? currentUser[0].username : 'Guest'}</span>
+      <span>{currentUser ?? 'Guest'}</span>
     </div>
   );
 };

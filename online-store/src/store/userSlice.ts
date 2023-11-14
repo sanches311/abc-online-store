@@ -16,7 +16,7 @@ export interface ICart {
 }
 
 interface IUserCart {
-  currentUser: IUser[];
+  currentUser: number | null;
   cart: ICart[];
   favorites: ICart[];
   loginForm: boolean;
@@ -24,15 +24,12 @@ interface IUserCart {
 }
 
 const initialState: IUserCart = {
-  currentUser: [],
+  currentUser: null,
   cart: [],
   favorites: [],
   loginForm: false,
   SignInForm: false,
 };
-interface IUser {
-  username: string;
-}
 interface INewUserReq {
   email: string;
   username: string;
@@ -121,17 +118,17 @@ const userSlice = createSlice({
       const indexSameProduct = state.favorites.findIndex((item) => item.id === action.payload.id);
       if (indexSameProduct === -1) state.favorites.push(action.payload);
     },
-    toggleUserLoginForm: (state, action: PayloadAction<boolean>) => {
+    toggleVisibleUserLoginForm: (state, action: PayloadAction<boolean>) => {
       state.loginForm = action.payload;
     },
-    toggleUserSignInForm: (state, action: PayloadAction<boolean>) => {
+    toggleVisibleUserSignInForm: (state, action: PayloadAction<boolean>) => {
       state.SignInForm = action.payload;
     },
-    setCurrentUser: (state, action: PayloadAction<IUser>) => {
-      state.currentUser.push(action.payload);
+    setCurrentUser: (state, action: PayloadAction<number>) => {
+      state.currentUser = action.payload;
     },
     delCurrentUser: (state) => {
-      state.currentUser.pop();
+      state.currentUser = null;
     },
   },
 });
@@ -143,8 +140,8 @@ export const {
   descProductQuantity,
   setProductQuantity,
   addProductToFavorites,
-  toggleUserLoginForm,
-  toggleUserSignInForm,
+  toggleVisibleUserLoginForm,
+  toggleVisibleUserSignInForm,
   setCurrentUser,
   delCurrentUser,
 } = userSlice.actions;

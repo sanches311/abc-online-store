@@ -23,7 +23,7 @@ export const storeApi = createApi({
     }),
     getAllProducts: builder.query<Array<IProduct>, ISearchParams>({
       query: (searchParams) =>
-        `products1?${searchParams.sort ? `sort=${searchParams.sort}` : ''}${
+        `products?${searchParams.sort ? `sort=${searchParams.sort}` : ''}${
           searchParams.limit ? `&limit=${searchParams.limit}` : ''
         }${searchParams.query ? `&query=${searchParams.query}` : ''}`,
     }),

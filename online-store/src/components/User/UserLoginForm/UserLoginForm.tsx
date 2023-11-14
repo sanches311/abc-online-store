@@ -4,8 +4,8 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import {
   delCurrentUser,
   setCurrentUser,
-  toggleUserLoginForm,
-  toggleUserSignInForm,
+  toggleVisibleUserLoginForm,
+  toggleVisibleUserSignInForm,
   useUserLoginMutation,
 } from '../../../store/userSlice';
 import { parseJwt } from '../../../utils/utils';
@@ -21,37 +21,33 @@ interface IParams extends HTMLFormElement {
 const UserLoginForm: React.FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [auth, setAuth] = useState<boolean>(false);
 
   const active = useAppSelector((state) => state.user.loginForm);
 
   const dispatch = useAppDispatch();
-  const [loginUser, isLoading] = useUserLoginMutation();
+  const [loginUser, { error, isError, isUninitialized, isSuccess, reset }] = useUserLoginMutation();
+  console.log(isUninitialized);
   const closeUserLoginForm = () => {
-    dispatch(toggleUserLoginForm(false));
-    setAuth(false);
+    dispatch(toggleVisibleUserLoginForm(false));
     setUsername('');
     setPassword('');
   };
   const showUserSignInForm = () => {
     closeUserLoginForm();
-    dispatch(toggleUserSignInForm(true));
+    dispatch(toggleVisibleUserSignInForm(true));
   };
-  const authUser: React.FormEventHandler<HTMLFormElement> = (e: React.FormEvent<IParams>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const username = form.elements.username.value;
-    const password = form.elements.password.value;
+  const authUser: React.FormEventHandler<HTMLFormElement> = (event: React.FormEvent<IParams>) => {
+    event.preventDefault();
     loginUser({ username, password })
       .unwrap()
       .then((token) => {
+        const { id } = parseJwt(token.token);
         dispatch(delCurrentUser());
-        dispatch(setCurrentUser({ username }));
+        dispatch(setCurrentUser(id));
         closeUserLoginForm();
-        console.log(parseJwt(token.token));
       })
-      .catch(() => {
-        setAuth(true);
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -62,11 +58,11 @@ const UserLoginForm: React.FC = () => {
       }
       onClick={closeUserLoginForm}
     >
-      <div className={classes.content} onClick={(e) => e.stopPropagation()}>
+      <div className={classes.content} onClick={(event) => event.stopPropagation()}>
         <h2>Log in</h2>
-        {auth ? (
+        {isError ? (
           <div className={classes.message}>
-            <div className={classes.error}>{}</div>
+            <div className={classes.error}>Error message</div>
           </div>
         ) : (
           ''
@@ -79,9 +75,9 @@ const UserLoginForm: React.FC = () => {
             placeholder="User name"
             value={username}
             autoComplete="off"
-            onChange={(e) => {
-              setUsername(e.currentTarget.value);
-              setAuth(false);
+            onChange={(event) => {
+              setUsername(event.currentTarget.value);
+              reset();
             }}
             required
           />
@@ -90,9 +86,9 @@ const UserLoginForm: React.FC = () => {
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => {
-              setPassword(e.currentTarget.value);
-              setAuth(false);
+            onChange={(event) => {
+              setPassword(event.currentTarget.value);
+              reset();
             }}
             required
           />
@@ -108,8 +104,9 @@ const UserLoginForm: React.FC = () => {
               Sign in
             </span>
           </div>
-          <>{isLoading ? <div></div> : <div>Loading...</div>}</>
-          <input type="submit" value="Log in" />
+          <button type="submit">
+            {isUninitialized || isError || isSuccess ? 'Log in' : 'Processing..'}
+          </button>
         </form>
       </div>
     </div>

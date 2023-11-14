@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import ShoppingBagSvg from '../../../assets/icons/shopping-bag.svg';
 import HeartSvg from '../../../assets/icons/heart.svg';
 import UserSvg from '../../../assets/icons/user.svg';
-import { toggleUserLoginForm } from '../../../store/userSlice';
+import { toggleVisibleUserLoginForm } from '../../../store/userSlice';
 import { changesDisplayPrice } from '../../../utils/utils';
 
 const UserBar: React.FC = () => {
@@ -17,7 +17,7 @@ const UserBar: React.FC = () => {
   const totalPrice = bag.reduce((sum, product) => sum + product.price * product.quantity, 0);
   const dispatch = useAppDispatch();
   const handleOnClickLogIn = () => {
-    dispatch(toggleUserLoginForm(true));
+    dispatch(toggleVisibleUserLoginForm(true));
   };
 
   return (
