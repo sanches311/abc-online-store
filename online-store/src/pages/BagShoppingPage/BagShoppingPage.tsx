@@ -17,7 +17,6 @@ import WesternUnionSvg from '../../assets/icons/paysystem/wester union.svg';
 const BagShoppingPage: React.FC = () => {
   const cart = useAppSelector((state) => state.user.cart);
   const countProducts = cart.reduce((sum, product) => sum + product.quantity, 0);
-  const currentUser = useAppSelector((state) => state.user.currentUser);
   const totalPrice = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
 
   return (
@@ -31,7 +30,7 @@ const BagShoppingPage: React.FC = () => {
       </div>
       {cart.length === 0 ? (
         <div>Cart is empty</div>
-      ) : currentUser === null ? (
+      ) : (
         <BagShoppingList cart={cart}>
           <div className={classes.wrapper_bottom}>
             <span className={classes.price}>Total price:</span>
@@ -53,8 +52,6 @@ const BagShoppingPage: React.FC = () => {
             <WesternUnionSvg style={{ width: 104, height: 31 }} />
           </div>
         </BagShoppingList>
-      ) : (
-        <div>Auth user. Request to server</div>
       )}
     </div>
   );
