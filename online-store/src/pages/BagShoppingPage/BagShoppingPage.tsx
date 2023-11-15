@@ -31,7 +31,7 @@ const BagShoppingPage: React.FC = () => {
       </div>
       {cart.length === 0 ? (
         <div>Cart is empty</div>
-      ) : currentUser.length === 0 ? (
+      ) : currentUser === null ? (
         <BagShoppingList cart={cart}>
           <div className={classes.wrapper_bottom}>
             <span className={classes.price}>Total price:</span>

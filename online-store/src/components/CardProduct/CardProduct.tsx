@@ -54,7 +54,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
         <li className={classes.wrapper_img}>
           <HeartSvg
             className={classes.heartIcon}
-            onClick={(e: React.SyntheticEvent<SVGAElement>) => {
+            onClick={(e: React.MouseEvent<SVGElement>) => {
               e.preventDefault();
               addToFavorites();
             }}

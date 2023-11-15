@@ -1,0 +1,32 @@
+
+.userSignInForm {
+    display: flex;
+    flex-direction: column;    
+    gap: 15px;
+    background-color: white;   
+}
+.userSignInForm input {
+    box-sizing: content-box;
+    height: 25px;
+    border: none;
+    border-bottom: 1px solid gray;
+    outline: none;
+    font-family: inherit;
+    &::placeholder {
+        font-family: 'Roboto Condensed', sans-serif;
+    }
+    &:focus {
+        border-bottom: 1px solid red;
+    }   
+}
+@keyframes show {
+    0% {visibility: visible; opacity: 0.5;}
+    100% {visibility: hidden; opacity: 0;}
+}
+.error {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    background-color: #b81c23;
+    color: white;
+}

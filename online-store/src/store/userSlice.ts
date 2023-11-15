@@ -178,7 +178,11 @@ export const user = createApi({
     userCart: builder.query<ICartLoginUser[], string>({
       query: (id) => `carts/user/${id}`,
     }),
+    getUser: builder.query<INewUserReq, number | null>({
+      query: (id) => `users/${id}`,
+    }),
   }),
 });
 
-export const { useUserLoginMutation, useUserSignInMutation, useUserCartQuery } = user;
+export const { useUserLoginMutation, useUserSignInMutation, useUserCartQuery, useGetUserQuery } =
+  user;
