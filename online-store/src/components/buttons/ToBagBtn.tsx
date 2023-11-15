@@ -23,7 +23,7 @@ const ToBagBtn: React.FC<Props> = ({ addProduct }) => {
   };
   return (
     <button
-      className={`${classes.btn} ${classes.bag_btn}`}
+      className={`${classes.btn} ${classes.bag_btn} ${classes.capitalize}`}
       disabled={disabled}
       onClick={(e) => handleOnClick(e)}
     >

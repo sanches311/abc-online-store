@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../hooks/redux';
 import HeartSvg from '../../assets/icons/heart.svg';
 import { addProductToCart, addProductToFavorites } from '../../store/userSlice';
 import ToBagBtn from '../buttons/ToBagBtn';
+import { useSnackbar } from 'notistack';
 
 type Props = {
   product: IProduct;
@@ -15,6 +16,7 @@ type Props = {
 
 const CardProduct: React.FC<Props> = ({ product }: Props) => {
   const dispatch = useAppDispatch();
+  const { enqueueSnackbar } = useSnackbar();
 
   const addProduct = () => {
     if (product) {
@@ -31,6 +33,10 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
           description,
         })
       );
+      enqueueSnackbar(`${title} Added To Bag`, {
+        variant: 'success',
+        autoHideDuration: 1500,
+      });
     }
   };
 
