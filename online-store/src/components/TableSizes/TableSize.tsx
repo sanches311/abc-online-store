@@ -1,15 +1,13 @@
-import { useState } from 'react';
 import React from 'react';
 import classes from './TableSize.module.scss';
 
 type Props = {
   updateSize(size: string | null): void;
+  size: string | null;
 };
 
-const TableSize: React.FC<Props> = ({ updateSize }) => {
-  const [size, setSize] = useState<null | string>();
+const TableSize: React.FC<Props> = ({ updateSize, size }) => {
   const handleOnClickSize = (e: React.MouseEvent<HTMLSpanElement>) => {
-    setSize(e.currentTarget.textContent);
     updateSize(e.currentTarget.textContent);
   };
   return (

@@ -2,6 +2,7 @@ a .card {
     height: 100%;  
 }
 .card {
+    position: relative;
     display: flex;           
     flex-direction: column;
     box-sizing: border-box; 
@@ -58,4 +59,22 @@ a .card {
     font-family: 'Roboto Condensed', sans-serif;
     color: rgba(128, 128, 128, 0.5);
     font-size: 0.9rem;
+}
+.inactive {
+    display: none;
+}
+.wrapper_edit_color_size {
+    position: absolute;
+    background-color: white;
+    top: 50%;    
+    animation:  show .3s;
+}
+
+@keyframes show {
+    0% {
+        left: 100%;
+        }
+    100% {
+        left: 0%;       
+    }
 }

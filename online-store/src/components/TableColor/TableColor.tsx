@@ -1,13 +1,12 @@
 import * as React from 'react';
 import classes from './TableColor.module.scss';
-import { useState } from 'react';
 
 interface Props {
   updateColor(color: string): void;
+  color: string | null;
 }
 
-const TableColor: React.FC<Props> = ({ updateColor }) => {
-  const [color, setColor] = useState<string>('');
+const TableColor: React.FC<Props> = ({ updateColor, color }) => {
   return (
     <>
       <div className={classes.currentColor}>Color: {color}</div>
@@ -15,7 +14,6 @@ const TableColor: React.FC<Props> = ({ updateColor }) => {
         <li
           className={color === 'Gray' ? classes.active_color : ''}
           onClick={() => {
-            setColor('Gray');
             updateColor('Gray');
           }}
         >
@@ -25,7 +23,6 @@ const TableColor: React.FC<Props> = ({ updateColor }) => {
         <li
           className={color === 'Blue' ? classes.active_color : ''}
           onClick={() => {
-            setColor('Blue');
             updateColor('Blue');
           }}
         >
@@ -35,7 +32,6 @@ const TableColor: React.FC<Props> = ({ updateColor }) => {
         <li
           className={color === 'Brown' ? classes.active_color : ''}
           onClick={() => {
-            setColor('Brown');
             updateColor('Brown');
           }}
         >
@@ -45,7 +41,6 @@ const TableColor: React.FC<Props> = ({ updateColor }) => {
         <li
           className={color === 'Black' ? classes.active_color : ''}
           onClick={() => {
-            setColor('Black');
             updateColor('Black');
           }}
         >

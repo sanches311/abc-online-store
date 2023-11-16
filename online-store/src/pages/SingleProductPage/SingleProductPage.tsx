@@ -10,6 +10,7 @@ import ToBagBtn from '../../components/buttons/ToBagBtn';
 import { addProductToCart } from '../../store/userSlice';
 import EditCount from '../../components/EditCount/EditCount';
 import { useDebounce } from '../../hooks/debounce';
+import { useSnackbar } from 'notistack';
 
 const SingleProductPage: React.FC = () => {
   const { id } = useParams<string>();
@@ -19,6 +20,7 @@ const SingleProductPage: React.FC = () => {
   const [color, setColor] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
   const debouncedValue = useDebounce(quantity, 500);
+  const { enqueueSnackbar } = useSnackbar();
 
   const incQuantity = () => {
     if (quantity < 99) setQuantity(quantity + 1);
@@ -49,22 +51,41 @@ const SingleProductPage: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const addProduct = () => {
+    const { id, image, title, price, description } = product!;
+    dispatch(
+      addProductToCart({
+        id,
+        image,
+        title,
+        size,
+        color,
+        quantity: 1,
+        price,
+        description,
+      })
+    );
+    enqueueSnackbar(`${title} Added To Bag`, {
+      variant: 'success',
+      autoHideDuration: 1500,
+    });
+  };
+
+  const handleOnClickBtn = () => {
     if (product) {
-      const { id, image, title, price, description } = product;
-      dispatch(
-        addProductToCart({
-          id,
-          image,
-          title,
-          size: size,
-          color: color,
-          quantity: quantity,
-          price,
-          description,
-        })
-      );
+      if (product.category === "men's clothing" || product.category === "women's clothing") {
+        if (size != null && color != null) {
+          addProduct();
+          setColor(null);
+          setSize(null);
+        }
+      } else {
+        if (product) {
+          addProduct();
+        }
+      }
     }
   };
+
   useEffect(() => {
     if (isSuccess && !product) navigate('/');
     if (product) dispatch(setProductApp([product]));
@@ -89,8 +110,8 @@ const SingleProductPage: React.FC = () => {
             </div>
             {product?.category === "women's clothing" || product?.category === "men's clothing" ? (
               <>
-                <TableSize updateSize={updateSize} />
-                <TableColor updateColor={updateColor} />
+                <TableSize updateSize={updateSize} size={size} />
+                <TableColor updateColor={updateColor} color={color} />
               </>
             ) : (
               ''
@@ -104,7 +125,7 @@ const SingleProductPage: React.FC = () => {
             <div className={classes.price}>{product?.price}$</div>
             <div className={classes.wrapper_btn}>
               <div className={classes.wrapper_to_bag_btn}>
-                <ToBagBtn addProduct={addProduct} />
+                <ToBagBtn addProduct={handleOnClickBtn} />
               </div>
             </div>
           </div>

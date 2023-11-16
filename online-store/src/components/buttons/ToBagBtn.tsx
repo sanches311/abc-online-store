@@ -8,18 +8,15 @@ interface Props {
 }
 
 const ToBagBtn: React.FC<Props> = ({ addProduct }) => {
-  const [textBtn, setTextBtn] = useState<string>('add to bag');
   const [disabled, setDisabled] = useState<boolean>(false);
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     addProduct();
-    setTextBtn('it`s in the bag');
     setDisabled(true);
     setTimeout(() => {
-      setTextBtn('add to bag');
       setDisabled(false);
-    }, 2000);
+    }, 1000);
   };
   return (
     <button
@@ -31,7 +28,7 @@ const ToBagBtn: React.FC<Props> = ({ addProduct }) => {
         <ShoppingBagSvg className={classes.shopping_bag_img_btn} />
       </span>
       <div className={classes.wrapper_text}>
-        <span>{textBtn}</span>
+        <span>add to bag</span>
       </div>
     </button>
   );
