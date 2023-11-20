@@ -8,8 +8,6 @@ import HeartSvg from '../../assets/icons/heart.svg';
 import { addProductToCart, addProductToFavorites } from '../../store/userSlice';
 import ToBagBtn from '../buttons/ToBagBtn';
 import { useSnackbar } from 'notistack';
-import TableSize from '../TableSizes/TableSize';
-import TableColor from '../TableColor/TableColor';
 
 type Props = {
   product: IProduct;
@@ -21,15 +19,6 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
   const { enqueueSnackbar } = useSnackbar();
   const [size, setSize] = useState<string | null>(null);
   const [color, setColor] = useState<string | null>(null);
-  const [visible, setVisible] = useState<boolean>(false);
-
-  const updateSize = (value: string | null) => {
-    setSize(value);
-  };
-
-  const updateColor = (value: string | null) => {
-    setColor(value);
-  };
 
   const addProduct = () => {
     const { id, image, title, price, description } = product;
@@ -56,7 +45,6 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
       if (size != null && color != null) {
         if (product) {
           addProduct();
-          setVisible(false);
           setColor(null);
           setSize(null);
         }
@@ -102,13 +90,6 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
         </li>
         <li className={classes.title}>{product.title}</li>
         <li className={classes.price}>{product.price}$</li>
-        <div
-          className={visible ? `${classes.wrapper_edit_color_size}` : `${classes.inactive}`}
-          onClick={(e) => e.preventDefault()}
-        >
-          <TableSize updateSize={updateSize} size={size} />
-          <TableColor updateColor={updateColor} color={color} />
-        </div>
         <ToBagBtn addProduct={handleOnClickBtn} />
       </ul>
     </NavLink>

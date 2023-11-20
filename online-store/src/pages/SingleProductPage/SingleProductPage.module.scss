@@ -52,64 +52,10 @@ $color-brand: #4676D7;
     margin: 0 5px 0 5px;
     color: $color-gray-transp;
 }
-.buy_btn {
-    background-color: $color-brand;
-    width: 150px;
-    margin-right: 20px;
-    border: none;
-    height: 30px;
-    color: white;
-    border-radius: 5px;
-    &:hover{
-        cursor: pointer;
-        transition: 0.5s ease-in-out;
-        opacity: 0.5;
-    }
-}
-.wrapper_color {
-    display: flex;
-    flex-direction: row;
-    gap:10px;
-    margin-top: 0px;
-    li {
-        border-radius: 50%;
-    }
-    
-}
-.color_edit {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    box-sizing: border-box;
-    margin: 3px;
-    cursor: pointer;   
-
-}
-.gray {
-    background-color: gray;
-}
-.blue {
-    background-color: blue;
-}
-.brown {
-    background-color: brown;
-}
-.black {
-    background-color: black;
-}
-.active_color {
-    border: 1px solid black;
-}
-.wrapper_btn {
-       
-}
 .wrapper_to_bag_btn {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     width: 200px;
  
-}
-.wrapper_by_now_btn {
-    width: 100%;  
 }

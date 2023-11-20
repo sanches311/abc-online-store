@@ -1,15 +1,14 @@
 .btn {
     display: flex;
     padding: 1px 10px; 
-    font-family: 'Roboto Condensed', sans-serif;          
+    font-family: 'Roboto Condensed', sans-serif;           
     align-items: center;
     justify-content: center;   
     appearance: none;
     background-color: #4676D7; 
     border: none;
     height: 30px;
-    color: white;
-    border-radius: 5px;    
+    color: white;       
     cursor: pointer; 
     &:hover{
         background-color: black;
@@ -31,7 +30,8 @@
 }
 .shopping_bag_img_btn {
     width: 20px;
-    height: 20px;    
+    height: 20px;
+    margin-right: 10px;    
 }
 .wrapper_text {   
     display: flex;

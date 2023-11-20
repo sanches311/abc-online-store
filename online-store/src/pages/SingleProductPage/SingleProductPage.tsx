@@ -3,14 +3,12 @@ import classes from './SingleProductPage.module.scss';
 import { setProductApp, useGetSingleProductQuery } from '../../store/apiSlice';
 import { useNavigate, useParams } from 'react-router-dom';
 import RatingProduct from '../../components/RatingProduct/RatingProduct';
-import TableSize from '../../components/TableSizes/TableSize';
 import { useAppDispatch } from '../../hooks/redux';
-import TableColor from '../../components/TableColor/TableColor';
-import ToBagBtn from '../../components/buttons/ToBagBtn';
 import { addProductToCart } from '../../store/userSlice';
-import EditCount from '../../components/EditCount/EditCount';
 import { useDebounce } from '../../hooks/debounce';
 import { useSnackbar } from 'notistack';
+import FormAddProduct from '../../components/FormAddProduct/FormAddProduct';
+import ToBagBtn from '../../components/buttons/ToBagBtn';
 
 const SingleProductPage: React.FC = () => {
   const { id } = useParams<string>();
@@ -24,11 +22,9 @@ const SingleProductPage: React.FC = () => {
 
   const incQuantity = () => {
     if (quantity < 99) setQuantity(quantity + 1);
-    updateQuantity(quantity + 1);
   };
   const descQuantity = () => {
     if (quantity > 1) setQuantity(quantity - 1);
-    updateQuantity(quantity - 1);
   };
   const handleOnChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuantity(+e.target.value);
@@ -41,13 +37,9 @@ const SingleProductPage: React.FC = () => {
   const updateSize = (size: string | null) => {
     setSize(size);
   };
-  const updateColor = (color: string) => {
+  const updateColor = (color: string | null) => {
     setColor(color);
   };
-  const updateQuantity = (quantity: number) => {
-    setQuantity(quantity);
-  };
-
   const dispatch = useAppDispatch();
 
   const addProduct = () => {
@@ -59,7 +51,7 @@ const SingleProductPage: React.FC = () => {
         title,
         size,
         color,
-        quantity: 1,
+        quantity: quantity,
         price,
         description,
       })
@@ -73,7 +65,7 @@ const SingleProductPage: React.FC = () => {
   const handleOnClickBtn = () => {
     if (product) {
       if (product.category === "men's clothing" || product.category === "women's clothing") {
-        if (size != null && color != null) {
+        if (size && color) {
           addProduct();
           setColor(null);
           setSize(null);
@@ -110,24 +102,28 @@ const SingleProductPage: React.FC = () => {
             </div>
             {product?.category === "women's clothing" || product?.category === "men's clothing" ? (
               <>
-                <TableSize updateSize={updateSize} size={size} />
-                <TableColor updateColor={updateColor} color={color} />
+                <FormAddProduct
+                  updateSize={updateSize}
+                  updateColor={updateColor}
+                  incQuantity={incQuantity}
+                  descQuantity={descQuantity}
+                  handleOnChangeQuantity={handleOnChangeQuantity}
+                  handleOnClickBtn={handleOnClickBtn}
+                  count={quantity}
+                  checkedSize={size}
+                  checkedColor={color}
+                >
+                  <div className={classes.price}>{product?.price}$</div>
+                </FormAddProduct>
               </>
             ) : (
-              ''
+              <>
+                <div className={classes.price}>{product?.price}$</div>
+                <div className={classes.wrapper_to_bag_btn}>
+                  <ToBagBtn addProduct={handleOnClickBtn} />
+                </div>
+              </>
             )}
-            <EditCount
-              incQuantity={incQuantity}
-              descQuantity={descQuantity}
-              handleOnChangeQuantity={handleOnChangeQuantity}
-              count={quantity}
-            />
-            <div className={classes.price}>{product?.price}$</div>
-            <div className={classes.wrapper_btn}>
-              <div className={classes.wrapper_to_bag_btn}>
-                <ToBagBtn addProduct={handleOnClickBtn} />
-              </div>
-            </div>
           </div>
         </div>
       )}
