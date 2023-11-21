@@ -8,12 +8,12 @@ import {
   incProductQuantity,
   setProductQuantity,
 } from '../../../store/userSlice';
-import { ICart } from '../../../store/userSlice';
 import { useEffect, useState } from 'react';
 import { useDebounce } from '../../../hooks/debounce';
 import ShippingSvg from '../../../assets/icons/shipping.svg';
 import TrashSvg from '../../../assets/icons/trash.svg';
 import EditCount from '../../EditCount/EditCount';
+import { ICart } from '../../../interfaces/cart';
 
 interface Props {
   key: string;
@@ -80,7 +80,7 @@ const BagShoppingProduct: React.FC<Props> = ({ product }) => {
             descQuantity={descQuantity}
             incQuantity={incQuantity}
             handleOnChangeQuantity={handleOnChangeQuantity}
-            count={count}
+            quantity={count}
           />
           <div className={classes.small_text}>{price} usd/pc.</div>
         </div>

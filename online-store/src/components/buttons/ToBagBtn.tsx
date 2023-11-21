@@ -16,7 +16,7 @@ const ToBagBtn: React.FC<Props> = ({ addProduct }) => {
     setDisabled(true);
     setTimeout(() => {
       setDisabled(false);
-    }, 1000);
+    }, 2000);
   };
   return (
     <button

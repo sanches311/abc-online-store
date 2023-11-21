@@ -1,12 +1,12 @@
 .wrapper_form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 .wrapper_sizes, .wrapper_colors {
     display: flex;
     gap: 10px;
-    flex-wrap: wrap;    
+    flex-wrap: wrap;   
 }
 
 .input_radio_size, .input_radio_color {
@@ -45,4 +45,15 @@
 }
 .wrapper_quantity {
     width: 90px;
+}
+.wrapper_submit {
+    width: 300px;   
+}
+.tip {    
+    visibility: hidden;
+    font-size: 0.8rem;
+    color: red;
+}
+.active {
+    visibility: visible;
 }

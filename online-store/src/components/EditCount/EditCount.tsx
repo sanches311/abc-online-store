@@ -7,14 +7,14 @@ interface Props {
   descQuantity: () => void;
   incQuantity: () => void;
   handleOnChangeQuantity: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  count: number;
+  quantity: number;
 }
 
 const EditCount: React.FC<Props> = ({
   descQuantity,
   incQuantity,
   handleOnChangeQuantity,
-  count,
+  quantity,
 }) => {
   return (
     <div className={classes.edit_wrapper}>
@@ -31,7 +31,7 @@ const EditCount: React.FC<Props> = ({
         type="text"
         name="quantity"
         className={classes.quantity_input}
-        value={String(count)}
+        value={String(quantity)}
         onChange={(e) => handleOnChangeQuantity(e)}
         onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
           (e.target.value = e.target.value.replace(/\D/g, ''))
