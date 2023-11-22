@@ -21,7 +21,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
   const { enqueueSnackbar } = useSnackbar();
   const [size, setSize] = useState<string | null>(null);
   const [color, setColor] = useState<string | null>(null);
-  const [visibleModalWindow, setVisibleModalWindow] = useState<boolean>(false); 
+  const [visibleModalWindow, setVisibleModalWindow] = useState<boolean>(false);
   const closeModalWindow = () => {
     setVisibleModalWindow(false);
   };
@@ -90,16 +90,17 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
               }}
             />
             <img src={product.image} alt="image" />
+            <div className={classes.wrapper_btn}>
+              <ToBagBtn addProduct={handleOnClickBtn} />
+            </div>
           </li>
           <li className={classes.wrapper_rating}>
             <RatingProduct rate={product.rating.rate}></RatingProduct>
             <div className={classes.small_text}>comments: {product.rating.count}</div>
           </li>
           <li className={classes.title}>{product.title}</li>
-          <li className={classes.price}>{product.price}$</li>
-          <div className={classes.wrapper_btn}>
-          <ToBagBtn addProduct={handleOnClickBtn} />
-          </div>
+          <li className={classes.old_price}>${(product.price - 10).toFixed(2)}</li>
+          <li className={classes.price}>Sale ${product.price}</li>
         </ul>
       </NavLink>
       <ModalWindow closeModalWindow={closeModalWindow} visibleModalWindow={visibleModalWindow}>
