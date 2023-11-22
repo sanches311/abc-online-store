@@ -156,7 +156,7 @@ const FormAddProduct: React.FC<Props> = ({ product }) => {
           quantity={quantity}
         ></EditCount>
       </div>
-      <div className={classes.price}>{product?.price}$</div>
+      <div className={classes.price}>${product?.price}</div>
       <div className={classes.wrapper_submit}>
         <ToBagBtn addProduct={handleSubmit} />
       </div>

@@ -11,7 +11,7 @@ import {
 import { parseJwt } from '../../../../utils/utils';
 import { isErrorWithMessage, isFetchBaseQueryError } from '../../../../utils/helpers';
 import LogInSignInBtn from '../../../buttons/LogInSigInBtn';
-import SideBar from '../../../SideBarRight/SideBar';
+import SideBar from '../../../popUp/SideBarRight/SideBar';
 
 interface ILoginForm extends HTMLFormControlsCollection {
   password: HTMLInputElement;

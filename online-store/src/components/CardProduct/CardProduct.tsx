@@ -8,6 +8,8 @@ import HeartSvg from '../../assets/icons/heart.svg';
 import { addProductToCart, addProductToFavorites } from '../../store/userSlice';
 import ToBagBtn from '../buttons/ToBagBtn';
 import { useSnackbar } from 'notistack';
+import ModalWindow from '../popUp/ModalWindow/ModalWindow';
+import FormAddProduct from '../FormAddProduct/FormAddProduct';
 
 type Props = {
   product: IProduct;
@@ -19,6 +21,10 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
   const { enqueueSnackbar } = useSnackbar();
   const [size, setSize] = useState<string | null>(null);
   const [color, setColor] = useState<string | null>(null);
+  const [visibleModalWindow, setVisibleModalWindow] = useState<boolean>(false); 
+  const closeModalWindow = () => {
+    setVisibleModalWindow(false);
+  };
 
   const addProduct = () => {
     const { id, image, title, price, description } = product;
@@ -48,7 +54,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
           setColor(null);
           setSize(null);
         }
-      } else setVisible(true);
+      } else setVisibleModalWindow(true);
     } else {
       if (product) {
         addProduct();
@@ -72,27 +78,34 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
     }
   };
   return (
-    <NavLink to={`/products/${product.id}`}>
-      <ul className={classes.card}>
-        <li className={classes.wrapper_img}>
-          <HeartSvg
-            className={classes.heartIcon}
-            onClick={(e: React.MouseEvent<SVGElement>) => {
-              e.preventDefault();
-              addToFavorites();
-            }}
-          />
-          <img src={product.image} alt="image" />
-        </li>
-        <li className={classes.wrapper_rating}>
-          <RatingProduct rate={product.rating.rate}></RatingProduct>
-          <div className={classes.small_text}>comments: {product.rating.count}</div>
-        </li>
-        <li className={classes.title}>{product.title}</li>
-        <li className={classes.price}>{product.price}$</li>
-        <ToBagBtn addProduct={handleOnClickBtn} />
-      </ul>
-    </NavLink>
+    <>
+      <NavLink to={`/products/${product.id}`}>
+        <ul className={classes.card}>
+          <li className={classes.wrapper_img}>
+            <HeartSvg
+              className={classes.heartIcon}
+              onClick={(e: React.MouseEvent<SVGElement>) => {
+                e.preventDefault();
+                addToFavorites();
+              }}
+            />
+            <img src={product.image} alt="image" />
+          </li>
+          <li className={classes.wrapper_rating}>
+            <RatingProduct rate={product.rating.rate}></RatingProduct>
+            <div className={classes.small_text}>comments: {product.rating.count}</div>
+          </li>
+          <li className={classes.title}>{product.title}</li>
+          <li className={classes.price}>{product.price}$</li>
+          <div className={classes.wrapper_btn}>
+          <ToBagBtn addProduct={handleOnClickBtn} />
+          </div>
+        </ul>
+      </NavLink>
+      <ModalWindow closeModalWindow={closeModalWindow} visibleModalWindow={visibleModalWindow}>
+        <FormAddProduct product={product} />
+      </ModalWindow>
+    </>
   );
 };
 

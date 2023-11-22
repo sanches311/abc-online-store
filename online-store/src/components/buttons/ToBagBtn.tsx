@@ -27,7 +27,7 @@ const ToBagBtn: React.FC<Props> = ({ addProduct }) => {
       <span>
         <ShoppingBagSvg className={classes.shopping_bag_img_btn} />
       </span>
-      <div className={classes.wrapper_text}>
+      <div className={classes.wrapper_text_into_btn}>
         <span>add to bag</span>
       </div>
     </button>

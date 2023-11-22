@@ -2,13 +2,14 @@
     display: flex;
     width: 100%;    
     padding: 1px 10px; 
-    font-family: 'Roboto Condensed', sans-serif;           
+    font-family: 'Roboto Condensed', sans-serif;  
+    font-size: inherit;         
     align-items: center;
     justify-content: center;   
     appearance: none;
-    background-color: #4676D7; 
+    background-color: #8B0000;    
     border: none;
-    height: 30px;
+    height: 100%;  
     color: white;       
     cursor: pointer; 
     &:hover{
@@ -34,8 +35,33 @@
     height: 20px;
     margin-right: 10px;    
 }
-.wrapper_text {   
+.wrapper_text_into_btn {   
     display: flex;
     justify-content: center;
-    width: 100%;    
+    width: 100%; 
+     
+}
+
+.x {   
+    position: absolute;
+    left:calc( 100% - 36px);   
+    width: 24px;
+    height: 24px;
+    cursor: pointer;            
+}
+.x::after, 
+.x::before{
+    content: "";
+    position: absolute;
+    top:12px;
+    left:0px;
+    width: 20px;
+    height: 1px;
+    background-color: black;
+    }
+.x::before{
+    transform: rotate(45deg);
+}
+.x::after{
+    transform: rotate(-45deg);
 }

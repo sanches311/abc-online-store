@@ -7,7 +7,7 @@ import {
   useUserSignInMutation,
 } from '../../../../store/userSlice';
 import LogInSignInBtn from '../../../buttons/LogInSigInBtn';
-import SideBar from '../../../SideBarRight/SideBar';
+import SideBar from '../../../popUp/SideBarRight/SideBar';
 
 interface IUserSignInForm extends HTMLFormControlsCollection {
   email: HTMLInputElement;
