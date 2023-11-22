@@ -14,7 +14,14 @@ type Props = {
 
 const FormAddProduct: React.FC<Props> = ({ product }) => {
   const sizes = ['2XS', 'XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'];
-  const colors = ['#F08080', '#FFA07A', '#8B0000', '#FF69B4', '#FF6347', '#FFA500', '#EE82EE'];
+  const colors = [
+    { name: 'HotPink', value: '#FF69B4' },
+    { name: 'DarkOrange', value: '#FF8C00' },
+    { name: 'Khaki', value: '#F0E68C' },
+    { name: 'Orchid', value: '#DA70D6' },
+    { name: 'BurlyWood', value: '#DEB887' },
+    { name: 'RoyalBlue', value: '#4169E1' },
+  ];
   const [currentSize, setCurrentSize] = useState<string | null>(null);
   const [currentColor, setCurrentColor] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
@@ -128,18 +135,18 @@ const FormAddProduct: React.FC<Props> = ({ product }) => {
           </div>
           <div className={classes.wrapper_colors}>
             {colors.map((color) => (
-              <label key={color}>
+              <label key={color.value}>
                 <input
                   type="radio"
                   className={classes.input_radio_color}
-                  value={color}
+                  value={color.name}
                   name={'color'}
                   onChange={handleOnChangeColor}
-                  checked={currentColor === color ? true : false}
+                  checked={currentColor === color.name ? true : false}
                 />
                 <span
                   className={classes.radio_color_custom}
-                  style={{ backgroundColor: color }}
+                  style={{ backgroundColor: color.value }}
                 ></span>
               </label>
             ))}
