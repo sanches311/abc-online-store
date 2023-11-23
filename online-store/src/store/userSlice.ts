@@ -10,6 +10,7 @@ interface IUserCart {
   favorites: ICart[];
   loginForm: boolean;
   SignInForm: boolean;
+  visibleModalWindow: boolean;
 }
 
 const initialState: IUserCart = {
@@ -18,6 +19,7 @@ const initialState: IUserCart = {
   favorites: [],
   loginForm: false,
   SignInForm: false,
+  visibleModalWindow: false,
 };
 interface INewUserReq {
   email: string;
@@ -113,6 +115,9 @@ const userSlice = createSlice({
     toggleVisibleUserSignInForm: (state, action: PayloadAction<boolean>) => {
       state.SignInForm = action.payload;
     },
+    toggleVisibleModalWindow: (state, action: PayloadAction<boolean>) => {
+      state.visibleModalWindow = action.payload;
+    },
     setCurrentUser: (state, action: PayloadAction<number>) => {
       state.currentUser = action.payload;
     },
@@ -131,6 +136,7 @@ export const {
   addProductToFavorites,
   toggleVisibleUserLoginForm,
   toggleVisibleUserSignInForm,
+  toggleVisibleModalWindow,
   setCurrentUser,
   delCurrentUser,
 } = userSlice.actions;

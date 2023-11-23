@@ -6,7 +6,7 @@ import { IProduct } from '../../interfaces/products';
 import { useSnackbar } from 'notistack';
 import { useDebounce } from '../../hooks/debounce';
 import { useAppDispatch } from '../../hooks/redux';
-import { addProductToCart } from '../../store/userSlice';
+import { addProductToCart, toggleVisibleModalWindow } from '../../store/userSlice';
 
 type Props = {
   product: IProduct;
@@ -50,6 +50,10 @@ const FormAddProduct: React.FC<Props> = ({ product }) => {
 
   const dispatch = useAppDispatch();
 
+  const closeModalWindow = () => {
+    dispatch(toggleVisibleModalWindow(false));
+  };
+
   const addProduct = () => {
     const { id, image, title, price, description } = product!;
     dispatch(
@@ -77,6 +81,7 @@ const FormAddProduct: React.FC<Props> = ({ product }) => {
           addProduct();
           setCurrentColor(null);
           setCurrentSize(null);
+          closeModalWindow();
         } else {
           if (currentSize === null) seVisibleTipSize(true);
           if (currentColor === null) seVisibleTipColor(true);

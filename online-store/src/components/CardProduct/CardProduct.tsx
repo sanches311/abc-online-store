@@ -5,7 +5,11 @@ import RatingProduct from '../RatingProduct/RatingProduct';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/redux';
 import HeartSvg from '../../assets/icons/heart.svg';
-import { addProductToCart, addProductToFavorites } from '../../store/userSlice';
+import {
+  addProductToCart,
+  addProductToFavorites,
+  toggleVisibleModalWindow,
+} from '../../store/userSlice';
 import ToBagBtn from '../buttons/ToBagBtn';
 import { useSnackbar } from 'notistack';
 import ModalWindow from '../popUp/ModalWindow/ModalWindow';
@@ -21,9 +25,9 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
   const { enqueueSnackbar } = useSnackbar();
   const [size, setSize] = useState<string | null>(null);
   const [color, setColor] = useState<string | null>(null);
-  const [visibleModalWindow, setVisibleModalWindow] = useState<boolean>(false);
-  const closeModalWindow = () => {
-    setVisibleModalWindow(false);
+
+  const showModalWindow = () => {
+    dispatch(toggleVisibleModalWindow(true));
   };
 
   const addProduct = () => {
@@ -54,7 +58,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
           setColor(null);
           setSize(null);
         }
-      } else setVisibleModalWindow(true);
+      } else showModalWindow();
     } else {
       if (product) {
         addProduct();
@@ -103,7 +107,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
           <li className={classes.price}>Sale ${product.price}</li>
         </ul>
       </NavLink>
-      <ModalWindow closeModalWindow={closeModalWindow} visibleModalWindow={visibleModalWindow}>
+      <ModalWindow>
         <FormAddProduct product={product} />
       </ModalWindow>
     </>
