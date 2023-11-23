@@ -12,6 +12,14 @@ type Props = {
   product: IProduct;
 };
 
+interface IForm extends HTMLFormControlsCollection {
+  size: HTMLInputElement;
+  color: HTMLInputElement;
+}
+interface IParams extends HTMLFormElement {
+  readonly elements: IForm;
+}
+
 const FormAddProduct: React.FC<Props> = ({ product }) => {
   const sizes = ['2XS', 'XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'];
   const colors = [
@@ -29,7 +37,7 @@ const FormAddProduct: React.FC<Props> = ({ product }) => {
   const [visibleTipColor, seVisibleTipColor] = useState<boolean>(false);
   const [visibleTipSize, seVisibleTipSize] = useState<boolean>(false);
 
-  const form = useRef(null);
+  const form = useRef<IParams | null>(null);
 
   const debouncedValue = useDebounce(quantity, 500);
   const { enqueueSnackbar } = useSnackbar();
@@ -81,6 +89,7 @@ const FormAddProduct: React.FC<Props> = ({ product }) => {
           addProduct();
           setCurrentColor(null);
           setCurrentSize(null);
+          setQuantity(1);
           closeModalWindow();
         } else {
           if (currentSize === null) seVisibleTipSize(true);
