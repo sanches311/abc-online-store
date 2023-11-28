@@ -1,7 +1,7 @@
 import * as React from 'react';
 import classes from './BagShoppingList.module.scss';
-import { ICart } from '../../../store/userSlice';
 import BagShoppingProduct from '../BagShoppingProduct/BagShoppingProduct';
+import { ICart } from '../../../interfaces/cart';
 
 interface Props {
   children: React.ReactNode;

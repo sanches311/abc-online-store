@@ -7,19 +7,23 @@ import { ICart, ICartLoginUser } from '../interfaces/cart';
 interface IUserCart {
   currentUser: number | null;
   cart: ICart[];
+  lastAddItemCart: ICart | null;
   favorites: ICart[];
   loginForm: boolean;
   SignInForm: boolean;
-  visibleModalWindow: boolean;
+  visibleModalWindowEditColorSize: boolean;
+  visibleModalWindowShoppingBag: boolean;
 }
 
 const initialState: IUserCart = {
   currentUser: null,
   cart: [],
+  lastAddItemCart: null,
   favorites: [],
   loginForm: false,
   SignInForm: false,
-  visibleModalWindow: false,
+  visibleModalWindowEditColorSize: false,
+  visibleModalWindowShoppingBag: false,
 };
 interface INewUserReq {
   email: string;
@@ -71,6 +75,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addProductToCart: (state, action: PayloadAction<ICart>) => {
+      state.lastAddItemCart = action.payload;
       const indexSameProduct = state.cart.findIndex(
         (item) =>
           item.id === action.payload.id &&
@@ -115,8 +120,11 @@ const userSlice = createSlice({
     toggleVisibleUserSignInForm: (state, action: PayloadAction<boolean>) => {
       state.SignInForm = action.payload;
     },
-    toggleVisibleModalWindow: (state, action: PayloadAction<boolean>) => {
-      state.visibleModalWindow = action.payload;
+    toggleVisibleModalWindowEditColorSize: (state, action: PayloadAction<boolean>) => {
+      state.visibleModalWindowEditColorSize = action.payload;
+    },
+    toggleVisibleModalWindowShoppingBag: (state, action: PayloadAction<boolean>) => {
+      state.visibleModalWindowShoppingBag = action.payload;
     },
     setCurrentUser: (state, action: PayloadAction<number>) => {
       state.currentUser = action.payload;
@@ -136,7 +144,8 @@ export const {
   addProductToFavorites,
   toggleVisibleUserLoginForm,
   toggleVisibleUserSignInForm,
-  toggleVisibleModalWindow,
+  toggleVisibleModalWindowEditColorSize,
+  toggleVisibleModalWindowShoppingBag,
   setCurrentUser,
   delCurrentUser,
 } = userSlice.actions;

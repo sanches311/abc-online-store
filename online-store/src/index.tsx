@@ -6,6 +6,7 @@ import store from './store/index.ts';
 import UserLoginForm from './components/User/UserForm/UserLoginForm/UserLoginForm.tsx';
 import UserSignInForm from './components/User/UserForm/UserSignIn/UserSignInForm.tsx';
 import { SnackbarProvider } from 'notistack';
+import BagShoppingModal from './components/BagShopping/BagShoppingModal/BagShoppingModal.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <SnackbarProvider anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <App />
         <UserLoginForm />
         <UserSignInForm />
+        <BagShoppingModal />
       </BrowserRouter>
     </Provider>
   </SnackbarProvider>

@@ -3,13 +3,16 @@ import classes from './FormAddProduct.module.scss';
 import EditCount from '../EditCount/EditCount';
 import ToBagBtn from '../buttons/ToBagBtn';
 import { IProduct } from '../../interfaces/products';
-import { useSnackbar } from 'notistack';
 import { useDebounce } from '../../hooks/debounce';
 import { useAppDispatch } from '../../hooks/redux';
-import { addProductToCart, toggleVisibleModalWindow } from '../../store/userSlice';
+import {
+  addProductToCart,
+  toggleVisibleModalWindowEditColorSize,
+  toggleVisibleModalWindowShoppingBag,
+} from '../../store/userSlice';
 
 type Props = {
-  product: IProduct;
+  product: IProduct | null;
 };
 
 interface IForm extends HTMLFormControlsCollection {
@@ -39,8 +42,10 @@ const FormAddProduct: React.FC<Props> = ({ product }) => {
 
   const form = useRef<IParams | null>(null);
 
+  const showModalShoppingBag = () => {
+    dispatch(toggleVisibleModalWindowShoppingBag(true));
+  };
   const debouncedValue = useDebounce(quantity, 500);
-  const { enqueueSnackbar } = useSnackbar();
 
   const incQuantity = () => {
     if (quantity < 99) setQuantity(quantity + 1);
@@ -58,17 +63,18 @@ const FormAddProduct: React.FC<Props> = ({ product }) => {
 
   const dispatch = useAppDispatch();
 
-  const closeModalWindow = () => {
-    dispatch(toggleVisibleModalWindow(false));
+  const hideModalWindowEditColorSize = () => {
+    dispatch(toggleVisibleModalWindowEditColorSize(false));
   };
 
   const addProduct = () => {
-    const { id, image, title, price, description } = product!;
+    const { id, image, title, price, description, category } = product!;
     dispatch(
       addProductToCart({
         id,
         image,
         title,
+        category,
         size: currentSize,
         color: currentColor,
         quantity: quantity,
@@ -76,10 +82,7 @@ const FormAddProduct: React.FC<Props> = ({ product }) => {
         description,
       })
     );
-    enqueueSnackbar(`${title} Added To Bag`, {
-      variant: 'success',
-      autoHideDuration: 1500,
-    });
+    showModalShoppingBag();
   };
 
   const handleSubmit = () => {
@@ -90,7 +93,7 @@ const FormAddProduct: React.FC<Props> = ({ product }) => {
           setCurrentColor(null);
           setCurrentSize(null);
           setQuantity(1);
-          closeModalWindow();
+          hideModalWindowEditColorSize();
         } else {
           if (currentSize === null) seVisibleTipSize(true);
           if (currentColor === null) seVisibleTipColor(true);

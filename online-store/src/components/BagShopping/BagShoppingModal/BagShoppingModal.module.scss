@@ -1,0 +1,39 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: 44px 22px 44px 22px;
+}
+.modal_header {
+    border-bottom: 1px solid gray ;
+}
+.wrapper_product {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+.wrapper_img {
+    width: 60px;
+}
+.wrapper_img img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+.wrapper_desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+      
+}
+.desc_title { 
+    font-weight: 600;
+    max-width: 200px;   
+    overflow: hidden;
+}
+.wrapper_btn {
+    width: 100%;
+    height: 30px;
+}

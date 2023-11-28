@@ -1,23 +1,27 @@
 import React from 'react';
 import classes from './ModalWindow.module.scss';
 import ClosePopUpBtn from '../../buttons/ClosePopUpBtn';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { toggleVisibleModalWindow } from '../../../store/userSlice';
 
 interface Props {
   children: React.ReactNode;
+  visibleModalWindow: boolean;
+  justifyContent: string;
+  alignItems: string;
+  hideModalWindow: () => void;
 }
 
-const ModalWindow: React.FC<Props> = ({ children }) => {
-  const visibleModalWindow = useAppSelector((state) => state.user.visibleModalWindow);
-  const dispatch = useAppDispatch();
-  const closeModalWindow = () => {
-    dispatch(toggleVisibleModalWindow(false));
-  };
+const ModalWindow: React.FC<Props> = ({
+  children,
+  visibleModalWindow,
+  hideModalWindow,
+  justifyContent,
+  alignItems,
+}) => {
   return (
     <div
       className={visibleModalWindow ? `${classes.overlay} ${classes.active}` : classes.overlay}
-      onClick={closeModalWindow}
+      style={{ justifyContent: justifyContent, alignItems: alignItems }}
+      onClick={hideModalWindow}
     >
       <div
         className={classes.content}
@@ -25,7 +29,7 @@ const ModalWindow: React.FC<Props> = ({ children }) => {
           event.stopPropagation();
         }}
       >
-        <ClosePopUpBtn handleOnClick={closeModalWindow} />
+        <ClosePopUpBtn handleOnClick={hideModalWindow} />
         {children}
       </div>
     </div>

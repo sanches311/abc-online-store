@@ -8,35 +8,37 @@ import HeartSvg from '../../assets/icons/heart.svg';
 import {
   addProductToCart,
   addProductToFavorites,
-  toggleVisibleModalWindow,
+  toggleVisibleModalWindowEditColorSize,
+  toggleVisibleModalWindowShoppingBag,
 } from '../../store/userSlice';
 import ToBagBtn from '../buttons/ToBagBtn';
-import { useSnackbar } from 'notistack';
-import ModalWindow from '../popUp/ModalWindow/ModalWindow';
-import FormAddProduct from '../FormAddProduct/FormAddProduct';
 
 type Props = {
   product: IProduct;
+  updateProductAdded: (value: IProduct) => void;
   key: number;
 };
 
-const CardProduct: React.FC<Props> = ({ product }: Props) => {
+const CardProduct: React.FC<Props> = ({ product, updateProductAdded }: Props) => {
   const dispatch = useAppDispatch();
-  const { enqueueSnackbar } = useSnackbar();
   const [size, setSize] = useState<string | null>(null);
   const [color, setColor] = useState<string | null>(null);
 
-  const showModalWindow = () => {
-    dispatch(toggleVisibleModalWindow(true));
+  const showModalWindowEditColorSize = () => {
+    dispatch(toggleVisibleModalWindowEditColorSize(true));
+  };
+  const showModalShoppingBag = () => {
+    dispatch(toggleVisibleModalWindowShoppingBag(true));
   };
 
   const addProduct = () => {
-    const { id, image, title, price, description } = product;
+    const { id, image, title, price, description, category } = product;
     dispatch(
       addProductToCart({
         id,
         image,
         title,
+        category,
         size,
         color,
         quantity: 1,
@@ -44,13 +46,11 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
         description,
       })
     );
-    enqueueSnackbar(`${title} Added To Bag`, {
-      variant: 'success',
-      autoHideDuration: 1500,
-    });
+    showModalShoppingBag();
   };
 
   const handleOnClickBtn = () => {
+    updateProductAdded(product);
     if (product.category === "men's clothing" || product.category === "women's clothing") {
       if (size != null && color != null) {
         if (product) {
@@ -58,7 +58,7 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
           setColor(null);
           setSize(null);
         }
-      } else showModalWindow();
+      } else showModalWindowEditColorSize();
     } else {
       if (product) {
         addProduct();
@@ -68,12 +68,13 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
 
   const addToFavorites = () => {
     if (product) {
-      const { id, image, title, price, description } = product;
+      const { id, image, title, price, description, category } = product;
       dispatch(
         addProductToFavorites({
           id,
           image,
           description,
+          category,
           title,
           quantity: 1,
           price,
@@ -107,9 +108,6 @@ const CardProduct: React.FC<Props> = ({ product }: Props) => {
           <li className={classes.price}>Sale ${product.price}</li>
         </ul>
       </NavLink>
-      <ModalWindow>
-        <FormAddProduct product={product} />
-      </ModalWindow>
     </>
   );
 };

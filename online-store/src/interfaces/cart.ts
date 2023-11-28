@@ -14,6 +14,7 @@ export interface ICart {
   id: number;
   image: string;
   title: string;
+  category: string;
   size?: string | null;
   color?: string | null;
   quantity: number;
