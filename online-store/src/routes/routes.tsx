@@ -7,6 +7,7 @@ import ProductsAllPage from '../pages/ProductsAll/ProductsAllPage';
 import DynamicCategoryBreadcrumb from '../components/Breadcrumbs/DynamicCategoryBreadcrumb';
 import BagShoppingPage from '../pages/BagShoppingPage/BagShoppingPage';
 import WishListPage from '../pages/WishListPage/WishListPage';
+import UserOrders from '../pages/UserOrdersPage/UserOrdersPage';
 export const routes = [
   {
     path: '/',
@@ -37,6 +38,11 @@ export const routes = [
         path: '/bag',
         element: <BagShoppingPage />,
         breadcrumb: 'Shopping Bag',
+      },
+      {
+        path: '/bag/user/:userId',
+        element: <UserOrders />,
+        breadcrumb: null,
       },
       {
         path: '/wishlist',

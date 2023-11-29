@@ -21,3 +21,15 @@ export interface ICart {
   price: number;
   description: string;
 }
+export interface IQuantity {
+  product: ICart;
+  quantity: number;
+}
+
+export interface IUserOrders {
+  id: number;
+  userId: number;
+  date: string;
+  products: Product[];
+  __v: number;
+}

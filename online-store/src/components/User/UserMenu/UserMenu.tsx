@@ -8,10 +8,12 @@ import {
   useGetUserQuery,
 } from '../../../store/userSlice';
 import useOnClickOutside from '../../../hooks/onClickOutSide';
+import { useNavigate } from 'react-router-dom';
 
 const UserMenu: React.FC = () => {
   const userMenu = useRef(null);
   const userId = useAppSelector((state) => state.user.currentUser);
+  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
   const visible = useAppSelector((state) => state.user.userMenu);
@@ -44,7 +46,10 @@ const UserMenu: React.FC = () => {
     hideUserMenu();
   };
   const handleOnClickOrders = () => {
-    if (!userId) showLogin();
+    if (!userId) {
+      showLogin();
+    } else navigate(`/bag/user/${userId}`);
+
     hideUserMenu();
   };
   useOnClickOutside(userMenu, hideUserMenu, visible);

@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { compareProduct } from '../utils/utils';
-import { ICart, ICartLoginUser } from '../interfaces/cart';
+import { ICart, ICartLoginUser, IQuantity, IUserOrders } from '../interfaces/cart';
+import { INewUserReq, INewUserResp } from '../interfaces/user';
 
 interface IUserCart {
   currentUser: number | null;
@@ -27,51 +28,7 @@ const initialState: IUserCart = {
   visibleModalWindowEditColorSize: false,
   visibleModalWindowShoppingBag: false,
 };
-interface INewUserReq {
-  email: string;
-  username: string;
-  password: string;
-  name: {
-    firstname: string;
-    lastname: string;
-  };
-  address: {
-    city: string;
-    street: string;
-    number: number | null;
-    zipcode: string;
-    geolocation: {
-      lat: string;
-      long: string;
-    };
-  };
-  phone: string;
-}
-interface INewUserResp {
-  id: number;
-  email: string;
-  username: string;
-  password: string;
-  name: {
-    firstname: string;
-    lastname: string;
-  };
-  address: {
-    city: string;
-    street: string;
-    number: number;
-    zipcode: string;
-    geolocation: {
-      lat: string;
-      long: string;
-    };
-  };
-  phone: string;
-}
-interface IQuantity {
-  product: ICart;
-  quantity: number;
-}
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -191,8 +148,16 @@ export const user = createApi({
     getUser: builder.query<INewUserReq, number | null>({
       query: (id) => `users/${id}`,
     }),
+    getUserOrders: builder.query<IUserOrders[], string>({
+      query: (id) => `/carts/user/${id}`,
+    }),
   }),
 });
 
-export const { useUserLoginMutation, useUserSignInMutation, useUserCartQuery, useGetUserQuery } =
-  user;
+export const {
+  useUserLoginMutation,
+  useUserSignInMutation,
+  useUserCartQuery,
+  useGetUserQuery,
+  useGetUserOrdersQuery,
+} = user;
