@@ -11,6 +11,7 @@ interface IUserCart {
   favorites: ICart[];
   loginForm: boolean;
   SignInForm: boolean;
+  userMenu: boolean;
   visibleModalWindowEditColorSize: boolean;
   visibleModalWindowShoppingBag: boolean;
 }
@@ -22,6 +23,7 @@ const initialState: IUserCart = {
   favorites: [],
   loginForm: false,
   SignInForm: false,
+  userMenu: false,
   visibleModalWindowEditColorSize: false,
   visibleModalWindowShoppingBag: false,
 };
@@ -126,6 +128,9 @@ const userSlice = createSlice({
     toggleVisibleModalWindowShoppingBag: (state, action: PayloadAction<boolean>) => {
       state.visibleModalWindowShoppingBag = action.payload;
     },
+    toggleVisibleUserMenu: (state, action: PayloadAction<boolean>) => {
+      state.userMenu = action.payload;
+    },
     setCurrentUser: (state, action: PayloadAction<number>) => {
       state.currentUser = action.payload;
     },
@@ -146,6 +151,7 @@ export const {
   toggleVisibleUserSignInForm,
   toggleVisibleModalWindowEditColorSize,
   toggleVisibleModalWindowShoppingBag,
+  toggleVisibleUserMenu,
   setCurrentUser,
   delCurrentUser,
 } = userSlice.actions;

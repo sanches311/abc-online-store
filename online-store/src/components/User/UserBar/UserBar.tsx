@@ -5,8 +5,9 @@ import { NavLink } from 'react-router-dom';
 import ShoppingBagSvg from '../../../assets/icons/shopping-bag.svg';
 import HeartSvg from '../../../assets/icons/heart.svg';
 import UserSvg from '../../../assets/icons/user.svg';
-import { toggleVisibleUserLoginForm } from '../../../store/userSlice';
+import { toggleVisibleUserMenu } from '../../../store/userSlice';
 import { changesDisplayPrice } from '../../../utils/utils';
+import UserMenu from '../UserMenu/UserMenu';
 
 const UserBar: React.FC = () => {
   const bag = useAppSelector((state) => state.user.cart);
@@ -16,14 +17,15 @@ const UserBar: React.FC = () => {
   );
   const totalPrice = bag.reduce((sum, product) => sum + product.price * product.quantity, 0);
   const dispatch = useAppDispatch();
-  const handleOnClickLogIn = () => {
-    dispatch(toggleVisibleUserLoginForm(true));
+  const handleOnClickUser = () => {
+    dispatch(toggleVisibleUserMenu(true));
   };
 
   return (
     <div id="user_bar" className={classes.wrapper}>
-      <div className={classes.wrapper_item_user_bar} onClick={handleOnClickLogIn}>
-        <UserSvg className={classes.item_user_bar_svg} />
+      <div className={classes.wrapper_item_user_bar}>
+        <UserSvg className={classes.item_user_bar_svg} onClick={handleOnClickUser} />
+        <UserMenu />
       </div>
       <NavLink to="wishlist" className={classes.wrapper_item_user_bar}>
         <div className={classes.wishlist}>
