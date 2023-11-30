@@ -3,7 +3,7 @@ import classes from './buttons.module.scss';
 
 interface Props {
   children: React.ReactNode | string;
-  handleOnClick: () => void;
+  handleOnClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button: React.FC<Props> = ({ children, handleOnClick }) => {

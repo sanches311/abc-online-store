@@ -14,12 +14,26 @@ const ProductsPageByCategory: React.FC = () => {
     query,
   };
   const { category } = useParams();
-  const { data: products, isLoading } = useGetProductsCategoryQuery({
+  const {
+    data: products,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetProductsCategoryQuery({
     category: category!,
     searchParams: params,
   });
 
-  return <CardList products={products} isLoading={isLoading} />;
+  return (
+    <CardList
+      products={products}
+      isLoading={isLoading}
+      isSuccess={isSuccess}
+      isError={isError}
+      error={error}
+    />
+  );
 };
 
 export default ProductsPageByCategory;

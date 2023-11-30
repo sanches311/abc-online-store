@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classes from './FormAddProduct.module.scss';
 import EditCount from '../EditCount/EditCount';
-import ToBagBtn from '../buttons/ToBagBtn';
 import { IProduct } from '../../interfaces/products';
 import { useDebounce } from '../../hooks/debounce';
 import { useAppDispatch } from '../../hooks/redux';
@@ -10,6 +9,8 @@ import {
   toggleVisibleModalWindowEditColorSize,
   toggleVisibleModalWindowShoppingBag,
 } from '../../store/userSlice';
+import Button from '../buttons/Button';
+import ShoppingBagSvg from '../../assets/icons/shopping-bag.svg';
 
 type Props = {
   product: IProduct | null;
@@ -85,7 +86,8 @@ const FormAddProduct: React.FC<Props> = ({ product }) => {
     showModalShoppingBag();
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     if (product) {
       if (product.category === "men's clothing" || product.category === "women's clothing") {
         if (currentColor && currentSize) {
@@ -182,7 +184,14 @@ const FormAddProduct: React.FC<Props> = ({ product }) => {
       </div>
       <div className={classes.price}>${product?.price}</div>
       <div className={classes.wrapper_submit}>
-        <ToBagBtn addProduct={handleSubmit} />
+        <Button handleOnClick={(e) => handleSubmit(e)}>
+          <span>
+            <ShoppingBagSvg className={classes.shopping_bag_img_btn} />
+          </span>
+          <div className={classes.wrapper_text_into_btn}>
+            <span>Add To Bag</span>
+          </div>
+        </Button>
       </div>
     </form>
   );

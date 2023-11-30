@@ -23,17 +23,21 @@
     display: flex;
     justify-content: space-between;
     padding-top: 15px;
-    margin-bottom: 15px;
+    margin: 15px 0 15px 0;
 }
 .price {
     font-size: 1.2rem;
     font-weight: bold;
     min-width: 100px;    
 }
-.wrapper_checkout_btn {
+.wrapper_checkout {
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
-    margin-bottom: 15px;
+}
+.wrapper_checkout_btn {  
+    width: 200px;
+    height: 40px;
     button {
         text-transform: uppercase;
     }    
@@ -42,6 +46,7 @@
  .wrapper_item_pay {
     display: flex;    
     justify-content: center;
+    margin: 15px 0 15px 0;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;

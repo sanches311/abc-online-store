@@ -51,7 +51,7 @@
 .wrapper_submit {
     display: flex;
     flex-direction: row;   
-    height: 50px;
+    height: 40px;
     align-items: stretch; 
     font-size: 1.1rem; 
 }
@@ -67,4 +67,14 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 1.5rem;
     font-weight: bold;
+}
+.shopping_bag_img_btn {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;    
+}
+.wrapper_text_into_btn {   
+    display: flex;
+    justify-content: center;
+    width: 100%;     
 }

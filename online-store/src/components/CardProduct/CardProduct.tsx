@@ -11,7 +11,8 @@ import {
   toggleVisibleModalWindowEditColorSize,
   toggleVisibleModalWindowShoppingBag,
 } from '../../store/userSlice';
-import ToBagBtn from '../buttons/ToBagBtn';
+import Button from '../buttons/Button';
+import ShoppingBagSvg from '../../assets/icons/shopping-bag.svg';
 
 type Props = {
   product: IProduct;
@@ -49,7 +50,8 @@ const CardProduct: React.FC<Props> = ({ product, updateProductAdded }: Props) =>
     showModalShoppingBag();
   };
 
-  const handleOnClickBtn = () => {
+  const handleOnClickBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     updateProductAdded(product);
     if (product.category === "men's clothing" || product.category === "women's clothing") {
       if (size != null && color != null) {
@@ -96,7 +98,14 @@ const CardProduct: React.FC<Props> = ({ product, updateProductAdded }: Props) =>
             />
             <img src={product.image} alt="image" />
             <div className={classes.wrapper_btn}>
-              <ToBagBtn addProduct={handleOnClickBtn} />
+              <Button handleOnClick={(e) => handleOnClickBtn(e)}>
+                <span>
+                  <ShoppingBagSvg className={classes.shopping_bag_img_btn} />
+                </span>
+                <div className={classes.wrapper_text_into_btn}>
+                  <span>Add To Bag</span>
+                </div>
+              </Button>
             </div>
           </li>
           <li className={classes.wrapper_rating}>

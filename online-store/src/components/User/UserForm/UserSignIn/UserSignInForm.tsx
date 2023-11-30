@@ -6,8 +6,8 @@ import {
   toggleVisibleUserSignInForm,
   useUserSignInMutation,
 } from '../../../../store/userSlice';
-import LogInSignInBtn from '../../../buttons/LogInSigInBtn';
 import SideBar from '../../../popUp/SideBarRight/SideBar';
+import Button from '../../../buttons/Button';
 
 interface IUserSignInForm extends HTMLFormControlsCollection {
   email: HTMLInputElement;
@@ -185,12 +185,11 @@ const UserSignInForm: React.FC = () => {
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
-        <LogInSignInBtn
-          isError={isError}
-          isSuccess={isSuccess}
-          isUninitialized={isUninitialized}
-          name={'Sign in'}
-        />
+        <div className={classes.wrapper_signin_btn}>
+          <Button handleOnClick={() => {}}>
+            {isUninitialized || isError || isSuccess ? 'Sign in' : 'Processing..'}
+          </Button>
+        </div>
       </form>
     </SideBar>
   );

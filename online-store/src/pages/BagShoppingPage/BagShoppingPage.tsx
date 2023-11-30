@@ -2,7 +2,6 @@ import * as React from 'react';
 import classes from './BagShoppingPage.module.scss';
 import { useAppSelector } from '../../hooks/redux';
 import BagShoppingList from '../../components/BagShopping/BagShoppingList/BagShoppingList';
-import CheckOutBtn from '../../components/buttons/CheckoutBtn';
 import VisaSvg from '../../assets/icons/paysystem/visa.svg';
 import MaestroSvg from '../../assets/icons/paysystem/maestro.svg';
 import MasterSvg from '../../assets/icons/paysystem/master card.svg';
@@ -13,6 +12,7 @@ import PayPassSvg from '../../assets/icons/paysystem/paypass.svg';
 import GooglePaySvg from '../../assets/icons/paysystem/googlePay.svg';
 import WebMoneySvg from '../../assets/icons/paysystem/webmoney.svg';
 import WesternUnionSvg from '../../assets/icons/paysystem/wester union.svg';
+import Button from '../../components/buttons/Button';
 
 const BagShoppingPage: React.FC = () => {
   const cart = useAppSelector((state) => state.user.cart);
@@ -36,9 +36,12 @@ const BagShoppingPage: React.FC = () => {
             <span className={classes.price}>Total price:</span>
             <div className={classes.price}>${totalPrice.toFixed(2)}</div>
           </div>
-          <div className={classes.wrapper_checkout_btn}>
-            <CheckOutBtn />
+          <div className={classes.wrapper_checkout}>
+            <div className={classes.wrapper_checkout_btn}>
+              <Button handleOnClick={() => {}}>Checkout</Button>
+            </div>
           </div>
+
           <div className={classes.wrapper_item_pay}>
             <VisaSvg style={{ width: 69, height: 21 }} />
             <MaestroSvg style={{ width: 64, height: 38 }} />

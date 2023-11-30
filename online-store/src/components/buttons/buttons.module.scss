@@ -19,29 +19,6 @@
            opacity: 1;            
             }
 }
-.capitalize {
-    text-transform: capitalize;
-}
-
-.bag_btn[disabled] {
- background-color: rgb(97, 13, 13) !important;
- cursor: default;
- &:active{     
-     opacity: 1 ;            
-    }
-}
-.shopping_bag_img_btn {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;    
-}
-.wrapper_text_into_btn {   
-    display: flex;
-    justify-content: center;
-    width: 100%; 
-     
-}
-
 .x {   
     position: absolute;
     left:calc( 100% - 36px);   

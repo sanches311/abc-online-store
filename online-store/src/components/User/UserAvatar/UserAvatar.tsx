@@ -6,6 +6,7 @@ import { useGetUserQuery } from '../../../store/userSlice';
 
 const UserAvatar: React.FC = () => {
   const id = useAppSelector((state) => state.user.currentUserId);
+  console.log(id);
   const { data: user } = useGetUserQuery(id, { skip: !id });
   return (
     <div className={classes.wrapper}>

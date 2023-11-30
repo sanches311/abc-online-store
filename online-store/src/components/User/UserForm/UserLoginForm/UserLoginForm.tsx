@@ -10,8 +10,8 @@ import {
 } from '../../../../store/userSlice';
 import { parseJwt } from '../../../../utils/utils';
 import { isErrorWithMessage, isFetchBaseQueryError } from '../../../../utils/helpers';
-import LogInSignInBtn from '../../../buttons/LogInSigInBtn';
 import SideBar from '../../../popUp/SideBarRight/SideBar';
+import Button from '../../../buttons/Button';
 
 interface ILoginForm extends HTMLFormControlsCollection {
   password: HTMLInputElement;
@@ -102,12 +102,11 @@ const UserLoginForm: React.FC = () => {
             Sign in
           </span>
         </div>
-        <LogInSignInBtn
-          isError={isError}
-          isSuccess={isSuccess}
-          isUninitialized={isUninitialized}
-          name={'Log in'}
-        />
+        <div className={classes.wrapper_login_btn}>
+          <Button handleOnClick={() => {}}>
+            {isUninitialized || isError || isSuccess ? 'Log in' : 'Processing..'}
+          </Button>
+        </div>
       </form>
     </SideBar>
   );
