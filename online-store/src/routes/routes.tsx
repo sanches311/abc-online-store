@@ -8,6 +8,7 @@ import DynamicCategoryBreadcrumb from '../components/Breadcrumbs/DynamicCategory
 import BagShoppingPage from '../pages/BagShoppingPage/BagShoppingPage';
 import WishListPage from '../pages/WishListPage/WishListPage';
 import UserOrders from '../pages/UserOrdersPage/UserOrdersPage';
+import RequireAth from '../hoc/RequireAuth';
 export const routes = [
   {
     path: '/',
@@ -40,8 +41,12 @@ export const routes = [
         breadcrumb: 'Shopping Bag',
       },
       {
-        path: '/bag/user/:userId',
-        element: <UserOrders />,
+        path: '/orders/user/:userId',
+        element: (
+          <RequireAth>
+            <UserOrders />
+          </RequireAth>
+        ),
         breadcrumb: null,
       },
       {

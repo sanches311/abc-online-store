@@ -5,12 +5,12 @@ import UserCircleSvg from '../../../assets/icons/user-circle.svg';
 import { useGetUserQuery } from '../../../store/userSlice';
 
 const UserAvatar: React.FC = () => {
-  const id = useAppSelector((state) => state.user.currentUser);
-  const { data } = useGetUserQuery(id, { skip: id === null });
+  const id = useAppSelector((state) => state.user.currentUserId);
+  const { data: user } = useGetUserQuery(id, { skip: !id });
   return (
     <div className={classes.wrapper}>
       <UserCircleSvg className={classes.avatar_ico} />
-      <span>{id === null ? 'Guest' : `${data?.username}`}</span>
+      <span>{!id ? 'Guest' : `${user?.username}`}</span>
     </div>
   );
 };

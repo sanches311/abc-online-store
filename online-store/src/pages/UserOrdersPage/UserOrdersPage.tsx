@@ -17,7 +17,6 @@ const UserOrders: React.FC = () => {
     isFetching,
     isLoading,
   } = useGetUserOrdersQuery(userId!, { skip: !userId });
-
   return (
     <WrapperPage>
       <h2>My orders</h2>

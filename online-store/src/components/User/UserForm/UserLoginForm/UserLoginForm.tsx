@@ -48,9 +48,9 @@ const UserLoginForm: React.FC = () => {
     loginUser({ username, password })
       .unwrap()
       .then((token) => {
-        const { id } = parseJwt(token.token);
+        const { sub } = parseJwt(token.token);
         dispatch(delCurrentUser());
-        dispatch(setCurrentUser(id));
+        dispatch(setCurrentUser(sub));
         closeUserLoginForm();
       })
       .catch((err) => {

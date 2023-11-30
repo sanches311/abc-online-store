@@ -6,7 +6,7 @@ import { ICart, ICartLoginUser, IQuantity, IUserOrders } from '../interfaces/car
 import { INewUserReq, INewUserResp } from '../interfaces/user';
 
 interface IUserCart {
-  currentUser: number | null;
+  currentUserId: number | null;
   cart: ICart[];
   lastAddItemCart: ICart | null;
   favorites: ICart[];
@@ -18,7 +18,7 @@ interface IUserCart {
 }
 
 const initialState: IUserCart = {
-  currentUser: null,
+  currentUserId: null,
   cart: [],
   lastAddItemCart: null,
   favorites: [],
@@ -89,10 +89,10 @@ const userSlice = createSlice({
       state.userMenu = action.payload;
     },
     setCurrentUser: (state, action: PayloadAction<number>) => {
-      state.currentUser = action.payload;
+      state.currentUserId = action.payload;
     },
     delCurrentUser: (state) => {
-      state.currentUser = null;
+      state.currentUserId = null;
     },
   },
 });

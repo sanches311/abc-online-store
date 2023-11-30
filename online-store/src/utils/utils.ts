@@ -1,5 +1,5 @@
+import { ICart } from '../interfaces/cart';
 import { IProduct } from '../interfaces/products';
-import { ICart } from '../store/userSlice';
 
 export const sortBy = (list: IProduct[], param: string | null): IProduct[] => {
   if (!param) return list;
