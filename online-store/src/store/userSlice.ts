@@ -54,6 +54,9 @@ const userSlice = createSlice({
       const newCart = state.cart.filter((product) => compareProduct(product, action.payload));
       state.cart = newCart;
     },
+    cleanCart: (state) => {
+      state.cart = [];
+    },
     incProductQuantity: (state, action: PayloadAction<ICart>) => {
       const index = state.cart.findIndex((product) => !compareProduct(product, action.payload));
       state.cart[index].quantity = state.cart[index].quantity + 1;
@@ -100,6 +103,7 @@ const userSlice = createSlice({
 export const {
   addProductToCart,
   delProductCart,
+  cleanCart,
   incProductQuantity,
   descProductQuantity,
   setProductQuantity,

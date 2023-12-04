@@ -1,6 +1,7 @@
 .overlay {
     position: fixed;
-    display: none;   
+    visibility: hidden; 
+    display: flex;  
     left: 0;
     top: 0;
     width: 100%;
@@ -9,7 +10,7 @@
     z-index: 99;       
 }
 .active {
-  display: flex !important;     
+  visibility: visible !important;     
 }
     
 .content {
