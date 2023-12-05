@@ -1,6 +1,5 @@
 import * as React from 'react';
 import classes from './Footer.module.scss';
-import NavPages from '../NavPages/NavPages';
 import Logo from '../Logo/Logo';
 
 const Footer: React.FC = () => {
@@ -10,9 +9,6 @@ const Footer: React.FC = () => {
         <div>
           <Logo />
           <div>© 2001—2023 by sanches</div>
-        </div>
-        <div className={classes.navigation}>
-          <NavPages />
         </div>
         <ul className={classes.contact}>
           <li>

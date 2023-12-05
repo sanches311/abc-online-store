@@ -8,6 +8,7 @@ import UserSvg from '../../../assets/icons/user.svg';
 import { toggleVisibleUserMenu } from '../../../store/userSlice';
 import { changesDisplayPrice } from '../../../utils/utils';
 import UserMenu from '../UserMenu/UserMenu';
+import UserAvatar from '../UserAvatar/UserAvatar';
 
 const UserBar: React.FC = () => {
   const bag = useAppSelector((state) => state.user.cart);
@@ -23,6 +24,7 @@ const UserBar: React.FC = () => {
 
   return (
     <div id="user_bar" className={classes.wrapper}>
+      <UserAvatar />
       <div className={classes.wrapper_item_user_bar}>
         <UserSvg className={classes.item_user_bar_svg} onClick={handleOnClickUser} />
         <UserMenu />

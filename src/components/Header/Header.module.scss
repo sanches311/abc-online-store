@@ -11,20 +11,7 @@ header {
  .active {
     color:red;
  }
- nav a {
-    margin-left: 10px;
-    font-size: 1.1rem;
- }
- .header_login_btn, .header_sign_btn  {
-    width: 80px;
-    margin-left: 5px;
-    margin-right: 5px;
-    background: #4676D7;
-    color: white;
-    border: 0;
-    font-size: 0.8rem;
-    padding: 5px 0px 5px 0px;
-    border-radius: 5px;   
-    cursor: pointer;    
-
+ .wrapper_search {
+   margin: 0 20px 0 20px;
+   width: 50%;
  }
