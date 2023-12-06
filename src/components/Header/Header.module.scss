@@ -8,10 +8,17 @@ header {
     padding-right: 50px;    
     padding: 15px 20px 15px 20px;     
  }
- .active {
-    color:red;
- }
- .wrapper_search {
+ .wrapper_input_search {
    margin: 0 20px 0 20px;
-   width: 50%;
+   width: 50%;     
+      @media (max-width: 760px) {
+        display: none;
+      }    
+ }
+ .wrapper_input_search_mobile {
+   display: none;
+   margin: 10px 20px 10px 20px;  
+   @media (max-width: 760px) {
+      display: block;
+    } 
  }

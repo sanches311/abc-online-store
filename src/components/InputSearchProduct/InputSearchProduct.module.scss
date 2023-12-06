@@ -1,15 +1,20 @@
-.search {
+.search {   
     border: none;
-    border-bottom: 1px solid gray;    
+    border: 1px solid #dde3e9;
+    border-radius: 24px; 
+    height: 38px;   
+    padding: 8px 18px 9px;   
+    background-color: #f2f4f6;  
     outline: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-family: inherit;
     width: 100%;
+    
     &:focus {
-       border-color: red;   
+       border-color: gray;   
     }
     &::placeholder {
-      font-family: 'Roboto Condensed', sans-serif;
+      font-family: inherit;
     }
  
      }

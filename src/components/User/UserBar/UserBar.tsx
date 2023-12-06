@@ -24,7 +24,10 @@ const UserBar: React.FC = () => {
 
   return (
     <div id="user_bar" className={classes.wrapper}>
-      <UserAvatar />
+      <div className={classes.wrapper_user_avatar}>
+        <UserAvatar />
+      </div>
+
       <div className={classes.wrapper_item_user_bar}>
         <UserSvg className={classes.item_user_bar_svg} onClick={handleOnClickUser} />
         <UserMenu />

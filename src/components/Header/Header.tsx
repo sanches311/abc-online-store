@@ -9,11 +9,15 @@ const Header: React.FC = () => {
     <>
       <header>
         <Logo />
-        <div className={classes.wrapper_search}>
+        <div className={classes.wrapper_input_search}>
           <InputSearchProduct />
         </div>
         <UserBar />
       </header>
+      <div className={classes.wrapper_input_search_mobile}>
+        <InputSearchProduct />
+      </div>
+
       <NavCategories />
     </>
   );

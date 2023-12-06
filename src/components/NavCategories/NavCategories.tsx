@@ -7,7 +7,7 @@ const NavCategories: React.FC = () => {
   const { data: categories, isLoading } = useGetAllCategoriesQuery();
 
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.wrapper_categories}>
       <NavLink
         className={({ isActive }) =>
           isActive ? `${classes.nav_link} ${classes.active}` : classes.nav_link
