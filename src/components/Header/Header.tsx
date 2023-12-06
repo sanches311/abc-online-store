@@ -4,10 +4,12 @@ import NavCategories from '../NavCategories/NavCategories';
 import InputSearchProduct from '../InputSearchProduct/InputSearchProduct';
 import Logo from '../Logo/Logo';
 import UserBar from '../User/UserBar/UserBar';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 const Header: React.FC = () => {
   return (
     <>
       <header>
+        <BurgerMenu />
         <Logo />
         <div className={classes.wrapper_input_search}>
           <InputSearchProduct />
