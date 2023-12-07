@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useGetProductsCategoryQuery } from '../../store/apiSlice';
 import CardList from '../../components/CardList/CardList';
 
@@ -24,6 +24,17 @@ const ProductsPageByCategory: React.FC = () => {
     category: category!,
     searchParams: params,
   });
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (
+      category != 'electronics' &&
+      category != 'jewelery' &&
+      category != "men's clothing" &&
+      category != "women's clothing"
+    ) {
+      navigate('*');
+    }
+  }, [category]);
 
   return (
     <CardList
