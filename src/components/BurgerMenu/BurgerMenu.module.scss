@@ -48,7 +48,10 @@
     background-color: white;
     height: 100%;  
     z-index: 2; 
-    padding: 60px 20px 30px 20px;   
+    padding: 60px 20px 30px 20px; 
+    @media (max-width: 480px) {
+       width: 100%;         
+      }   
   }
   .menu_list {
     display: flex;

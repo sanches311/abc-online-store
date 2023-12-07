@@ -15,8 +15,12 @@
         gap: 15px;
         .trash_img {
             visibility:  visible;            ;
-        }  
-        
+        }         
+      } 
+      @media (max-width: 480px) {
+        max-width: 300px;
+        overflow: hidden;
+         
       }    
     }
     .wrapper_product_img {
