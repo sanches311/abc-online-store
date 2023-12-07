@@ -16,7 +16,7 @@
     height: 26px;   
     background: transparent;     
     cursor: pointer; 
-    z-index: 2;
+    z-index: 3;
 
 }
 @mixin line {
@@ -47,7 +47,7 @@
     transition: .5s transform;
     background-color: white;
     height: 100%;  
-    z-index: 1; 
+    z-index: 2; 
     padding: 60px 20px 30px 20px;   
   }
   .menu_list {
