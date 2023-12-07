@@ -9,6 +9,7 @@ import BagShoppingPage from '../pages/BagShoppingPage/BagShoppingPage';
 import WishListPage from '../pages/WishListPage/WishListPage';
 import UserOrders from '../pages/UserOrdersPage/UserOrdersPage';
 import RequireAth from '../hoc/RequireAuth';
+import PageNotFound from '../pages/PageNotFound/PageNotFound';
 export const routes = [
   {
     path: '/',
@@ -52,6 +53,11 @@ export const routes = [
       {
         path: '/wishlist',
         element: <WishListPage />,
+      },
+      {
+        path: '*',
+        element: <PageNotFound />,
+        breadcrumb: null,
       },
     ],
   },
