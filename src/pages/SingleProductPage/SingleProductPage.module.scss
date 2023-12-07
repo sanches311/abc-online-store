@@ -5,6 +5,9 @@ $color-brand: #4676D7;
 }
 .Layout_2_column {
     display: flex;
+    @media (max-width: 760px) {
+        flex-direction: column;
+      } 
     flex-direction: row;
     gap: 30px;   
 }

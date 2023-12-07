@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './SideBar.module.scss';
+import ClosePopUpBtn from '../../buttons/ClosePopUpBtn';
 
 interface Props {
   children: React.ReactNode;
@@ -16,7 +17,7 @@ const SideBar: React.FC<Props> = ({ children, visible, handleOnClick }) => {
       onClick={handleOnClick}
     >
       <div className={classes.content} onClick={(event) => event.stopPropagation()}>
-        <span className={classes.x} onClick={handleOnClick}></span>
+        <ClosePopUpBtn handleOnClick={handleOnClick} />
         {children}
       </div>
     </div>

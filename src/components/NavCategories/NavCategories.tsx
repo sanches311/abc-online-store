@@ -7,7 +7,7 @@ const NavCategories: React.FC = () => {
   const { data: categories, isLoading } = useGetAllCategoriesQuery();
 
   return (
-    <div className={classes.wrapper_categories}>
+    <>
       <NavLink
         className={({ isActive }) =>
           isActive ? `${classes.nav_link} ${classes.active}` : classes.nav_link
@@ -17,7 +17,7 @@ const NavCategories: React.FC = () => {
         All
       </NavLink>
       {isLoading
-        ? 'Loading...'
+        ? ''
         : categories
         ? categories.map((category: string, index: number) => (
             <NavLink
@@ -31,7 +31,7 @@ const NavCategories: React.FC = () => {
             </NavLink>
           ))
         : ''}
-    </div>
+    </>
   );
 };
 

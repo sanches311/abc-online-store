@@ -19,8 +19,9 @@ const Header: React.FC = () => {
       <div className={classes.wrapper_input_search_mobile}>
         <InputSearchProduct />
       </div>
-
-      <NavCategories />
+      <div className={classes.wrapper_categories}>
+        <NavCategories />
+      </div>
     </>
   );
 };
