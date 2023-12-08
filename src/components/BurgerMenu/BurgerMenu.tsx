@@ -19,12 +19,21 @@ const BurgerMenu: React.FC = () => {
       </label>
       <div className={classes.wrapper_menu_list}>
         <div className={classes.menu_list}>
+          <Link to="/products" onClick={() => setChecked(false)}>
+            <div className={classes.wrapper_category}>
+              <div className={classes.wrapper_img}>
+                <img src={`/image/all_category.png`} alt="image" />
+              </div>
+              <div>All</div>
+            </div>
+          </Link>
+
           {!isError && isSuccess && !isLoading
             ? categories.map((category: string) => (
                 <Link to={category} key={category} onClick={() => setChecked(false)}>
                   <div className={classes.wrapper_category}>
                     <div className={classes.wrapper_img}>
-                      <img src={`/image/${category}.jpg`} alt="image" />
+                      <img src={`/image/${category}.png`} alt="image" />
                     </div>
                     <div>{category}</div>
                   </div>
