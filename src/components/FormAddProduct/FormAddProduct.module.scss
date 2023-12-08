@@ -1,9 +1,10 @@
 .wrapper_form {
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
     max-width: 400px;
     min-width: 300px;
-    gap: 15px;
+    gap: 15px;   
 }
 .wrapper_sizes, .wrapper_colors {
     display: flex;
