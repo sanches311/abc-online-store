@@ -17,7 +17,6 @@
     background: transparent;     
     cursor: pointer; 
     z-index: 3;
-
 }
 @mixin line {
     content: "";
@@ -43,13 +42,15 @@
     left: 0;
     position: absolute;   
     width: 300px;
+    box-sizing: border-box;
     transform: translateX(-100%);
     transition: .5s transform;
     background-color: white;
     height: 100%;  
     z-index: 2; 
     padding: 60px 20px 30px 20px; 
-    @media (max-width: 480px) {                
+    @media (max-width: 480px) {
+      width: 100%;                
       }   
   }
   .menu_list {

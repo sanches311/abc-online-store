@@ -1,0 +1,15 @@
+.active {
+  color: red;
+}
+
+nav a {
+  margin-left: 10px;
+  font-size: 1.1rem;
+}
+
+nav a:hover {
+  -webkit-text-decoration: underline solid black;
+          text-decoration: underline solid black;
+  opacity: 0.7;
+}
+/*# sourceMappingURL=NavPages.module.css.map */
