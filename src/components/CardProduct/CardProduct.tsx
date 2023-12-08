@@ -97,7 +97,15 @@ const CardProduct: React.FC<Props> = ({ product, updateProductAdded }: Props) =>
               }}
             />
             <img src={product.image} alt="image" />
-            <div className={classes.wrapper_btn}>
+          </li>
+          <li className={classes.wrapper_rating}>
+            <RatingProduct rate={product.rating.rate}></RatingProduct>
+            <div className={classes.small_text}>comments: {product.rating.count}</div>
+          </li>
+          <li className={classes.title}>{product.title}</li>
+          <li className={classes.old_price}>${(product.price - 10).toFixed(2)}</li>
+          <li className={classes.price}>Sale ${product.price}</li>
+          <div className={classes.wrapper_btn}>
               <Button handleOnClick={(e) => handleOnClickBtn(e)}>
                 <span>
                   <ShoppingBagSvg className={classes.shopping_bag_img_btn} />
@@ -107,14 +115,6 @@ const CardProduct: React.FC<Props> = ({ product, updateProductAdded }: Props) =>
                 </div>
               </Button>
             </div>
-          </li>
-          <li className={classes.wrapper_rating}>
-            <RatingProduct rate={product.rating.rate}></RatingProduct>
-            <div className={classes.small_text}>comments: {product.rating.count}</div>
-          </li>
-          <li className={classes.title}>{product.title}</li>
-          <li className={classes.old_price}>${(product.price - 10).toFixed(2)}</li>
-          <li className={classes.price}>Sale ${product.price}</li>
         </ul>
       </NavLink>
     </>

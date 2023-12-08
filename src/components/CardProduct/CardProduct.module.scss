@@ -1,7 +1,8 @@
 a .card {    
     height: 100%;  
 }
-.card {   
+.card {  
+    position: relative; 
     display: flex;
     flex-direction: column; 
     gap: 5px; 
@@ -66,11 +67,19 @@ a .card {
 .wrapper_btn {
     visibility: hidden;
     position: absolute;
-    width: 100%;
+    width: 90%;
     height: 40px;
-    top:90%;
+    top:50%;
     left:50%;
-    transform:translate(-50%, -50%);    
+    transform:translate(-50%, -50%);  
+    @media (max-width: 760px) {
+        visibility: visible;
+        position: relative;        
+        transform: none;
+        top: 0;
+        left: 0;
+        width: 100%;         
+      }    
 }
 a .card:hover .wrapper_btn {
     visibility: visible;
