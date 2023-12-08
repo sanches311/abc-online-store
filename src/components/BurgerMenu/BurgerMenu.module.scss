@@ -64,6 +64,10 @@
     .wrapper_menu_list { 
         transform: translateX(0);
         transition: .5s transform;
+        body {
+        height: 100vh;
+        overflow-y: hidden;
+        }
     }
     .burger::before{ 
         @include line;   
@@ -103,4 +107,3 @@
         height: 100%;
     }
   }
-  
