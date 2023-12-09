@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,OAAO,CAAC;EACJ,KAAK,EAAC,GAAG;CACX;;AACD,AAAA,GAAG,CAAC,CAAC,CAAC;EACH,WAAW,EAAE,IAAI;EACjB,SAAS,EAAE,MAAM;CAKnB;;AAPD,AAGG,GAHA,CAAC,CAAC,AAGD,MAAM,CAAC;EACN,eAAe,EAAE,qBAAqB;EACtC,OAAO,EAAE,GAAG;CACb",
-    "sources": [
-        "NavPages.module.scss"
-    ],
-    "names": [],
-    "file": "NavPages.module.css"
-}

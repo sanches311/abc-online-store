@@ -9,7 +9,7 @@ interface IUserCart {
   currentUserId: number | null;
   cart: ICart[];
   lastAddItemCart: ICart | null;
-  favorites: ICart[];
+  wishlist: ICart[];
   loginForm: boolean;
   SignInForm: boolean;
   userMenu: boolean;
@@ -21,7 +21,7 @@ const initialState: IUserCart = {
   currentUserId: null,
   cart: [],
   lastAddItemCart: null,
-  favorites: [],
+  wishlist: [],
   loginForm: false,
   SignInForm: false,
   userMenu: false,
@@ -72,9 +72,12 @@ const userSlice = createSlice({
       );
       state.cart[index].quantity = action.payload.quantity;
     },
-    addProductToFavorites: (state, action: PayloadAction<ICart>) => {
-      const indexSameProduct = state.favorites.findIndex((item) => item.id === action.payload.id);
-      if (indexSameProduct === -1) state.favorites.push(action.payload);
+    addProductToWishlist: (state, action: PayloadAction<ICart>) => {
+      const indexSameProduct = state.wishlist.findIndex((item) => item.id === action.payload.id);
+      if (indexSameProduct === -1) state.wishlist.push(action.payload);
+    },
+    delProductWishlist: (state, action: PayloadAction<number>) => {
+      state.wishlist = state.wishlist.filter((item) => item.id != action.payload);
     },
     toggleVisibleUserLoginForm: (state, action: PayloadAction<boolean>) => {
       state.loginForm = action.payload;
@@ -107,7 +110,8 @@ export const {
   incProductQuantity,
   descProductQuantity,
   setProductQuantity,
-  addProductToFavorites,
+  addProductToWishlist,
+  delProductWishlist,
   toggleVisibleUserLoginForm,
   toggleVisibleUserSignInForm,
   toggleVisibleModalWindowEditColorSize,

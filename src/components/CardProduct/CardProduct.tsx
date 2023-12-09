@@ -7,7 +7,7 @@ import { useAppDispatch } from '../../hooks/redux';
 import HeartSvg from '../../assets/icons/heart.svg';
 import {
   addProductToCart,
-  addProductToFavorites,
+  addProductToWishlist,
   toggleVisibleModalWindowEditColorSize,
   toggleVisibleModalWindowShoppingBag,
 } from '../../store/userSlice';
@@ -72,7 +72,7 @@ const CardProduct: React.FC<Props> = ({ product, updateProductAdded }: Props) =>
     if (product) {
       const { id, image, title, price, description, category } = product;
       dispatch(
-        addProductToFavorites({
+        addProductToWishlist({
           id,
           image,
           description,
@@ -106,15 +106,15 @@ const CardProduct: React.FC<Props> = ({ product, updateProductAdded }: Props) =>
           <li className={classes.old_price}>${(product.price - 10).toFixed(2)}</li>
           <li className={classes.price}>Sale ${product.price}</li>
           <div className={classes.wrapper_btn}>
-              <Button handleOnClick={(e) => handleOnClickBtn(e)}>
-                <span>
-                  <ShoppingBagSvg className={classes.shopping_bag_img_btn} />
-                </span>
-                <div className={classes.wrapper_text_into_btn}>
-                  <span>Add To Bag</span>
-                </div>
-              </Button>
-            </div>
+            <Button handleOnClick={(e) => handleOnClickBtn(e)}>
+              <span>
+                <ShoppingBagSvg className={classes.shopping_bag_img_btn} />
+              </span>
+              <div className={classes.wrapper_text_into_btn}>
+                <span>Add To Bag</span>
+              </div>
+            </Button>
+          </div>
         </ul>
       </NavLink>
     </>

@@ -12,7 +12,7 @@ import UserAvatar from '../UserAvatar/UserAvatar';
 
 const UserBar: React.FC = () => {
   const bag = useAppSelector((state) => state.user.cart);
-  const wishList = useAppSelector((state) => state.user.favorites.length);
+  const wishList = useAppSelector((state) => state.user.wishlist.length);
   const countProducts = changesDisplayPrice(
     bag.reduce((sum, product) => sum + product.quantity, 0)
   );

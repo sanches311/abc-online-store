@@ -14,7 +14,7 @@ const NavCategories: React.FC = () => {
         }
         to="/products"
       >
-        All
+        All categories
       </NavLink>
       {isLoading
         ? ''

@@ -19,7 +19,7 @@ const BurgerMenu: React.FC = () => {
   const [checked, setChecked] = useState<boolean>(false);
   const { data: categories, isError, isSuccess, isLoading } = useGetAllCategoriesQuery();
   const bag = useAppSelector((state) => state.user.cart);
-  const countProductswishList = useAppSelector((state) => state.user.favorites.length);
+  const countProductswishList = useAppSelector((state) => state.user.wishlist.length);
   const countProductsBag = changesDisplayPrice(
     bag.reduce((sum, product) => sum + product.quantity, 0)
   );
