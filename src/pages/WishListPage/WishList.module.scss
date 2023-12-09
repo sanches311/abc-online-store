@@ -15,6 +15,7 @@
     justify-content: space-between;
     @media (max-width: 760px) {
         flex-direction: column;
+        gap: 10px;
     }
 }
 .product_desc {
@@ -22,6 +23,7 @@
     align-items: center;
     @media (max-width: 760px) {
         flex-direction: column;
+        align-items: flex-start;
     }
 }    
 .trash {
@@ -31,7 +33,7 @@
 }
 .wrapper_product_img {
     width: 60px;    
-    height: 100px;
+    height: auto;
     margin-right: 10px;
     img {
         object-fit: contain;
@@ -41,5 +43,10 @@
 }
 .wrapper_product_title {
     width: 300px;
+    letter-spacing: .1rem;
+    @media (max-width: 760px) {
+       width: 250px;
+       font-size: .9rem;
+    }
    
 }
