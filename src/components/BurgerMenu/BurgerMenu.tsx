@@ -14,6 +14,7 @@ import YoutubeSVG from '../../assets/icons/social_media/youtube.svg';
 import InstagramSVG from '../../assets/icons/social_media/instagram.svg';
 import { FaGithub } from 'react-icons/fa';
 import { BsTelephone } from 'react-icons/bs';
+import useSwipe from '../../hooks/swipe';
 
 const BurgerMenu: React.FC = () => {
   const [checked, setChecked] = useState<boolean>(false);
@@ -29,6 +30,7 @@ const BurgerMenu: React.FC = () => {
   };
   const {} = useAppSelector((state) => state.user.cart);
   useOnClickOutside(burgerMenu, hideBurgerMenu, checked);
+  useSwipe(hideBurgerMenu, checked);
 
   return (
     <div className={classes.menu}>
