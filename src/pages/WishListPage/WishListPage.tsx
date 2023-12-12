@@ -25,15 +25,20 @@ const WishListPage: React.FC = () => {
                   <div className={classes.wrapper_product_img}>
                     <img src={product.image} />
                   </div>
-                  <div className={classes.wrapper_product_title}>{product.title}</div>
+                  <div className={classes.desc_wrapper_title}>
+                    <div className={classes.product_title}>{product.title}</div>
+                    <div className={classes.price_mobile_screen}>${product.price}</div>
+                  </div>
                 </li>
-                <li>
+                <li className={classes.wrapper_trash}>
                   <TrashSVG
                     className={classes.trash}
                     onClick={() => deleteProductWishlist(product.id)}
                   />
                 </li>
-                <li style={{ fontWeight: 'bold' }}>${product.price}</li>
+                <li className={`${classes.price_desktop_screen} ${classes.text_bold}`}>
+                  ${product.price}
+                </li>
               </ul>
             ))}
           </div>
