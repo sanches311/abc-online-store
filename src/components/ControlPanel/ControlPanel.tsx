@@ -1,57 +1,69 @@
 import React from 'react';
 import classes from './ControlPanel.module.scss';
 import { useSearchParams } from 'react-router-dom';
+import Select from 'react-select';
 
 const ControlPanel: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const params = new URLSearchParams();
+  const params = new URLSearchParams(searchParams);
 
-  const handleOnClick = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (e.currentTarget.name === 'limit') {
-      if (searchParams.has('sort')) params.set('sort', searchParams.get('sort')!);
-      if (searchParams.has('query')) params.set('query', searchParams.get('query')!);
-      params.set('limit', e.currentTarget.value);
+  interface OptionType {
+    label: string;
+    value: string;
+  }
+
+  const sortSelectOptions: OptionType[] = [
+    { value: 'asc', label: 'default' },
+    { value: 'desc', label: 'decrease' },
+    { value: 'popular', label: 'popular' },
+    { value: 'price:desc', label: 'expensive' },
+    { value: 'price:asc', label: 'cheap' },
+  ];
+  const limitSelectOptions: OptionType[] = [
+    { value: '5', label: '5' },
+    { value: '10', label: '10' },
+    { value: '20', label: '20' },
+    { value: '30', label: '30' },
+  ];
+
+  const handleOnChangeLimit = (selectedOption: OptionType | null) => {
+    if (selectedOption) {
+      params.set('limit', selectedOption.value);
       setSearchParams(params);
     }
+  };
+  const getValueLimit = () => {
+    const selectValue = searchParams.get('limit');
+    return selectValue ? limitSelectOptions.find((item) => item.value === selectValue) : null;
+  };
+  const getValueSort = () => {
+    const selectValue = searchParams.get('sort');
+    return selectValue ? sortSelectOptions.find((item) => item.value === selectValue) : null;
+  };
 
-    if (e.currentTarget.name === 'sort') {
-      if (searchParams.has('limit')) params.set('limit', searchParams.get('limit')!);
-      if (searchParams.has('query')) params.set('query', searchParams.get('query')!);
-      params.set('sort', e.currentTarget.value);
+  const handleOnChangeSort = (selectedOption: OptionType | null) => {
+    if (selectedOption) {
+      params.set('sort', selectedOption.value);
       setSearchParams(params);
     }
   };
   return (
-    <div className={classes.wrapper_panel}>
-      <div>
-        <label>Sort by: </label>
-        <select
-          className={classes.sort}
-          name="sort"
-          value={searchParams.has('sort') ? searchParams.get('sort') ?? '' : 'asc'}
-          onChange={handleOnClick}
-        >
-          <option value="asc">default</option>
-          <option value="desc">decrease</option>
-          <option value="popular">popular</option>
-          <option value="price:desc">expensive</option>
-          <option value="price:asc">cheap</option>
-        </select>
-      </div>
-      <div>
-        <label>Show by: </label>
-        <select
-          className={classes.limit}
-          name="limit"
-          value={searchParams.has('limit') ? searchParams.get('limit') ?? '' : '20'}
-          onChange={handleOnClick}
-        >
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="30">30</option>
-        </select>
-      </div>
+    <div className={classes.wrapper_selects}>
+      <Select
+        classNamePrefix={classes.customSelect}
+        options={sortSelectOptions}
+        onChange={handleOnChangeSort}
+        placeholder="Sort by"
+        value={getValueSort()}
+      />
+
+      <Select
+        classNamePrefix={classes.customSelect}
+        options={limitSelectOptions}
+        onChange={handleOnChangeLimit}
+        value={getValueLimit()}
+        placeholder="Show by"
+      />
     </div>
   );
 };

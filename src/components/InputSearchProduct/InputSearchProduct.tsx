@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 
 const InputSearchProduct = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const params = new URLSearchParams();
+  const params = new URLSearchParams(searchParams);
 
   const handleOnKeyDownSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {

@@ -1,23 +1,6 @@
-.wrapper_panel {
+.wrapper_selects {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 10px;
-}
-.limit {
-    width: 50px;
-}
-select {    
-    outline: none;
-    border: none;
-    border-radius: 0;
-    height: 20px;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 1rem;
-}
-select option {    
-    color: black;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 1rem;
-        
+    margin: 5px 0 5px 0;  
 }
