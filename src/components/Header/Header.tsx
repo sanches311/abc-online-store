@@ -1,13 +1,12 @@
 import * as React from 'react';
 import classes from './Header.module.scss';
-import NavCategories from '../NavCategories/NavCategories';
 import InputSearchProduct from '../InputSearchProduct/InputSearchProduct';
 import Logo from '../Logo/Logo';
 import UserBar from '../User/UserBar/UserBar';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 const Header: React.FC = () => {
   return (
-    <>
+    <div className={classes.wrapper_header}>
       <header>
         <BurgerMenu />
         <Logo />
@@ -19,10 +18,7 @@ const Header: React.FC = () => {
       <div className={classes.wrapper_input_search_mobile}>
         <InputSearchProduct />
       </div>
-      <div className={classes.wrapper_categories}>
-        <NavCategories />
-      </div>
-    </>
+    </div>
   );
 };
 

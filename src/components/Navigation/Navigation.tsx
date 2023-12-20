@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useGetAllCategoriesQuery } from '../../store/apiSlice';
-import classes from './NavCategories.module.scss';
+import classes from './Navigation.module.scss';
 
-const NavCategories: React.FC = () => {
+const Navigation: React.FC = () => {
   const { data: categories, isLoading } = useGetAllCategoriesQuery();
 
   return (
-    <>
+    <nav className={classes.wrapper_nav}>
       <NavLink
         className={({ isActive }) =>
           isActive ? `${classes.nav_link} ${classes.active}` : classes.nav_link
@@ -31,8 +31,8 @@ const NavCategories: React.FC = () => {
             </NavLink>
           ))
         : ''}
-    </>
+    </nav>
   );
 };
 
-export default NavCategories;
+export default Navigation;
