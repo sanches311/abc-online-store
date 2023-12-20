@@ -50,7 +50,7 @@ const ControlPanel: React.FC = () => {
   return (
     <div className={classes.wrapper_selects}>
       <Select
-        classNamePrefix={classes.customSelect}
+        classNamePrefix="custom-select"
         options={sortSelectOptions}
         onChange={handleOnChangeSort}
         placeholder="Sort by"
@@ -58,7 +58,7 @@ const ControlPanel: React.FC = () => {
       />
 
       <Select
-        classNamePrefix={classes.customSelect}
+        classNamePrefix="custom-select"
         options={limitSelectOptions}
         onChange={handleOnChangeLimit}
         value={getValueLimit()}

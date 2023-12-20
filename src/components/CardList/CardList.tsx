@@ -11,6 +11,7 @@ import FormAddProduct from '../FormAddProduct/FormAddProduct';
 import ModalWindow from '../popUp/ModalWindow/ModalWindow';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { toggleVisibleModalWindowEditColorSize } from '../../store/userSlice';
+import Loader from '../Loader/Loader';
 
 interface Props {
   products: IProduct[] | undefined;
@@ -56,7 +57,7 @@ const CardList: React.FC<Props> = ({ products, isLoading, isError, error }) => {
       <ControlPanel />
       <div className={classes.wrapper_product}>
         {isLoading ? (
-          'Loading ...'
+          <Loader />
         ) : isError ? (
           <div>{showError(error)}</div>
         ) : products ? (
