@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { NavLink } from 'react-router-dom';
 import ShoppingBagSvg from '../../../assets/icons/shopping-bag.svg';
 import HeartSvg from '../../../assets/icons/heart.svg';
-import UserSvg from '../../../assets/icons/user.svg';
 import { toggleVisibleUserMenu } from '../../../store/userSlice';
 import { changesDisplayPrice } from '../../../utils/utils';
 import UserMenu from '../UserMenu/UserMenu';
@@ -24,12 +23,8 @@ const UserBar: React.FC = () => {
 
   return (
     <div id="user_bar" className={classes.wrapper}>
-      <div className={classes.wrapper_user_avatar}>
-        <UserAvatar />
-      </div>
-
       <div className={classes.wrapper_item_user_bar}>
-        <UserSvg className={classes.item_user_bar_svg} onClick={handleOnClickUser} />
+        <UserAvatar onClick={handleOnClickUser} />
         <UserMenu />
       </div>
       <NavLink to="wishlist" className={classes.wrapper_item_user_bar}>

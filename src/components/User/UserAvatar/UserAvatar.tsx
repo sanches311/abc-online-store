@@ -1,16 +1,19 @@
 import React from 'react';
 import classes from './UserAvatar.module.scss';
 import { useAppSelector } from '../../../hooks/redux';
-import UserCircleSvg from '../../../assets/icons/user-circle.svg';
 import { useGetUserQuery } from '../../../store/userSlice';
+import Avatar from '@mui/material/Avatar';
 
-const UserAvatar: React.FC = () => {
+interface Props {
+  onClick: () => void;
+}
+const UserAvatar: React.FC<Props> = ({ onClick }) => {
   const id = useAppSelector((state) => state.user.currentUserId);
   const { data: user } = useGetUserQuery(id, { skip: !id });
+  const username = id ? `${user?.username}` : 'Guest';
   return (
-    <div className={classes.wrapper}>
-      <UserCircleSvg className={classes.avatar_ico} />
-      <span>{!id ? 'Guest' : `${user?.username}`}</span>
+    <div className={classes.wrapper} onClick={onClick}>
+      <Avatar src={id ? '/broken-image.jpg' : ''} alt={username} />
     </div>
   );
 };
