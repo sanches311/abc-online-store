@@ -13,7 +13,7 @@ const UserAvatar: React.FC<Props> = ({ onClick }) => {
   const username = id ? `${user?.username}` : 'Guest';
   return (
     <div className={classes.wrapper} onClick={onClick}>
-      <Avatar src={id ? '/broken-image.jpg' : ''} alt={username} />
+      <Avatar src="" alt={username} />
     </div>
   );
 };
