@@ -29,7 +29,7 @@ const BurgerMenu: React.FC = () => {
     setChecked(false);
   };
   const {} = useAppSelector((state) => state.user.cart);
-  useOnClickOutside(burgerMenu, hideBurgerMenu, checked);
+  useOnClickOutside( hideBurgerMenu, checked, burgerMenu);
   useSwipe(hideBurgerMenu, checked);
 
   return (
