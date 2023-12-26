@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import classes from './UserMenu.module.scss';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import {
@@ -8,7 +8,6 @@ import {
   toggleVisibleUserSignInForm,
   useGetUserQuery,
 } from '../../../store/userSlice';
-import useOnClickOutside from '../../../hooks/onClickOutSide';
 import { Link, useNavigate } from 'react-router-dom';
 import { changesDisplayPrice } from '../../../utils/utils';
 import ClockSVG from '../../../assets/icons/clock.svg';
@@ -16,7 +15,6 @@ import ShoppingBagSVG from '../../../assets/icons/shopping-bag.svg';
 import HeartSVG from '../../../assets/icons/heart.svg';
 
 const UserMenu: React.FC = () => {
-  const userMenu = useRef(null);
   const userId = useAppSelector((state) => state.user.currentUserId);
   const bag = useAppSelector((state) => state.user.cart);
   const wishList = useAppSelector((state) => state.user.wishlist.length);
@@ -46,6 +44,7 @@ const UserMenu: React.FC = () => {
   const hideUserMenu = () => {
     dispatch(toggleVisibleUserMenu(false));
   };
+
   const handleOnClickLogin = () => {
     showLogin();
     hideSignIn();
@@ -66,12 +65,9 @@ const UserMenu: React.FC = () => {
   const logOut = () => {
     dispatch(delCurrentUser());
   };
-  useOnClickOutside(userMenu, hideUserMenu, visible);
+
   return (
-    <div
-      ref={userMenu}
-      className={visible ? `${classes.wrapper} ${classes.active}` : `${classes.wrapper}`}
-    >
+    <div className={visible ? `${classes.wrapper} ${classes.active}` : `${classes.wrapper}`}>
       <ul className={classes.wrapper_menu}>
         <li>
           <span className={classes.text_bold}>

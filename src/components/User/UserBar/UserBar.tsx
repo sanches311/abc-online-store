@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import classes from './UserBar.module.scss';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { NavLink } from 'react-router-dom';
@@ -8,8 +8,12 @@ import { toggleVisibleUserMenu } from '../../../store/userSlice';
 import { changesDisplayPrice } from '../../../utils/utils';
 import UserMenu from '../UserMenu/UserMenu';
 import UserAvatar from '../UserAvatar/UserAvatar';
+import ChevronDownSVG from '../../../assets/icons/chevron-down.svg';
+import useOnClickOutside from '../../../hooks/onClickOutSide';
 
 const UserBar: React.FC = () => {
+  const toggle = useRef(null);
+  const userMenu = useRef(null);
   const bag = useAppSelector((state) => state.user.cart);
   const wishList = useAppSelector((state) => state.user.wishlist.length);
   const countProducts = changesDisplayPrice(
@@ -17,15 +21,27 @@ const UserBar: React.FC = () => {
   );
   const totalPrice = bag.reduce((sum, product) => sum + product.price * product.quantity, 0);
   const dispatch = useAppDispatch();
-  const handleOnClickUser = () => {
-    dispatch(toggleVisibleUserMenu(true));
+  const visibleUserMenu = useAppSelector((state) => state.user.userMenu);
+  const hideUserMenu = () => {
+    dispatch(toggleVisibleUserMenu(false));
   };
+  const handleOnClickUser = () => {
+    dispatch(toggleVisibleUserMenu(!visibleUserMenu));
+  };
+  useOnClickOutside(hideUserMenu, visibleUserMenu, userMenu, toggle);
 
   return (
     <div id="user_bar" className={classes.wrapper}>
       <div className={classes.wrapper_item_user_bar}>
-        <UserAvatar onClick={handleOnClickUser} />
-        <UserMenu />
+        <UserAvatar />
+        <div onClick={handleOnClickUser} ref={toggle}>
+          <ChevronDownSVG
+            className={visibleUserMenu ? classes.chevron_top : classes.chevron_down}
+          />
+        </div>
+        <div ref={userMenu}>
+          <UserMenu />
+        </div>
       </div>
       <NavLink to="wishlist" className={classes.wrapper_item_user_bar}>
         <div className={classes.wishlist}>

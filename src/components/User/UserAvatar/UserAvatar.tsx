@@ -4,15 +4,12 @@ import { useAppSelector } from '../../../hooks/redux';
 import { useGetUserQuery } from '../../../store/userSlice';
 import Avatar from '@mui/material/Avatar';
 
-interface Props {
-  onClick: () => void;
-}
-const UserAvatar: React.FC<Props> = ({ onClick }) => {
+const UserAvatar: React.FC = () => {
   const id = useAppSelector((state) => state.user.currentUserId);
   const { data: user } = useGetUserQuery(id, { skip: !id });
   const username = id ? `${user?.username}` : 'Guest';
   return (
-    <div className={classes.wrapper} onClick={onClick}>
+    <div className={classes.wrapper}>
       <Avatar src="" alt={username} />
     </div>
   );

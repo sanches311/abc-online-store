@@ -1,22 +1,31 @@
 import React, { useEffect } from 'react';
+import useLatest from './useLatest';
+
+type Event = MouseEvent | TouchEvent;
 
 const useOnClickOutside = (
-  ref: React.RefObject<HTMLDivElement>,
   callback: () => void,
-  opened: boolean
+  opened: boolean,
+  ...ref: React.RefObject<HTMLElement>[]
 ) => {
+  const latest = useLatest(callback);
   useEffect(() => {
     if (!opened) return;
-    const handleClickOutside = (event: MouseEvent) => {
-      if (ref) {
-        if (!ref.current) return;
-        if (!ref.current.contains(event.target as Node)) callback();
-      }
+    const handleClickOutside = (event: Event) => {
+      let shouldCallCallback = true;
+      ref.forEach((item) => {
+        const element = item.current;
+        if (!element || element.contains(event.target as Node) || null) shouldCallCallback = false;
+      });
+      if (shouldCallCallback && latest.current) latest.current();
     };
-    document.addEventListener('mousedown', (event: MouseEvent) => handleClickOutside(event));
-    return () =>
-      document.removeEventListener('mousedown', (event: MouseEvent) => handleClickOutside(event));
-  }, [ref, callback, opened]);
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [ref, latest, opened]);
 };
 
 export default useOnClickOutside;

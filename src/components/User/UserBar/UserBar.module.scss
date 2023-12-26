@@ -48,4 +48,10 @@
       display: none;
     }
   }
-
+  .chevron_top {
+    transform: rotate(180deg);
+    transition: transform .2s linear;
+  }
+  .chevron_down {    
+    transition: transform .2s linear;
+  }
