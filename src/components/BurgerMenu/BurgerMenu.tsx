@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import classes from './BurgerMenu.module.scss';
 import { useGetAllCategoriesQuery } from '../../store/apiSlice';
 import { Link } from 'react-router-dom';
@@ -8,80 +8,106 @@ import { useAppSelector } from '../../hooks/redux';
 
 import BagSVG from '../../assets/icons/shopping-bag.svg';
 import HeartSVG from '../../assets/icons/heart.svg';
-import FacebookSVG from '../../assets/icons/social_media/facebook.svg';
-import LinkedinSVG from '../../assets/icons/social_media/linkedin.svg';
-import YoutubeSVG from '../../assets/icons/social_media/youtube.svg';
-import InstagramSVG from '../../assets/icons/social_media/instagram.svg';
-import { FaGithub } from 'react-icons/fa';
+
 import { BsTelephone } from 'react-icons/bs';
 import useSwipe from '../../hooks/swipe';
+import { RxTriangleRight } from 'react-icons/rx';
+import { IoIosArrowRoundBack } from 'react-icons/io';
+import { CiLocationOn } from 'react-icons/ci';
+import SocialNetworkBox from '../SocialNetworkBox/SocialNetworkBox';
 
 const BurgerMenu: React.FC = () => {
-  const [checked, setChecked] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [openContact, setOpenContact] = useState<boolean>(false);
+
   const { data: categories, isError, isSuccess, isLoading } = useGetAllCategoriesQuery();
   const bag = useAppSelector((state) => state.user.cart);
   const countProductsWishList = useAppSelector((state) => state.user.wishlist.length);
-  const countProductsBag = changesDisplayPrice(
-    bag.reduce((sum, product) => sum + product.quantity, 0)
+  const countProductsBag = useMemo(
+    () => changesDisplayPrice(bag.reduce((sum, product) => sum + product.quantity, 0)),
+    [bag]
   );
   const burgerMenu = useRef(null);
   const hideBurgerMenu = () => {
-    setChecked(false);
+    setOpen(false);
+    setOpenContact(false);
   };
-  const {} = useAppSelector((state) => state.user.cart);
-  useOnClickOutside( hideBurgerMenu, checked, burgerMenu);
-  useSwipe(hideBurgerMenu, checked);
+
+  useOnClickOutside(hideBurgerMenu, open, burgerMenu);
+  useSwipe(hideBurgerMenu, open);
 
   return (
     <div className={classes.menu}>
       <label className={classes.burger}>
         <input
           type="checkbox"
+          id="toggle-burger"
           className={classes.checkbox}
-          checked={checked}
-          onChange={(e) => setChecked(e.target.checked)}
+          checked={open}
+          onChange={() => setOpen(!open)}
         ></input>
       </label>
-      <div className={classes.overlay}>
-        <div className={classes.wrapper_menu_list} ref={burgerMenu}>
-          <ul className={classes.menu_list}>
-            <Link to="/products" onClick={() => setChecked(false)}>
-              <li>All categories</li>
-            </Link>
+      <div className={`${classes.overlay} ${open ? classes.active_overlay : ''}`}>
+        <div
+          className={`${classes.content} ${open ? classes.active_content : ''}`}
+          ref={burgerMenu}
+        >
+          <nav className={classes.navigate}>
+            <li>
+              <Link to="/products" onClick={hideBurgerMenu}>
+                All categories
+              </Link>
+            </li>
+
             {!isError && isSuccess && !isLoading
               ? categories.map((category: string) => (
-                  <Link to={category} key={category} onClick={() => setChecked(false)}>
-                    <li>{upperFirstLetter(category)}</li>
-                  </Link>
+                  <li key={category}>
+                    <Link to={category} onClick={hideBurgerMenu}>
+                      {upperFirstLetter(category)}
+                    </Link>
+                  </li>
                 ))
               : ''}
-            <Link to="/bag" onClick={() => setChecked(false)}>
-              <li>
+            <li>
+              <Link to="/bag" onClick={hideBurgerMenu}>
                 <BagSVG /> Bag shopping <span className={classes.circle}>{countProductsBag}</span>
-              </li>
-            </Link>
-            <Link to="/wishlist" onClick={() => setChecked(false)}>
-              <li>
+              </Link>
+            </li>
+            <li>
+              <Link to="/wishlist" onClick={hideBurgerMenu}>
                 <HeartSVG />
                 Wishlist <span className={classes.circle}>{countProductsWishList}</span>
-              </li>
-            </Link>
-            <Link to="tel:">
-              <li>
+              </Link>
+            </li>
+            <li>
+              <Link to="tel:">
                 <BsTelephone /> +375295138467
-              </li>
-            </Link>
-          </ul>
+              </Link>
+            </li>
+            <li className={classes.nested_link}>
+              <CiLocationOn /> Contact information
+              <RxTriangleRight onClick={() => setOpenContact(true)} />
+            </li>
+          </nav>
           <div className={classes.wrapper_social_media}>
-            <FacebookSVG style={{ height: '25px', width: '25px' }} />
-            <YoutubeSVG style={{ height: '25px', width: '25px' }} />
-            <Link to="https://www.linkedin.com/in/alexandrnaumenok/">
-              <LinkedinSVG style={{ height: '25px', width: '25px' }} />
-            </Link>
-            <InstagramSVG style={{ height: '25px', width: '25px' }} />
-            <Link to="https://github.com/sanches311">
-              <FaGithub style={{ height: '25px', width: '25px' }} />
-            </Link>
+            <SocialNetworkBox />
+          </div>
+          <div
+            className={`${classes.content} ${
+              openContact ? `${classes.active_content} ${classes.left_right}` : classes.right_left
+            }`}
+          >
+            <nav className={classes.navigate}>
+              <li
+                className={classes.back}
+                onClick={() => {
+                  setOpenContact(false), setOpen(true);
+                }}
+              >
+                <IoIosArrowRoundBack /> Back
+              </li>
+              <li>Petrova, 20 220034 Minsk Belarus</li>
+            </nav>
           </div>
         </div>
       </div>

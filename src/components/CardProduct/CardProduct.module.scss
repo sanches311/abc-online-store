@@ -6,9 +6,12 @@ a .card {
     display: flex;
     flex-direction: column; 
     gap: 5px; 
-    box-sizing: border-box; 
+    box-sizing: border-box;   
     width: 210px;   
-    padding: 10px;            
+    padding: 10px; 
+    @media (max-width: 480px) {
+           width: 250px;         
+      }             
     &:hover {
         cursor: pointer;
         box-shadow: 0px 0px 5px 0px gray;       
@@ -27,7 +30,7 @@ a .card {
 }
 .heartIcon {
     position: absolute;
-    left: 155px;   
+    left: 80%;   
     width: 25px;
     height: 25px;
     fill: white;

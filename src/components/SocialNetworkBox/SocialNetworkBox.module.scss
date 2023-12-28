@@ -1,0 +1,19 @@
+.social_network {
+    display: flex;    
+    box-sizing: border-box;
+    align-items: center;
+     a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+         margin-right: 10px;
+            svg {
+                width: 25px;    
+                height: 25px;
+            }
+            & svg:hover {
+                fill: red;
+                transition: 0.3s ease-in-out;              
+            }  
+    }    
+}

@@ -1,10 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import classes from './Footer.module.scss';
 import Logo from '../Logo/Logo';
-import FacebookSVG from '../../assets/icons/social_media/facebook.svg';
-import LinkedinSVG from '../../assets/icons/social_media/linkedin.svg';
-import YoutubeSVG from '../../assets/icons/social_media/youtube.svg';
-import InstagramSVG from '../../assets/icons/social_media/instagram.svg';
+import SocialNetworkBox from '../SocialNetworkBox/SocialNetworkBox';
 
 const Footer: React.FC = () => {
   return (
@@ -15,26 +12,7 @@ const Footer: React.FC = () => {
           <div>© 2001—2023 by sanches</div>
         </div>
         <ul className={classes.contact}>
-          <li>
-            <a href="https://www.facebook.com/">
-              <FacebookSVG />
-            </a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/">
-              <LinkedinSVG />
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/">
-              <YoutubeSVG />
-            </a>
-          </li>
-          <li>
-            <a href="https://www.instagram.com/">
-              <InstagramSVG />
-            </a>
-          </li>
+          <SocialNetworkBox />
         </ul>
       </div>
     </footer>
