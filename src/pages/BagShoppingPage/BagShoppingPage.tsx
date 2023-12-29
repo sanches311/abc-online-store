@@ -16,6 +16,7 @@ import Button from '../../components/buttons/Button';
 import { cleanCart, toggleVisibleUserLoginForm } from '../../store/userSlice';
 import ModalWindow from '../../components/popUp/ModalWindow/ModalWindow';
 import { useState } from 'react';
+import useScrollToTop from '../../hooks/useScrollToTop';
 
 const BagShoppingPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -40,6 +41,7 @@ const BagShoppingPage: React.FC = () => {
     if (!userId) return showLogin();
     showModal();
   };
+  useScrollToTop();
 
   return (
     <div className={classes.wrapper}>

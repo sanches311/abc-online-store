@@ -3,6 +3,7 @@ import classes from './WishList.module.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import TrashSVG from '../../assets/icons/trash.svg';
 import { delProductWishlist } from '../../store/userSlice';
+import useScrollToTop from '../../hooks/useScrollToTop';
 
 const WishListPage: React.FC = () => {
   const products = useAppSelector((state) => state.user.wishlist);
@@ -11,6 +12,7 @@ const WishListPage: React.FC = () => {
   const deleteProductWishlist = (id: number) => {
     dispatch(delProductWishlist(id));
   };
+  useScrollToTop();
   return (
     <div className={classes.wrapper_page}>
       <h1>Wishlist</h1>
